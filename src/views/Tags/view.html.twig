@@ -1,0 +1,12 @@
+<h1>Tags view</h1>
+{% if tag|length %}
+<div>
+  ID: {{ tag.id }}
+  <br>
+  Name: {{ tag.name }}
+</div>
+{% else %}
+<div>
+  No data found!
+</div>
+{% endif %}

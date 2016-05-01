@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'tasks.list.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<style type="text/css">
+  h1 { color: red; }
+</style>
+{% endblock %}
+
+{% block body %}
+<h1>{{ 'tasks.list.title'|trans }}</h1>
+{% if tasks|length %}
+<ul>
+  {% for row in tasks %}
+  <li>
+    {{ row.name|upper }}, {{ row.notes|lower }}
+    &mdash;
+    <a href="{{ url('tasks-view', {'id' : row.id}) }}" title="view">{{ 'tasks.view.title'|trans }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div>
+  {{ 'tasks.list.empty'|trans }}
+</div>
+{% endif %}
+{% endblock %}

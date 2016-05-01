@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Tags</h1>
+{% if tags|length %}
+<ul>
+  {% for row in tags %}
+  <li>
+    <a href="{{ url('tags-view', {'id' : row.id}) }}" title="view">ID: {{ row.id }}</a>
+    <br>
+    Name: {{ row.name }}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div>
+  Tags list is empty!
+</div>
+{% endif %}
+{% endblock %}

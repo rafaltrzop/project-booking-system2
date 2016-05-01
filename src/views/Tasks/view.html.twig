@@ -1,0 +1,10 @@
+<h1>{{ 'tasks.list.title'|trans }}</h1>
+{% if tasks|length %}
+<div>
+  {{ tasks.name }}, {{ tasks.notes }}
+</div>
+{% else %}
+<div>
+  {{ 'tasks.item.error'|trans }}
+</div>
+{% endif %}
