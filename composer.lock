@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c56b391ffb648cacd44dde27ab07d2a7",
-    "content-hash": "fdb18a9e2dfd7873aca4c5c89bda6cb8",
+    "hash": "7fb8fb014f17a11b1b4c99429f4b6552",
+    "content-hash": "04307eb9d63d5f9876acb0a2f800f3cb",
     "packages": [
         {
             "name": "doctrine/common",
@@ -130,6 +130,59 @@
                 "queryobject"
             ],
             "time": "2012-04-13 07:56:12"
+        },
+        {
+            "name": "leafo/scssphp",
+            "version": "v0.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leafo/scssphp.git",
+                "reference": "a27edad3d16635a222d7204706572e24c338aa17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leafo/scssphp/zipball/a27edad3d16635a222d7204706572e24c338aa17",
+                "reference": "a27edad3d16635a222d7204706572e24c338aa17",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "kherge/box": "~2.5",
+                "phpunit/phpunit": "~3.7",
+                "squizlabs/php_codesniffer": "~2.5"
+            },
+            "bin": [
+                "bin/pscss"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Leafo\\ScssPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leaf Corcoran",
+                    "email": "leafot@gmail.com",
+                    "homepage": "http://leafo.net"
+                }
+            ],
+            "description": "scssphp is a compiler for SCSS written in PHP.",
+            "homepage": "http://leafo.github.io/scssphp/",
+            "keywords": [
+                "css",
+                "less",
+                "sass",
+                "scss",
+                "stylesheet"
+            ],
+            "time": "2016-01-15 02:50:06"
         },
         {
             "name": "pimple/pimple",
@@ -294,16 +347,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.8.4",
+            "version": "v2.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "5273f4724dc5288fe7a33cb08077ab9852621f2c"
+                "reference": "edbbcf33cffa2a85104fc80de8dc052cc51596bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/5273f4724dc5288fe7a33cb08077ab9852621f2c",
-                "reference": "5273f4724dc5288fe7a33cb08077ab9852621f2c",
+                "url": "https://api.github.com/repos/symfony/config/zipball/edbbcf33cffa2a85104fc80de8dc052cc51596bb",
+                "reference": "edbbcf33cffa2a85104fc80de8dc052cc51596bb",
                 "shasum": ""
             },
             "require": {
@@ -343,7 +396,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2016-03-04 07:54:35"
+            "time": "2016-04-20 18:52:26"
         },
         {
             "name": "symfony/debug",
@@ -782,7 +835,7 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v2.8.4",
+            "version": "v2.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
@@ -846,16 +899,16 @@
         },
         {
             "name": "symfony/twig-bridge",
-            "version": "v2.8.4",
+            "version": "v2.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bridge.git",
-                "reference": "11326178aea4aceb99f72c8ff0cac32d668309c7"
+                "reference": "789ffb6f63574d8d5573520ba12156f5c395fcd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/11326178aea4aceb99f72c8ff0cac32d668309c7",
-                "reference": "11326178aea4aceb99f72c8ff0cac32d668309c7",
+                "url": "https://api.github.com/repos/symfony/twig-bridge/zipball/789ffb6f63574d8d5573520ba12156f5c395fcd5",
+                "reference": "789ffb6f63574d8d5573520ba12156f5c395fcd5",
                 "shasum": ""
             },
             "require": {
@@ -923,7 +976,7 @@
             ],
             "description": "Symfony Twig Bridge",
             "homepage": "https://symfony.com",
-            "time": "2016-03-25 18:30:27"
+            "time": "2016-03-30 10:37:34"
         },
         {
             "name": "twig/twig",
@@ -985,6 +1038,45 @@
                 "templating"
             ],
             "time": "2016-01-25 21:22:18"
+        },
+        {
+            "name": "zurb/foundation",
+            "version": "6.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zurb/foundation-sites.git",
+                "reference": "7a6ed604689635ddda430ae46a100d30c415959b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/7a6ed604689635ddda430ae46a100d30c415959b",
+                "reference": "7a6ed604689635ddda430ae46a100d30c415959b",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ZURB, Inc.",
+                    "email": "foundation@zurb.com",
+                    "homepage": "http://zurb.com"
+                }
+            ],
+            "description": "The most advanced responsive front-end framework in the world.",
+            "homepage": "http://foundation.zurb.com",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "scss"
+            ],
+            "time": "2016-04-08 18:15:06"
         }
     ],
     "packages-dev": [
