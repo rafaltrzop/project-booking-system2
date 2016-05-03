@@ -1,0 +1,27 @@
+{
+  "name": "project-booking-system2",
+  "version": "0.0.0",
+  "description": "University project booking system",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp sass",
+    "postinstall": "gulp sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafaltrzop/project-booking-system2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rafaltrzop/project-booking-system2/issues"
+  },
+  "author": "Rafał Trzop",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-sass": "^2.1.0"
+  }
+}

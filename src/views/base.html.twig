@@ -5,10 +5,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}System rezerwacji tematów projektów{% endblock %}</title>
-    <link rel="stylesheet" href="/style.php/main.scss">
+    <link rel="stylesheet" href="/assets/stylesheets/main.css">
     <link rel="icon" href="/favicon.ico">
   </head>
-  <body>
+  <body class="{% block body_class %}{% endblock %}">
     {% block body %}{% endblock %}
     <script src="/assets/javascripts/main.js"></script>
   </body>

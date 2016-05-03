@@ -1,5 +1,151 @@
-$blue: blue;
+/*##############################################################################
+#                                                                              #
+#   ZURB Foundation                                                            #
+#                                                                              #
+##############################################################################*/
 
-body {
-  color: $blue;
+@import 'settings';
+@import 'assets/foundation';
+
+/*##############################################################################
+#                                                                              #
+#   Fonts                                                                      #
+#                                                                              #
+##############################################################################*/
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext);
+
+/*##############################################################################
+#                                                                              #
+#   Font Awesome                                                               #
+#                                                                              #
+##############################################################################*/
+
+// $fa-font-path: '../node_modules/font-awesome/fonts';
+// @import '../node_modules/font-awesome/scss/font-awesome';
+
+/*##############################################################################
+#                                                                              #
+#   Styles                                                                     #
+#                                                                              #
+##############################################################################*/
+
+main h1 {
+  margin-top: rem-calc(15);
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+select:focus {
+  border: rem-calc(1) solid $dark-gray;
+  box-shadow: 0 0 rem-calc(5) $medium-gray;
+  outline: none;
+  transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+}
+
+ol {
+  list-style-type: none;
+}
+
+table {
+  th {
+    white-space: nowrap;
+  }
+  select {
+    width: initial;
+    margin-bottom: 0;
+  }
+  p,
+  .button {
+    margin-bottom: 0;
+  }
+}
+
+.body-content-container {
+  padding-top: rem-calc(15);
+  padding-bottom: rem-calc(15);
+}
+
+.absolute-center {
+  @include absolute-center;
+}
+
+.landing-page {
+  background-color: $primary-color;
+  h1 {
+    color: $white;
+  }
+  &-logo {
+    color: $white;
+    font-size: rem-calc(80);
+  }
+  &-text {
+    margin: rem-calc(24) auto rem-calc(30) auto;
+  }
+  &-btn {
+    @include button-style($white, $white, $button-color-alt);
+    display: block;
+    transition: box-shadow .4s;
+    &:hover {
+      box-shadow: 0 0 rem-calc(50) rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.button.hollow {
+  transition: none;
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $primary-color;
+    background-color: $primary-color;
+    color: $white;
+  }
+}
+
+.top-bar-left,
+.top-bar-right {
+  width: initial;
+}
+
+.fa {
+  &-success {
+    color: green;
+  }
+  &-error {
+    color: red;
+  }
+}
+
+// @include mui-series {
+//   .landing-page-text { @include mui-queue(2s, -.8s, fade); }
+//   .landing-page-btn { @include mui-queue(.8s, 0, fade); }
+// }
+
+@include breakpoint(medium) {
+  .landing-page {
+    &-logo {
+      font-size: rem-calc(160);
+    }
+    &-text {
+      margin: rem-calc(48) auto rem-calc(60) auto;
+    }
+    &-btn {
+      margin-right: rem-calc(16);
+      display: inline;
+    }
+  }
+
+}
+
+@include breakpoint(xlarge) {
+  main h1 {
+    margin-top: rem-calc(44);
+  }
+
+  .body-content-container {
+    padding-top: rem-calc(60);
+    padding-bottom: rem-calc(60);
+  }
 }
