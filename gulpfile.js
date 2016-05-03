@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var $    = require('gulp-load-plugins')();
 
 var sassPaths = [
-  'vendor/zurb/foundation'
+  'vendor/zurb/foundation',
+  'vendor/fortawesome/font-awesome'
 ];
 
 gulp.task('sass', function() {
@@ -17,6 +18,11 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('web/assets/stylesheets'));
 });
 
-gulp.task('default', ['sass'], function() {
+gulp.task('fonts', function () {
+  return gulp.src('vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.*')
+    .pipe(gulp.dest('web/assets/fonts'));
+});
+
+gulp.task('default', ['sass', 'fonts'], function() {
   gulp.watch(['src/assets/stylesheets/**/*.scss'], ['sass']);
 });

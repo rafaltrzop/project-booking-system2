@@ -8,7 +8,8 @@
     "symfony/twig-bridge": "^2.6",
     "twig/twig": "^1.24",
     "zurb/foundation": "^6.2",
-    "leafo/scssphp": "^0.6.3"
+    "leafo/scssphp": "^0.6.3",
+    "fortawesome/font-awesome": "^4.6"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
