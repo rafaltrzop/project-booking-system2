@@ -117,11 +117,6 @@ table {
   }
 }
 
-// @include mui-series {
-//   .landing-page-text { @include mui-queue(2s, -.8s, fade); }
-//   .landing-page-btn { @include mui-queue(.8s, 0, fade); }
-// }
-
 @include breakpoint(medium) {
   .landing-page {
     &-logo {
