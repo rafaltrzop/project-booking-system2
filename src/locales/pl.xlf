@@ -1,22 +1,18 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="file.ext">
+  <file source-language="en" datatype="plaintext" original="Index/index.html.twig">
     <body>
-      <trans-unit id="1">
-        <source>tasks.list.title</source>
-        <target>Lista zadań</target>
+      <trans-unit id="index.landing-page.h1">
+        <source>index.landing-page.h1</source>
+        <target>System rezerwacji tematów projektów</target>
       </trans-unit>
-      <trans-unit id="2">
-        <source>tasks.view.title</source>
-        <target>Szczegóły</target>
+      <trans-unit id="index.landing-page.register">
+        <source>index.landing-page.register</source>
+        <target>Rejestracja</target>
       </trans-unit>
-      <trans-unit id="3">
-        <source>tasks.list.empty</source>
-        <target>Lista zadań jest pusta!</target>
-      </trans-unit>
-      <trans-unit id="4">
-        <source>tasks.item.error</source>
-        <target>Nie znaleziono wpisu!</target>
+      <trans-unit id="index.landing-page.login">
+        <source>index.landing-page.login</source>
+        <target>Logowanie</target>
       </trans-unit>
     </body>
   </file>
