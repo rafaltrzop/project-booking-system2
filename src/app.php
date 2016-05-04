@@ -1,10 +1,4 @@
 <?php
-/**
- * Runs application and loads configs.
- *
- * @copyright (c) 2016 Tomasz Chojna
- * @link http://epi.chojna.info.pl
- */
 
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
@@ -17,7 +11,7 @@ $app = new Application();
 $app->register(
   new TwigServiceProvider(),
   array(
-    'twig.path' => dirname(dirname(__FILE__)) . '/src/views',
+    'twig.path' => __DIR__ . '/views',
   )
 );
 
@@ -31,36 +25,30 @@ $app->register(
   )
 );
 
-// dodanie domyślnych tłumaczeń w języku angielskim:
-$app['translator']->addResource(
-  'xliff',
-  dirname(dirname(__FILE__)) . '/src/locales/en.xlf',
-  'en'
-);
+$app['translator']->addResource('xliff', __DIR__ . '/locales/en.xlf', 'en');
 
-// załadowanie tłumaczeń bazujących na lokalizacji użytkownika:
-$locadedLocale = $app['translator']->getLocale();
+$detectedLocale = $app['translator']->getLocale();
 $app['translator']->addResource(
   'xliff',
-  dirname(dirname(__FILE__)) . '/src/locales/' . $locadedLocale . '.xlf',
-  $locadedLocale
+  __DIR__ . '/locales/' . $detectedLocale . '.xlf',
+  $detectedLocale
 );
 
 // Heroku JawsDB MySQL add-on
 // https://devcenter.heroku.com/articles/jawsdb#using-with-php
 $url = getenv('JAWSDB_URL');
-if ($url != FALSE) {
+if ($url == FALSE) {
+  $hostname = 'localhost';
+  $username = 'root';
+  $password = 'root';
+  $database = 'srtp2';
+} else {
   $dbparts = parse_url($url);
 
   $hostname = $dbparts['host'];
   $username = $dbparts['user'];
   $password = $dbparts['pass'];
   $database = ltrim($dbparts['path'],'/');
-} else {
-  $hostname = 'localhost';
-  $username = 'root';
-  $password = 'root';
-  $database = 'srtp2';
 }
 
 $app->register(
