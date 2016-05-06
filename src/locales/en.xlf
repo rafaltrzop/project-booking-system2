@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en" datatype="plaintext" original="Index/index.html.twig">
+  <file source-language="en" datatype="plaintext" original="views/base.html.twig">
+    <body>
+      <trans-unit id="none.head.title">
+        <source>none.head.title</source>
+        <target>Project booking system</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Index/index.html.twig">
     <body>
       <trans-unit id="index.landing-page.h1">
         <source>index.landing-page.h1</source>
@@ -13,6 +21,14 @@
       <trans-unit id="index.landing-page.login">
         <source>index.landing-page.login</source>
         <target>Log in</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Registration/index.html.twig">
+    <body>
+      <trans-unit id="registration.head.title">
+        <source>registration.head.title</source>
+        <target>Sign up</target>
       </trans-unit>
     </body>
   </file>
