@@ -79,16 +79,23 @@ table {
     color: $white;
     font-size: rem-calc(80);
   }
-  &-text {
+  &-header {
     margin: rem-calc(24) auto rem-calc(30) auto;
   }
   &-btn {
     @include button-style($white, $white, $button-color-alt);
     display: block;
+    width: 100%;
     transition: box-shadow .4s;
     &:hover {
       box-shadow: 0 0 rem-calc(50) rgba(255, 255, 255, 0.3);
     }
+  }
+  &-form {
+    max-width: rem-calc(400);
+  }
+  .input-group-label {
+    width: rem-calc(110);
   }
 }
 
@@ -122,15 +129,20 @@ table {
     &-logo {
       font-size: rem-calc(160);
     }
-    &-text {
+    &-header {
       margin: rem-calc(48) auto rem-calc(60) auto;
     }
     &-btn {
-      margin-right: rem-calc(16);
       display: inline;
+      width: auto;
+      & + & {
+        margin-left: rem-calc(16);
+      }
+    }
+    &-form {
+      max-width: rem-calc(460);
     }
   }
-
 }
 
 @include breakpoint(xlarge) {

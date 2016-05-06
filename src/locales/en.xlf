@@ -24,11 +24,35 @@
       </trans-unit>
     </body>
   </file>
-  <file source-language="en" datatype="plaintext" original="views/Registration/index.html.twig">
+  <file source-language="en" datatype="plaintext" original="views/SignUp/index.html.twig">
     <body>
-      <trans-unit id="registration.head.title">
-        <source>registration.head.title</source>
+      <trans-unit id="signup.head.title">
+        <source>signup.head.title</source>
         <target>Sign up</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/LogIn/index.html.twig">
+    <body>
+      <trans-unit id="login.head.title">
+        <source>login.head.title</source>
+        <target>Log in form</target>
+      </trans-unit>
+      <trans-unit id="login.landing-page.h1">
+        <source>login.landing-page.h1</source>
+        <target>Log in form</target>
+      </trans-unit>
+      <trans-unit id="login.form.login">
+        <source>login.form.login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="login.form.password">
+        <source>login.form.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="login.form.submit">
+        <source>login.form.submit</source>
+        <target>Log in</target>
       </trans-unit>
     </body>
   </file>

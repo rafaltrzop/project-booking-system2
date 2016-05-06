@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'login.head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+{% block body_class %}landing-page{% endblock %}
+
+{% block body %}
+<section class="row">
+  <div class="landing-page-form columns text-center absolute-center">
+    <span class="landing-page-logo fa fa-unlock-alt"></span>
+    <h1 class="landing-page-header">{{ 'login.landing-page.h1'|trans }}</h1>
+
+    <form action="#" method="post">
+      <div class="input-group">
+        <span class="input-group-label">{{ 'login.form.login'|trans }}</span>
+        <input class="input-group-field" type="text" autofocus>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-label">{{ 'login.form.password'|trans }}</span>
+        <input class="input-group-field" type="password">
+      </div>
+
+      <button type="submit" class="large button landing-page-btn float-right">{{ 'login.form.submit'|trans }}</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
