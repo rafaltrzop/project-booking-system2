@@ -30,6 +30,34 @@
         <source>signup.head.title</source>
         <target>Sign up</target>
       </trans-unit>
+      <trans-unit id="signup.landing-page.h1">
+        <source>signup.landing-page.h1</source>
+        <target>Sign up form</target>
+      </trans-unit>
+      <trans-unit id="signup.form.firstname">
+        <source>signup.form.firstname</source>
+        <target>First name</target>
+      </trans-unit>
+      <trans-unit id="signup.form.lastname">
+        <source>signup.form.lastname</source>
+        <target>Last name</target>
+      </trans-unit>
+      <trans-unit id="signup.form.group">
+        <source>signup.form.group</source>
+        <target>Group</target>
+      </trans-unit>
+      <trans-unit id="signup.form.email">
+        <source>signup.form.email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="signup.form.password">
+        <source>signup.form.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="signup.form.submit">
+        <source>signup.form.submit</source>
+        <target>Sign up</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/LogIn/index.html.twig">
@@ -42,9 +70,9 @@
         <source>login.landing-page.h1</source>
         <target>Log in form</target>
       </trans-unit>
-      <trans-unit id="login.form.login">
-        <source>login.form.login</source>
-        <target>Login</target>
+      <trans-unit id="login.form.email">
+        <source>login.form.email</source>
+        <target>E-mail</target>
       </trans-unit>
       <trans-unit id="login.form.password">
         <source>login.form.password</source>

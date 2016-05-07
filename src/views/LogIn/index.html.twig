@@ -10,15 +10,15 @@
     <h1 class="landing-page-header">{{ 'login.landing-page.h1'|trans }}</h1>
 
     <form action="#" method="post">
-      <div class="input-group">
-        <span class="input-group-label">{{ 'login.form.login'|trans }}</span>
-        <input class="input-group-field" type="text" autofocus>
-      </div>
+      <label class="input-group">
+        <span class="input-group-label">{{ 'login.form.email'|trans }}</span>
+        <input class="input-group-field" type="email" required autofocus>
+      </label>
 
-      <div class="input-group">
+      <label class="input-group">
         <span class="input-group-label">{{ 'login.form.password'|trans }}</span>
-        <input class="input-group-field" type="password">
-      </div>
+        <input class="input-group-field" type="password" required>
+      </label>
 
       <button type="submit" class="large button landing-page-btn float-right">{{ 'login.form.submit'|trans }}</button>
     </form>

@@ -7,25 +7,41 @@
 <section class="row">
   <div class="landing-page-form columns text-center absolute-center">
     <span class="landing-page-logo fa fa-unlock-alt"></span>
-    <h1 class="landing-page-header">Rejestracja</h1>
+    <h1 class="landing-page-header">{{ 'signup.landing-page.h1'|trans }}</h1>
 
     <form action="#" method="post">
-      <div class="input-group">
-        <span class="input-group-label">Login</span>
-        <input class="input-group-field" type="text" autofocus>
-      </div>
+      <label class="input-group">
+        <span class="input-group-label">{{ 'signup.form.firstname'|trans }}</span>
+        <input class="input-group-field" type="text" required autofocus>
+      </label>
 
-      <div class="input-group">
-        <span class="input-group-label">Hasło</span>
-        <input class="input-group-field" type="password">
-      </div>
+      <label class="input-group">
+        <span class="input-group-label">{{ 'signup.form.lastname'|trans }}</span>
+        <input class="input-group-field" type="text" required>
+      </label>
 
-      <div class="input-group">
-        <span class="input-group-label">Powtórz hasło</span>
-        <input class="input-group-field" type="password">
-      </div>
+      <label class="input-group">
+        <span class="input-group-label">{{ 'signup.form.group'|trans }}</span>
+        <select class="input-group-field" required>
+          <option value selected>&nbsp;</option>
+          <option value="">2013/2014</option>
+          <option value="">2014/2015</option>
+          <option value="">2015/2016</option>
+          <option value="">2016/2017</option>
+        </select>
+      </label>
 
-      <button type="submit" class="large button landing-page-btn float-right">Zarejestruj się</button>
+      <label class="input-group">
+        <span class="input-group-label">{{ 'signup.form.email'|trans }}</span>
+        <input class="input-group-field" type="email" required>
+      </label>
+
+      <label class="input-group">
+        <span class="input-group-label">{{ 'signup.form.password'|trans }}</span>
+        <input class="input-group-field" type="password" required>
+      </label>
+
+      <button type="submit" class="large button landing-page-btn float-right">{{ 'signup.form.submit'|trans }}</button>
     </form>
   </div>
 </section>
