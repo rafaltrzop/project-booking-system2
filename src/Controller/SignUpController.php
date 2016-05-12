@@ -5,6 +5,8 @@ namespace Controller;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Form\SignUpType;
+use Model\Groups;
 
 class SignUpController implements ControllerProviderInterface
 {
@@ -18,6 +20,33 @@ class SignUpController implements ControllerProviderInterface
 
   public function indexAction(Application $app, Request $request)
   {
-    return $app['twig']->render('SignUp/index.html.twig');
+    $view = array();
+
+    $signUpForm = $app['form.factory']
+      ->createBuilder(new SignUpType(), array())->getForm();
+
+    $signUpForm->handleRequest($request);
+
+    if ($signUpForm->isValid()) {
+      $signUpData = $signUpForm->getData();
+      // $tagModel = new Tags($app);
+      // dodac obsluge bledow
+      // try catch na ponizszej linii
+      // $tagModel->save($tagData);
+      // $app['session']->getFlashBag()->add(
+      //   'message',
+      //   array(
+      //     'type' => 'success',
+      //     'content' => $app['translator']->trans('messages.add.success')
+      //   )
+      // );
+      // return $app->redirect(
+      //   $app['url_generator']->generate('tags')
+      // );
+    }
+
+    $view['form'] = $signUpForm->createView();
+
+    return $app['twig']->render('SignUp/index.html.twig', $view);
   }
 }

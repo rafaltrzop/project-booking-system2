@@ -1,0 +1,26 @@
+{%- block form_row -%}
+  <label class="input-group">
+    {{- form_label(form, null, {'label_attr': {'class': 'input-group-label'}}) -}}
+    {{- form_errors(form) -}}
+    {{- form_widget(form, {'attr': {'class': 'input-group-field'}}) -}}
+  </label>
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+  {% if label is not same as(false) %}
+    {%- if required -%}
+      {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {%- endif -%}
+    {%- if label is empty -%}
+      {% set label = name|humanize %}
+    {%- endif -%}
+    <span{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</span>
+  {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block button_widget -%}
+  {%- if label is empty -%}
+    {% set label = name|humanize %}
+  {%- endif -%}
+  <button type="{{ type|default('button') }}" {{ block('button_attributes') }} class="large button landing-page-btn float-right">{{ label|trans({}, translation_domain) }}</button>
+{%- endblock button_widget -%}
