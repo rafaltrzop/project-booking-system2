@@ -51,19 +51,19 @@ if ($url == FALSE) {
   $hostname = $dbparts['host'];
   $username = $dbparts['user'];
   $password = $dbparts['pass'];
-  $database = ltrim($dbparts['path'],'/');
+  $database = ltrim($dbparts['path'], '/');
 }
 
 $app->register(
   new DoctrineServiceProvider(),
   array(
     'db.options' => array(
-      'driver'    => 'pdo_mysql',
-      'host'      => $hostname,
-      'dbname'    => $database,
-      'user'      => $username,
-      'password'  => $password,
-      'charset'   => 'utf8',
+      'driver' => 'pdo_mysql',
+      'host' => $hostname,
+      'dbname' => $database,
+      'user' => $username,
+      'password' => $password,
+      'charset' => 'utf8',
       'driverOptions' => array(
         1002 => 'SET NAMES utf8'
       )
