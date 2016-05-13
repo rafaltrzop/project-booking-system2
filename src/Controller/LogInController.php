@@ -22,7 +22,7 @@ class LogInController implements ControllerProviderInterface
     $view = array();
 
     $logInForm = $app['form.factory']
-      ->createBuilder(new LogInType(), array())->getForm();
+      ->createBuilder(new LogInType())->getForm();
 
     $logInForm->handleRequest($request);
 

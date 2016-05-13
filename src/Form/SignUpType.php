@@ -8,6 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class SignUpType extends AbstractType
 {
+  private $groups;
+
+  public function __construct($groups)
+  {
+    $this->groups = $groups;
+  }
+
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
@@ -37,10 +44,7 @@ class SignUpType extends AbstractType
       'group',
       'choice',
       array(
-        'choices' => array(
-          '1' => '2014/2015',
-          '2' => '2015/2016'
-        ),
+        'choices' => $this->prepareGroupChoices(),
         'label' => 'signup.form.group',
         'required' => true,
         'empty_value' => ''
@@ -79,5 +83,13 @@ class SignUpType extends AbstractType
   public function getName()
   {
     return 'signup_form';
+  }
+
+  private function prepareGroupChoices() {
+    $groupChoices = array();
+    foreach ($this->groups as $group) {
+      $groupChoices[$group['id']] = $group['name'];
+    }
+    return $groupChoices;
   }
 }

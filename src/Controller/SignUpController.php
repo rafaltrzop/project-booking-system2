@@ -21,9 +21,10 @@ class SignUpController implements ControllerProviderInterface
   public function indexAction(Application $app, Request $request)
   {
     $view = array();
+    $groups = new Groups($app);
 
     $signUpForm = $app['form.factory']
-      ->createBuilder(new SignUpType(), array())->getForm();
+      ->createBuilder(new SignUpType($groups->findAll()))->getForm();
 
     $signUpForm->handleRequest($request);
 
