@@ -14,6 +14,7 @@ class LogInController implements ControllerProviderInterface
     $logInController = $app['controllers_factory'];
     $logInController->get('/', array($this, 'indexAction'))
       ->bind('login');
+      $logInController->post('/', array($this, 'indexAction'));
     return $logInController;
   }
 

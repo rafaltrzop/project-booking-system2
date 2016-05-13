@@ -1,7 +1,7 @@
 {%- block form_row -%}
+  {{- form_errors(form) -}}
   <label class="input-group">
     {{- form_label(form, null, {'label_attr': {'class': 'input-group-label'}}) -}}
-    {{- form_errors(form) -}}
     {{- form_widget(form, {'attr': {'class': 'input-group-field'}}) -}}
   </label>
 {%- endblock form_row -%}
@@ -24,3 +24,18 @@
   {%- endif -%}
   <button type="{{ type|default('button') }}" {{ block('button_attributes') }} class="large button landing-page-btn float-right">{{ label|trans({}, translation_domain) }}</button>
 {%- endblock button_widget -%}
+
+{# just for testing (novalidate attribute added to the form element)
+{%- block form_start -%}
+    {% set method = method|upper %}
+    {%- if method in ["GET", "POST"] -%}
+        {% set form_method = method %}
+    {%- else -%}
+        {% set form_method = "POST" %}
+    {%- endif -%}
+    <form novalidate method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+    {%- if form_method != method -%}
+        <input type="hidden" name="_method" value="{{ method }}" />
+    {%- endif -%}
+{%- endblock form_start -%}
+#}

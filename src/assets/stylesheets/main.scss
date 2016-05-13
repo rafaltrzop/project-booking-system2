@@ -72,12 +72,13 @@ table {
 
 .landing-page {
   background-color: $primary-color;
+  color: $white;
   h1 {
     color: $white;
   }
   &-logo {
-    color: $white;
     font-size: rem-calc(80);
+    display: block;
   }
   &-header {
     margin: rem-calc(24) auto rem-calc(30) auto;

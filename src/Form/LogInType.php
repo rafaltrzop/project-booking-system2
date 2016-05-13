@@ -4,7 +4,7 @@ namespace Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class LogInType extends AbstractType
 {
@@ -19,6 +19,16 @@ class LogInType extends AbstractType
         'max_length' => 60,
         'attr' => array(
           'autofocus' => true
+        ),
+        'constraints' => array(
+          new Assert\NotBlank(),
+          new Assert\Email(),
+          new Assert\Length(
+            array(
+              'min' => 5,
+              'max' => 60
+            )
+          )
         )
       )
     );
@@ -29,7 +39,16 @@ class LogInType extends AbstractType
       array(
         'label' => 'login.form.password',
         'required' => true,
-        'max_length' => 30
+        'max_length' => 30,
+        'constraints' => array(
+          new Assert\NotBlank(),
+          new Assert\Length(
+            array(
+              'min' => 5,
+              'max' => 30
+            )
+          )
+        )
       )
     );
 

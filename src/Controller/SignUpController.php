@@ -15,6 +15,7 @@ class SignUpController implements ControllerProviderInterface
     $signUpController = $app['controllers_factory'];
     $signUpController->get('/', array($this, 'indexAction'))
       ->bind('signup');
+      $signUpController->post('/', array($this, 'indexAction'));
     return $signUpController;
   }
 

@@ -4,7 +4,7 @@ namespace Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class SignUpType extends AbstractType
 {
@@ -26,6 +26,15 @@ class SignUpType extends AbstractType
         'max_length' => 30,
         'attr' => array(
           'autofocus' => true
+        ),
+        'constraints' => array(
+          new Assert\NotBlank(),
+          new Assert\Length(
+            array(
+              'min' => 2,
+              'max' => 30
+            )
+          )
         )
       )
     );
@@ -36,7 +45,16 @@ class SignUpType extends AbstractType
       array(
         'label' => 'signup.form.lastname',
         'required' => true,
-        'max_length' => 30
+        'max_length' => 30,
+        'constraints' => array(
+          new Assert\NotBlank(),
+          new Assert\Length(
+            array(
+              'min' => 2,
+              'max' => 30
+            )
+          )
+        )
       )
     );
 
@@ -44,10 +62,16 @@ class SignUpType extends AbstractType
       'group',
       'choice',
       array(
-        'choices' => $this->prepareGroupChoices(),
+        'choices' => $this->groupChoices(),
         'label' => 'signup.form.group',
         'required' => true,
-        'empty_value' => ''
+        'empty_value' => '',
+        'constraints' => array(
+          new Assert\NotBlank(),
+          new Assert\Choice(array(
+            'choices' => $this->groupIds()
+          ))
+        )
       )
     );
 
@@ -57,7 +81,17 @@ class SignUpType extends AbstractType
       array(
         'label' => 'login.form.email',
         'required' => true,
-        'max_length' => 60
+        'max_length' => 60,
+        'constraints' => array(
+          new Assert\NotBlank(),
+          new Assert\Email(),
+          new Assert\Length(
+            array(
+              'min' => 5,
+              'max' => 60
+            )
+          )
+        )
       )
     );
 
@@ -67,7 +101,16 @@ class SignUpType extends AbstractType
       array(
         'label' => 'login.form.password',
         'required' => true,
-        'max_length' => 30
+        'max_length' => 30,
+        'constraints' => array(
+          new Assert\NotBlank(),
+          new Assert\Length(
+            array(
+              'min' => 5,
+              'max' => 30
+            )
+          )
+        )
       )
     );
 
@@ -85,11 +128,23 @@ class SignUpType extends AbstractType
     return 'signup_form';
   }
 
-  private function prepareGroupChoices() {
+  private function groupChoices()
+  {
     $groupChoices = array();
-    foreach ($this->groups as $group) {
+    foreach ($this->groups as $group)
+    {
       $groupChoices[$group['id']] = $group['name'];
     }
     return $groupChoices;
+  }
+
+  private function groupIds()
+  {
+    $groupIds = array();
+    foreach ($this->groups as $group)
+    {
+      $groupIds[] = $group['id'];
+    }
+    return $groupIds;
   }
 }
