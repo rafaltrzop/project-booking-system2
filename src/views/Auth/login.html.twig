@@ -9,7 +9,10 @@
     <div class="landing-page-form columns absolute-center">
       <div class="landing-page-logo text-center fa fa-unlock-alt"></div>
       <h1 class="landing-page-header text-center">{{ 'login.landing-page.h1'|trans }}</h1>
-      {{ form(form) }}
+      {{ error }}
+      {{ form_start(form, {'action': path('auth_login_check')}) }}
+      {{ form_widget(form) }}
+      {{ form_end(form) }}
     </div>
   </section>
 {% endblock %}

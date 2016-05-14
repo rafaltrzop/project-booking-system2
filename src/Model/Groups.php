@@ -6,7 +6,7 @@ use Silex\Application;
 
 class Groups
 {
-  private $db = null;
+  private $db;
 
   public function __construct(Application $app)
   {

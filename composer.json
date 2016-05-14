@@ -6,6 +6,7 @@
     "symfony/config": "^2.6",
     "symfony/form": "~2.3",
     "symfony/locale": "~2.3",
+    "symfony/security": "~2.3",
     "symfony/security-csrf": "~2.3",
     "symfony/translation": "^2.6",
     "symfony/twig-bridge": "^2.6",
@@ -22,7 +23,8 @@
     "psr-4": {
       "Controller\\": "src/Controller",
       "Form\\": "src/Form",
-      "Model\\": "src/Model"
+      "Model\\": "src/Model",
+      "Provider\\" : "src/Provider"
     }
   }
 }

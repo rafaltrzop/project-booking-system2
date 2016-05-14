@@ -8,13 +8,14 @@ use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\FormServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\SecurityServiceProvider;
 
 $app = new Application();
 
 $app->register(
   new TwigServiceProvider(),
   array(
-    'twig.path' => __DIR__ . '/views',
+    'twig.path' => __DIR__ . '/views'
   )
 );
 
@@ -24,7 +25,7 @@ $app->register(
   new TranslationServiceProvider(),
   array(
     'locale' => 'pl',
-    'locale_fallbacks' => array('en', 'pl'),
+    'locale_fallbacks' => array('en', 'pl')
   )
 );
 
@@ -67,7 +68,7 @@ $app->register(
       'driverOptions' => array(
         1002 => 'SET NAMES utf8'
       )
-    ),
+    )
   )
 );
 
@@ -76,5 +77,52 @@ $app->register(new FormServiceProvider());
 $app->register(new ValidatorServiceProvider());
 
 $app->register(new SessionServiceProvider());
+
+// $app->register(
+//   new SecurityServiceProvider(),
+//   array(
+//     'security.firewalls' => array(
+//       'unsecured' => array(
+//         'anonymous' => true
+//       )
+//     )
+//   )
+// );
+
+$app->register(
+  new SecurityServiceProvider(),
+  array(
+    'security.firewalls' => array(
+      'admin' => array(
+        'pattern' => '^.*$',
+        'form' => array(
+          'login_path' => 'auth_login',
+          'check_path' => 'auth_login_check',
+          'default_target_path'=> '/dashboard',
+          'username_parameter' => 'login_form[email]',
+          'password_parameter' => 'login_form[password]',
+        ),
+        'anonymous' => true,
+        'logout' => array(
+          'logout_path' => 'auth_logout',
+          'target_url' => '/'
+        ),
+        'users' => $app->share(
+          function() use ($app)
+          {
+            return new Provider\UserProvider($app);
+          }
+        )
+      )
+    ),
+    'security.access_rules' => array(
+      array('^/auth.+$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
+      array('^/.+$', 'ROLE_ADMIN')
+    ),
+    'security.role_hierarchy' => array(
+      'ROLE_ADMIN' => array('ROLE_USER'),
+    )
+  )
+);
 
 return $app;

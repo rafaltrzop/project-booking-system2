@@ -9,6 +9,21 @@
     <link rel="icon" href="/favicon.ico">
   </head>
   <body class="{% block body_class %}{% endblock %}">
+
+
+    <nav>
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a href="{{ url('auth_logout') }}" title="{{ 'auth.logout.label'|trans }}">
+          {{ 'auth.logout.label'|trans }}
+        </a>
+      {% else %}
+        <a href="{{ url('auth_login') }}" title="{{ 'auth.login.label'|trans }}">
+          {{ 'auth.login.label'|trans }}
+        </a>
+      {% endif %}
+    </nav>
+
+
     {% block body %}{% endblock %}
     <script src="/assets/javascripts/main.js"></script>
   </body>
