@@ -12,14 +12,10 @@ class AuthController implements ControllerProviderInterface
   public function connect(Application $app)
   {
     $authController = $app['controllers_factory'];
-    $authController->match(
-      'login',
-      array($this, 'loginAction')
-    )->bind('auth_login');
-    $authController->get(
-      'logout',
-      array($this, 'logoutAction')
-    )->bind('auth_logout');
+    $authController->match('/login', array($this, 'loginAction'))
+      ->bind('auth_login');
+    $authController->get('/logout', array($this, 'logoutAction'))
+      ->bind('auth_logout');
     return $authController;
   }
 
