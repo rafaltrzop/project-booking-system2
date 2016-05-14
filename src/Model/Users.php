@@ -8,10 +8,12 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 class Users
 {
   private $db;
+  private $securityEncoderDigest;
 
   public function __construct(Application $app)
   {
     $this->db = $app['db'];
+    $this->securityEncoderDigest = $app['security.encoder.digest'];
   }
 
   public function loadUserByEmail($email)
@@ -43,12 +45,9 @@ class Users
   {
     try {
       $query = '
-        SELECT
-          `id`, `email`, `password`, `role_id`
-        FROM
-          `users`
-        WHERE
-          `email` = :email
+        SELECT id, email, password, role_id
+        FROM users
+        WHERE email = :email
       ';
       $statement = $this->db->prepare($query);
       $statement->bindValue('email', $email, \PDO::PARAM_STR);
@@ -65,15 +64,11 @@ class Users
     $roles = array();
     try {
       $query = '
-        SELECT
-          `roles`.`name` as `role`
-        FROM
-          `users`
-        INNER JOIN
-          `roles`
-        ON `users`.`role_id` = `roles`.`id`
-        WHERE
-          `users`.`id` = :user_id
+        SELECT roles.name as role
+        FROM users
+        INNER JOIN roles
+        ON users.role_id = roles.id
+        WHERE users.id = :user_id
       ';
       $statement = $this->db->prepare($query);
       $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
@@ -87,5 +82,23 @@ class Users
     } catch (\PDOException $e) {
       return $roles;
     }
+  }
+
+  public function createUser($signUpData)
+  {
+    $passwordHash = $this->securityEncoderDigest->encodePassword($signUpData['password'], '');
+    $query = '
+      INSERT INTO users(group_id, first_name, last_name, email, password)
+      VALUES (:group_id, :first_name, :last_name, :email, :password)
+    ';
+    $statement = $this->db->prepare($query);
+
+    $statement->bindValue('group_id', $signUpData['group'], \PDO::PARAM_INT);
+    $statement->bindValue('first_name', $signUpData['firstname'], \PDO::PARAM_STR);
+    $statement->bindValue('last_name', $signUpData['lastname'], \PDO::PARAM_STR);
+    $statement->bindValue('email', $signUpData['email'], \PDO::PARAM_STR);
+    $statement->bindValue('password', $passwordHash, \PDO::PARAM_STR);
+
+    $statement->execute();
   }
 }

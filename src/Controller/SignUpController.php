@@ -7,44 +7,44 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Form\SignUpType;
 use Model\Groups;
+use Model\Users;
 
 class SignUpController implements ControllerProviderInterface
 {
   public function connect(Application $app)
   {
     $signUpController = $app['controllers_factory'];
-    $signUpController->get('/', array($this, 'indexAction'))
+    $signUpController->match('/', array($this, 'newAction'))
       ->bind('signup');
-      $signUpController->post('/', array($this, 'indexAction'));
     return $signUpController;
   }
 
-  public function indexAction(Application $app, Request $request)
+  public function newAction(Application $app, Request $request)
   {
     $view = array();
     $groups = new Groups($app);
 
-    $signUpForm = $app['form.factory']
-      ->createBuilder(new SignUpType($groups->findAll()))->getForm();
+    $signUpForm = $app['form.factory']->createBuilder(
+      new SignUpType($groups->findAll())
+    )->getForm();
 
     $signUpForm->handleRequest($request);
 
     if ($signUpForm->isValid()) {
       $signUpData = $signUpForm->getData();
-      // $tagModel = new Tags($app);
-      // dodac obsluge bledow
-      // try catch na ponizszej linii
-      // $tagModel->save($tagData);
-      // $app['session']->getFlashBag()->add(
-      //   'message',
-      //   array(
-      //     'type' => 'success',
-      //     'content' => $app['translator']->trans('messages.add.success')
-      //   )
-      // );
-      // return $app->redirect(
-      //   $app['url_generator']->generate('tags')
-      // );
+
+      $userModel = new Users($app);
+      $userModel->createUser($signUpData);
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'success', // klasa css
+          'content' => $app['translator']->trans('messages.add.success')
+        )
+      );
+      return $app->redirect(
+        $app['url_generator']->generate('auth_login')
+      );
     }
 
     $view['form'] = $signUpForm->createView();
