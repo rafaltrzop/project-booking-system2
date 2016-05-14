@@ -1,4 +1,3 @@
 /vendor
 /node_modules
-/web/assets/stylesheets
-/web/assets/fonts
+/web/assets
