@@ -117,6 +117,7 @@ $app->register(
     ),
     'security.access_rules' => array(
       array('^/auth.+$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
+      array('^/signup/$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
       array('^/.+$', 'ROLE_ADMIN')
     ),
     'security.role_hierarchy' => array(
