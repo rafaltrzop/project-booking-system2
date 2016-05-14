@@ -9,6 +9,14 @@
     <link rel="icon" href="/favicon.ico">
   </head>
   <body class="{% block body_class %}{% endblock %}">
+    {% for message in app.session.getFlashBag.get('message') %}
+      <div class="callout {{ message.type }}">
+        <button class="close-button" aria-label="Close alert" type="button" id="notification-close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <p>{{ message.content }}</p>
+      </div>
+    {% endfor %}
 
 
     <nav>
@@ -25,6 +33,7 @@
 
 
     {% block body %}{% endblock %}
+    <script src="/assets/javascripts/jquery.min.js"></script>
     <script src="/assets/javascripts/main.js"></script>
   </body>
 </html>

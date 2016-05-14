@@ -38,8 +38,8 @@ class SignUpController implements ControllerProviderInterface
       $app['session']->getFlashBag()->add(
         'message',
         array(
-          'type' => 'success', // klasa css
-          'content' => $app['translator']->trans('messages.add.success')
+          'type' => 'success',
+          'content' => $app['translator']->trans('signup.messages.success')
         )
       );
       return $app->redirect(

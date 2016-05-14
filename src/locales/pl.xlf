@@ -58,6 +58,10 @@
         <source>signup.form.submit</source>
         <target>Zarejestruj się</target>
       </trans-unit>
+      <trans-unit id="signup.messages.success">
+        <source>signup.messages.success</source>
+        <target>Rejestracja przebiegła pomyślnie, możesz się już zalogować.</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/LogIn/index.html.twig">
