@@ -26,8 +26,8 @@ CREATE TABLE groups
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(30) NOT NULL UNIQUE,
-professor_user_id INT NOT NULL,
-FOREIGN KEY (professor_user_id) REFERENCES users(id)
+mod_user_id INT NOT NULL,
+FOREIGN KEY (mod_user_id) REFERENCES users(id)
 );
 
 ALTER TABLE users ADD FOREIGN KEY (group_id) REFERENCES groups(id);
@@ -37,18 +37,20 @@ CREATE TABLE projects
 id INT PRIMARY KEY AUTO_INCREMENT,
 topic VARCHAR(180) NOT NULL UNIQUE,
 group_id INT NOT NULL,
-FOREIGN KEY (group_id) REFERENCES groups(id)
+user_id INT DEFAULT NULL,
+FOREIGN KEY (group_id) REFERENCES groups(id),
+FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
 CREATE TABLE submissions
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
-student_user_id INT NOT NULL,
+user_id INT NOT NULL,
 project_id INT NOT NULL,
 submitted_at DATE DEFAULT NULL,
-professor_user_id INT DEFAULT NULL,
+mod_user_id INT DEFAULT NULL,
 mark DECIMAL(2,1) DEFAULT NULL,
 FOREIGN KEY (project_id) REFERENCES projects(id),
-FOREIGN KEY (student_user_id) REFERENCES users(id),
-FOREIGN KEY (professor_user_id) REFERENCES users(id)
+FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (mod_user_id) REFERENCES users(id)
 );
