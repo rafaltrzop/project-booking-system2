@@ -98,7 +98,7 @@ $app->register(
         'form' => array(
           'login_path' => 'auth_login',
           'check_path' => 'auth_login_check',
-          'default_target_path'=> '/dashboard',
+          'default_target_path'=> '/',
           'username_parameter' => 'login_form[email]',
           'password_parameter' => 'login_form[password]',
         ),
@@ -118,10 +118,11 @@ $app->register(
     'security.access_rules' => array(
       array('^/auth.+$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
       array('^/signup/$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-      array('^/.+$', 'ROLE_ADMIN')
+      array('^/user.+$', 'ROLE_USER'),
+      array('^/.+$', 'ROLE_MOD')
     ),
     'security.role_hierarchy' => array(
-      'ROLE_ADMIN' => array('ROLE_USER'),
+      'ROLE_ADMIN' => array('ROLE_MOD'),
     )
   )
 );

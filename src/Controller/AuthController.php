@@ -14,8 +14,8 @@ class AuthController implements ControllerProviderInterface
     $authController = $app['controllers_factory'];
     $authController->match('/login', array($this, 'loginAction'))
       ->bind('auth_login');
-    $authController->get('/logout', array($this, 'logoutAction'))
-      ->bind('auth_logout');
+    // $authController->get('/logout', array($this, 'logoutAction'))
+    //   ->bind('auth_logout');
     return $authController;
   }
 
@@ -38,10 +38,10 @@ class AuthController implements ControllerProviderInterface
     return $app['twig']->render('Auth/login.html.twig', $view);
   }
 
-  public function logoutAction(Application $app)
-  {
-    $view = array();
-    $app['session']->clear();
-    return $app['twig']->render('Auth/logout.html.twig', $view);
-  }
+  // public function logoutAction(Application $app)
+  // {
+  //   $view = array();
+  //   $app['session']->clear();
+  //   return $app['twig']->render('Auth/logout.html.twig', $view);
+  // }
 }

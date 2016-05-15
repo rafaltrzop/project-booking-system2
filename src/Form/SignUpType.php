@@ -79,7 +79,7 @@ class SignUpType extends AbstractType
       'email',
       'email',
       array(
-        'label' => 'login.form.email',
+        'label' => 'signup.form.email',
         'required' => true,
         'max_length' => 60,
         'constraints' => array(
@@ -99,7 +99,7 @@ class SignUpType extends AbstractType
       'password',
       'password',
       array(
-        'label' => 'login.form.password',
+        'label' => 'signup.form.password',
         'required' => true,
         'max_length' => 30,
         'constraints' => array(

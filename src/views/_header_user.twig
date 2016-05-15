@@ -1,0 +1,20 @@
+<header class="top-bar">
+  <nav class="row">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li>
+          <a href="{{ path('user') }}">
+            <span class="fa fa-graduation-cap"></span>&ensp;<span class="hide-for-small-only">{{ 'user.top-bar.site-name'|trans }}</span><span class="show-for-small-only">{{ 'user.top-bar.site-name-initials'|trans }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li>
+          <a href="{{ path('auth_logout') }}">{{ 'user.top-bar.logout'|trans }}&ensp;<span class="fa fa-power-off"></span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

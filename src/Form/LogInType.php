@@ -14,7 +14,7 @@ class LogInType extends AbstractType
       'email',
       'email',
       array(
-        'label' => 'login.form.email',
+        'label' => 'auth.form.email',
         'required' => true,
         'max_length' => 60,
         'attr' => array(
@@ -37,7 +37,7 @@ class LogInType extends AbstractType
       'password',
       'password',
       array(
-        'label' => 'login.form.password',
+        'label' => 'auth.form.password',
         'required' => true,
         'max_length' => 30,
         'constraints' => array(
@@ -56,7 +56,7 @@ class LogInType extends AbstractType
       'submit',
       'submit',
       array(
-        'label' => 'login.form.submit'
+        'label' => 'auth.form.submit'
       )
     );
   }
