@@ -49,6 +49,6 @@ class SignUpController implements ControllerProviderInterface
 
     $view['form'] = $signUpForm->createView();
 
-    return $app['twig']->render('SignUp/index.html.twig', $view);
+    return $app['twig']->render('SignUp/new.html.twig', $view);
   }
 }
