@@ -67,10 +67,7 @@ class SignUpType extends AbstractType
         'required' => true,
         'empty_value' => '',
         'constraints' => array(
-          new Assert\NotBlank(),
-          new Assert\Choice(array(
-            'choices' => $this->groupIds()
-          ))
+          new Assert\NotBlank()
         )
       )
     );
@@ -136,15 +133,5 @@ class SignUpType extends AbstractType
       $groupChoices[$group['id']] = $group['name'];
     }
     return $groupChoices;
-  }
-
-  private function groupIds()
-  {
-    $groupIds = array();
-    foreach ($this->groups as $group)
-    {
-      $groupIds[] = $group['id'];
-    }
-    return $groupIds;
   }
 }
