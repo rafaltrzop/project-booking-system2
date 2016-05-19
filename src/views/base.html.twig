@@ -14,7 +14,7 @@
         <button class="close-button" aria-label="Close alert" type="button" id="notification-close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <p>{{ message.content }}</p>
+        <p><span class="fa fa-{{ message.icon }} fa-{{ message.type }}"></span>&ensp;{{ message.content }}</p>
       </div>
     {% endfor %}
     {% block header %}{% endblock %}

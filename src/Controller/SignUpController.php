@@ -39,6 +39,7 @@ class SignUpController implements ControllerProviderInterface
         'message',
         array(
           'type' => 'success',
+          'icon' => 'check',
           'content' => $app['translator']->trans('signup.messages.success')
         )
       );
