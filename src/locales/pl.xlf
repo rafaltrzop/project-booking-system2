@@ -106,6 +106,18 @@
         <source>user.top-bar.logout</source>
         <target>Wyloguj</target>
       </trans-unit>
+      <trans-unit id="user.book-project-form.h1">
+        <source>user.book-project-form.h1</source>
+        <target>Zarezerwuj temat projektu</target>
+      </trans-unit>
+      <trans-unit id="user.book-project-form.project">
+        <source>user.book-project-form.project</source>
+        <target>Wybierz temat:</target>
+      </trans-unit>
+      <trans-unit id="user.book-project-form.submit">
+        <source>user.book-project-form.submit</source>
+        <target>Zarezerwuj temat</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,0 +1,17 @@
+{%- block choice_widget_expanded -%}
+    <ol {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+      <li>
+        {{- form_widget(child) -}}
+        {{- form_label(child) -}}
+      </li>
+    {% endfor %}
+  </ol>
+{%- endblock choice_widget_expanded -%}
+
+{%- block button_widget -%}
+    {%- if label is empty -%}
+        {% set label = name|humanize %}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }} class="hollow button">{{ label|trans({}, translation_domain) }}</button>
+{%- endblock button_widget -%}
