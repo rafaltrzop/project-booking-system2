@@ -8,30 +8,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class BookProjectType extends AbstractType
 {
+  private $projects;
+
+  public function __construct($projects)
+  {
+    $this->projects = $projects;
+  }
+
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
       'project',
       'choice',
       array(
-        // 'choices' => $this->groupChoices(),
-        'choices' => array(
-          '1' => 'Lorem ipsum dolor sit amet',
-          '2' => 'Lorem ipsum dolor sit amet',
-          '3' => 'Lorem ipsum dolor sit amet',
-          '4' => 'Lorem ipsum dolor sit amet',
-          '5' => 'Lorem ipsum dolor sit amet'
-        ),
+        'choices' => $this->projectChoices(),
         'label' => 'user.book-project-form.project',
         'required' => true,
         'expanded' => true,
         'constraints' => array(
-          new Assert\NotBlank(),
-          // new Assert\Choice(
-          //   array(
-          //     'choices' => $this->groupIds()
-          //   )
-          // )
+          new Assert\NotBlank()
         )
       )
     );
@@ -48,5 +43,15 @@ class BookProjectType extends AbstractType
   public function getName()
   {
     return 'book_project_form';
+  }
+
+  private function projectChoices()
+  {
+    $projectChoices = array();
+    foreach ($this->projects as $project)
+    {
+      $projectChoices[$project['id']] = $project['topic'];
+    }
+    return $projectChoices;
   }
 }

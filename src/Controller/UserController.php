@@ -6,6 +6,7 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Form\BookProjectType;
+use Model\Projects;
 
 class UserController implements ControllerProviderInterface
 {
@@ -20,10 +21,10 @@ class UserController implements ControllerProviderInterface
   public function bookProjectAction(Application $app, Request $request)
   {
     $view = array();
-    // $groups = new Groups($app);
+    $projects = new Projects($app);
 
     $bookProjectForm = $app['form.factory']->createBuilder(
-      new BookProjectType()
+      new BookProjectType($projects->findAll())
     )->getForm();
 
     $bookProjectForm->handleRequest($request);
@@ -37,7 +38,8 @@ class UserController implements ControllerProviderInterface
         'message',
         array(
           'type' => 'success',
-          'content' => $app['translator']->trans('signup.messages.success')
+          'icon' => 'check',
+          'content' => $app['translator']->trans('user.book-project-messages.success')
         )
       );
       // return $app->redirect(
