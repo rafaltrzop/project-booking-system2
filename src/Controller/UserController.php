@@ -7,6 +7,7 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Form\BookProjectType;
 use Model\Projects;
+use Model\Users;
 
 class UserController implements ControllerProviderInterface
 {
@@ -22,9 +23,14 @@ class UserController implements ControllerProviderInterface
   {
     $view = array();
     $projects = new Projects($app);
+    $users = new Users($app);
 
     $bookProjectForm = $app['form.factory']->createBuilder(
-      new BookProjectType($projects->findAll())
+      new BookProjectType(
+        $projects->findAllProjectsInGroup(
+          $users->getCurrentUserGroupId()
+        )
+      )
     )->getForm();
 
     $bookProjectForm->handleRequest($request);

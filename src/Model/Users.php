@@ -14,6 +14,7 @@ class Users
   {
     $this->db = $app['db'];
     $this->securityEncoderDigest = $app['security.encoder.digest'];
+    $this->securityTokenStorage = $app['security.token_storage']->getToken();
   }
 
   public function loadUserByEmail($email)
@@ -100,5 +101,18 @@ class Users
     $statement->bindValue('password', $passwordHash, \PDO::PARAM_STR);
 
     $statement->execute();
+  }
+
+  public function getCurrentUserGroupId()
+  {
+    $email = $this->securityTokenStorage->getUser()->getUsername();
+
+    $query = 'SELECT group_id FROM users WHERE email = :email';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('email', $email, \PDO::PARAM_STR);
+    $statement->execute();
+    $result = $statement->fetchColumn();
+
+    return $result;
   }
 }

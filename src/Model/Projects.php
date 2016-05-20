@@ -13,11 +13,14 @@ class Projects
     $this->db = $app['db'];
   }
 
-  public function findAll()
+  public function findAllProjectsInGroup($groupId)
   {
-    // $query = 'SELECT id, topic FROM projects WHERE group_id = ?';
-    $query = 'SELECT id, topic FROM projects';
-    $result = $this->db->fetchAll($query);
+    $query = 'SELECT id, topic FROM projects WHERE group_id = :group_id ORDER BY topic';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('group_id', $groupId, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
     return $result;
   }
 }
