@@ -27,7 +27,7 @@ class UserController implements ControllerProviderInterface
 
     $bookProjectForm = $app['form.factory']->createBuilder(
       new BookProjectType(
-        $projects->findAllProjectsInGroup(
+        $projects->findAvailableProjectsInGroup(
           $users->getCurrentUserGroupId()
         )
       )
@@ -37,9 +37,10 @@ class UserController implements ControllerProviderInterface
 
     if ($bookProjectForm->isValid()) {
       $bookProjectData = $bookProjectForm->getData();
+      $bookProjectData['user_id'] = $users->getCurrentUserId();
 
-      // $userModel = new Users($app);
-      // $userModel->createUser($bookProjectData);
+      $projectModel = new Projects($app);
+      $projectModel->bookProject($bookProjectData);
       $app['session']->getFlashBag()->add(
         'message',
         array(

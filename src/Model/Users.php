@@ -9,6 +9,7 @@ class Users
 {
   private $db;
   private $securityEncoderDigest;
+  private $securityTokenStorage;
 
   public function __construct(Application $app)
   {
@@ -108,6 +109,19 @@ class Users
     $email = $this->securityTokenStorage->getUser()->getUsername();
 
     $query = 'SELECT group_id FROM users WHERE email = :email';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('email', $email, \PDO::PARAM_STR);
+    $statement->execute();
+    $result = $statement->fetchColumn();
+
+    return $result;
+  }
+
+  public function getCurrentUserId()
+  {
+    $email = $this->securityTokenStorage->getUser()->getUsername();
+
+    $query = 'SELECT id FROM users WHERE email = :email';
     $statement = $this->db->prepare($query);
     $statement->bindValue('email', $email, \PDO::PARAM_STR);
     $statement->execute();

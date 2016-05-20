@@ -18,7 +18,7 @@ class BookProjectType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
-      'project',
+      'id',
       'choice',
       array(
         'choices' => $this->projectChoices(),
