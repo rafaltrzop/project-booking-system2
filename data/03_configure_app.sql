@@ -1,5 +1,3 @@
-USE srtp2;
-
 # Add roles
 INSERT INTO roles(id, name) VALUES
 (1, 'ROLE_ADMIN'),

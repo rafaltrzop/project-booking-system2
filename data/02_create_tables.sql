@@ -1,5 +1,3 @@
-USE srtp2;
-
 DROP TABLE IF EXISTS submissions, projects, users, roles;
 
 SET storage_engine = INNODB;

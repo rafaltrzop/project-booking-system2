@@ -1,5 +1,3 @@
-USE srtp2;
-
 # Add mod (password: qAWfMuqyVEe5)
 INSERT INTO users(role_id, first_name, last_name, email, password) VALUES
 (2, 'Jane', 'Plain', 'jane.plain@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg==');
