@@ -88,7 +88,7 @@
       </trans-unit>
     </body>
   </file>
-  <file source-language="en" datatype="plaintext" original="views/User/index.html.twig">
+  <file source-language="en" datatype="plaintext" original="views/User/*.html.twig">
     <body>
       <trans-unit id="user.head.title">
         <source>user.head.title</source>
@@ -106,6 +106,10 @@
         <source>user.top-bar.logout</source>
         <target>Log out</target>
       </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/User/book.html.twig">
+    <body>
       <trans-unit id="user.book-project-form.h1">
         <source>user.book-project-form.h1</source>
         <target>Project booking</target>
@@ -117,6 +121,22 @@
       <trans-unit id="user.book-project-form.submit">
         <source>user.book-project-form.submit</source>
         <target>Book a project</target>
+      </trans-unit>
+      <trans-unit id="user.book-project-messages.success">
+        <source>user.book-project-messages.success</source>
+        <target>Chosen project has been successfully booked.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/User/submit.html.twig">
+    <body>
+      <trans-unit id="user.submit-project-form.h1">
+        <source>user.submit-project-form.h1</source>
+        <target>Submit your project</target>
+      </trans-unit>
+      <trans-unit id="user.submit-project-form.submit">
+        <source>user.submit-project-form.submit</source>
+        <target>Submit to evaluation</target>
       </trans-unit>
     </body>
   </file>

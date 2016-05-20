@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/logged_in.html.twig' %}
+
+{% block title %}{{ 'user.head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+
+{% block header %}
+  {% include '_header_user.twig' %}
+{% endblock %}
+
+{% block body %}
+  <main class="body-content-container">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1>{{ 'user.submit-project-form.h1'|trans }}</h1>
+        {{ form(form) }}
+      </div>
+    </div>
+  </main>
+{% endblock %}

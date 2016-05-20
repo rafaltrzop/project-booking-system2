@@ -78,17 +78,6 @@ $app->register(new ValidatorServiceProvider());
 
 $app->register(new SessionServiceProvider());
 
-// $app->register(
-//   new SecurityServiceProvider(),
-//   array(
-//     'security.firewalls' => array(
-//       'unsecured' => array(
-//         'anonymous' => true
-//       )
-//     )
-//   )
-// );
-
 $app->register(
   new SecurityServiceProvider(),
   array(

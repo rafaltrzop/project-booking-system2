@@ -39,4 +39,15 @@ class Projects
 
     $statement->execute();
   }
+
+  public function checkIfUserBookedProject($userId)
+  {
+    $query = 'SELECT EXISTS(SELECT * FROM projects WHERE user_id = :user_id)';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = (bool) $statement->fetchColumn();
+
+    return $result;
+  }
 }
