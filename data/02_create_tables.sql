@@ -43,9 +43,9 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 CREATE TABLE submissions
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
-user_id INT NOT NULL,
+user_id INT NOT NULL UNIQUE,
 project_id INT NOT NULL,
-submitted_at DATE DEFAULT NULL,
+submitted_at DATE NOT NULL,
 mod_user_id INT DEFAULT NULL,
 mark DECIMAL(2,1) DEFAULT NULL,
 FOREIGN KEY (project_id) REFERENCES projects(id),

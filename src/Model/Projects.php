@@ -50,4 +50,15 @@ class Projects
 
     return $result;
   }
+
+  public function getCurrentUserProjectId($userId)
+  {
+    $query = 'SELECT id FROM projects WHERE user_id = :user_id';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchColumn();
+
+    return $result;
+  }
 }
