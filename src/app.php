@@ -110,6 +110,7 @@ $app->register(
       array('^/user/$', 'ROLE_USER'),
       array('^/project/book$', 'ROLE_USER'),
       array('^/project/submit$', 'ROLE_USER'),
+      array('^/project/summary$', 'ROLE_USER'),
       array('^/.+$', 'ROLE_MOD')
     ),
     'security.role_hierarchy' => array(

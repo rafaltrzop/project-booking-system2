@@ -20,6 +20,8 @@ class ProjectController implements ControllerProviderInterface
       ->bind('project_book');
     $userController->match('/submit', array($this, 'submitAction'))
       ->bind('project_submit');
+    $userController->match('/summary', array($this, 'summaryAction'))
+      ->bind('project_summary');
     return $userController;
   }
 
@@ -97,13 +99,19 @@ class ProjectController implements ControllerProviderInterface
         )
       );
 
-      // return $app->redirect(
-      //   $app['url_generator']->generate('project_summary')
-      // );
+      return $app->redirect(
+        $app['url_generator']->generate('project_summary')
+      );
     }
 
     $view['form'] = $submitForm->createView();
 
     return $app['twig']->render('Project/submit.html.twig', $view);
+  }
+
+  public function summaryAction(Application $app, Request $request)
+  {
+    $view = array();
+    return $app['twig']->render('Project/summary.html.twig', $view);
   }
 }
