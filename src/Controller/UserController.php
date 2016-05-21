@@ -7,6 +7,7 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Model\Projects;
 use Model\Users;
+use Model\Submissions;
 
 class UserController implements ControllerProviderInterface
 {
@@ -26,14 +27,23 @@ class UserController implements ControllerProviderInterface
     $projectModel = new Projects($app);
     $userBookedProject = $projectModel->checkIfUserBookedProject($userId);
 
+    $submissionModel = new Submissions($app);
+    $userSubmittedProject = $submissionModel->checkIfUserSubmittedProject($userId);
+
+    if($userSubmittedProject) {
+      return $app->redirect(
+        $app['url_generator']->generate('project_summary')
+      );
+    }
+
     if ($userBookedProject) {
       return $app->redirect(
         $app['url_generator']->generate('project_submit')
       );
-    } else {
-      return $app->redirect(
-        $app['url_generator']->generate('project_book')
-      );
     }
+
+    return $app->redirect(
+      $app['url_generator']->generate('project_book')
+    );
   }
 }
