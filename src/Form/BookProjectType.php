@@ -22,7 +22,7 @@ class BookProjectType extends AbstractType
       'choice',
       array(
         'choices' => $this->projectChoices(),
-        'label' => 'user.book-project-form.project',
+        'label' => 'project.book-form.project',
         'required' => true,
         'expanded' => true,
         'constraints' => array(
@@ -35,7 +35,7 @@ class BookProjectType extends AbstractType
       'submit',
       'submit',
       array(
-        'label' => 'user.book-project-form.submit'
+        'label' => 'project.book-form.submit'
       )
     );
   }

@@ -53,7 +53,7 @@ class ProjectController implements ControllerProviderInterface
         array(
           'type' => 'success',
           'icon' => 'check',
-          'content' => $app['translator']->trans('user.book-project-messages.success')
+          'content' => $app['translator']->trans('project.book-messages.success')
         )
       );
 
@@ -95,7 +95,7 @@ class ProjectController implements ControllerProviderInterface
         array(
           'type' => 'success',
           'icon' => 'check',
-          'content' => $app['translator']->trans('user.submit-project-messages.success')
+          'content' => $app['translator']->trans('project.submit-messages.success')
         )
       );
 
