@@ -138,6 +138,10 @@
         <source>user.submit-project-form.submit</source>
         <target>Submit to evaluation</target>
       </trans-unit>
+      <trans-unit id="user.submit-project-messages.success">
+        <source>user.submit-project-messages.success</source>
+        <target>Your project has been marked as completed and is currently waiting in the queue for evaluation.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

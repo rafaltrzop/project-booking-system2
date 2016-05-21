@@ -138,6 +138,10 @@
         <source>user.submit-project-form.submit</source>
         <target>Zgłoś projekt do oceny</target>
       </trans-unit>
+      <trans-unit id="user.submit-project-messages.success">
+        <source>user.submit-project-messages.success</source>
+        <target>Twój projekt został oznaczony jako wykonany i aktualnie czeka w kolejce do oceny.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
