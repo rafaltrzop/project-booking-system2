@@ -17,15 +17,15 @@ class IndexController implements ControllerProviderInterface
 
   public function indexAction(Application $app, Request $request)
   {
-    if ($app['security.authorization_checker']->isGranted('ROLE_USER')) {
-      return $app->redirect(
-        $app['url_generator']->generate('user')
-      );
-    }
-
     if ($app['security.authorization_checker']->isGranted('ROLE_MOD')) {
       return $app->redirect(
         $app['url_generator']->generate('admin')
+      );
+    }
+
+    if ($app['security.authorization_checker']->isGranted('ROLE_USER')) {
+      return $app->redirect(
+        $app['url_generator']->generate('user')
       );
     }
 
