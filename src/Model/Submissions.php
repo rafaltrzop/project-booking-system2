@@ -13,7 +13,7 @@ class Submissions
     $this->db = $app['db'];
   }
 
-  public function add($userId, $projectId)
+  public function createSubmission($userId, $projectId)
   {
     $query = '
       INSERT INTO submissions(user_id, project_id, submitted_at)

@@ -27,13 +27,13 @@ class ProjectController implements ControllerProviderInterface
   {
     $view = array();
 
-    $projects = new Projects($app);
-    $users = new Users($app);
+    $projectModel = new Projects($app);
+    $userModel = new Users($app);
 
     $bookForm = $app['form.factory']->createBuilder(
       new BookProjectType(
-        $projects->findAvailableProjectsInGroup(
-          $users->getCurrentUserGroupId()
+        $projectModel->findAvailableProjectsInGroup(
+          $userModel->getCurrentUserGroupId()
         )
       )
     )->getForm();
@@ -42,9 +42,8 @@ class ProjectController implements ControllerProviderInterface
 
     if ($bookForm->isValid()) {
       $bookData = $bookForm->getData();
-      $bookData['user_id'] = $users->getCurrentUserId();
+      $bookData['user_id'] = $userModel->getCurrentUserId();
 
-      $projectModel = new Projects($app);
       $projectModel->bookProject($bookData);
 
       $app['session']->getFlashBag()->add(
@@ -77,18 +76,16 @@ class ProjectController implements ControllerProviderInterface
     $submitForm->handleRequest($request);
 
     if ($submitForm->isValid()) {
-      $submitData = $submitForm->getData();
+      $projectModel = new Projects($app);
+      $userModel = new Users($app);
 
-      $projects = new Projects($app);
-      $users = new Users($app);
-
-      $userId = $users->getCurrentUserId();
-      $projectId = $projects->getCurrentUserProjectId($userId);
-      $userBookedProject = $projects->checkIfUserBookedProject($userId);
+      $userId = $userModel->getCurrentUserId();
+      $projectId = $projectModel->getCurrentUserProjectId($userId);
+      $userBookedProject = $projectModel->checkIfUserBookedProject($userId);
 
       if ($userBookedProject) {
-        $submissions = new Submissions($app);
-        $submissions->add($userId, $projectId);
+        $submissionModel = new Submissions($app);
+        $submissionModel->createSubmission($userId, $projectId);
       }
 
       $app['session']->getFlashBag()->add(

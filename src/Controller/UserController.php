@@ -20,11 +20,11 @@ class UserController implements ControllerProviderInterface
 
   public function indexAction(Application $app, Request $request)
   {
-    $users = new Users($app);
-    $userId = $users->getCurrentUserId();
+    $userModel = new Users($app);
+    $userId = $userModel->getCurrentUserId();
 
-    $projects = new Projects($app);
-    $userBookedProject = $projects->checkIfUserBookedProject($userId);
+    $projectModel = new Projects($app);
+    $userBookedProject = $projectModel->checkIfUserBookedProject($userId);
 
     if ($userBookedProject) {
       return $app->redirect(

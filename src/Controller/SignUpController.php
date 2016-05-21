@@ -22,19 +22,19 @@ class SignUpController implements ControllerProviderInterface
   public function newAction(Application $app, Request $request)
   {
     $view = array();
-    $groups = new Groups($app);
+    $groupModel = new Groups($app);
 
     $signUpForm = $app['form.factory']->createBuilder(
-      new SignUpType($groups->findAll())
+      new SignUpType($groupModel->findAll())
     )->getForm();
 
     $signUpForm->handleRequest($request);
 
     if ($signUpForm->isValid()) {
       $signUpData = $signUpForm->getData();
-
       $userModel = new Users($app);
       $userModel->createUser($signUpData);
+
       $app['session']->getFlashBag()->add(
         'message',
         array(
@@ -43,6 +43,7 @@ class SignUpController implements ControllerProviderInterface
           'content' => $app['translator']->trans('signup.messages.success')
         )
       );
+
       return $app->redirect(
         $app['url_generator']->generate('auth_login')
       );
