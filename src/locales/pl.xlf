@@ -140,4 +140,24 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/summary.html.twig">
+    <body>
+      <trans-unit id="project.summary.project-topic">
+        <source>project.summary.project-topic</source>
+        <target>Temat projektu</target>
+      </trans-unit>
+      <trans-unit id="project.summary.reviewer">
+        <source>project.summary.reviewer</source>
+        <target>Oceniający</target>
+      </trans-unit>
+      <trans-unit id="project.summary.date">
+        <source>project.summary.date</source>
+        <target>Data zgłoszenia</target>
+      </trans-unit>
+      <trans-unit id="project.summary.mark">
+        <source>project.summary.mark</source>
+        <target>Ocena</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
