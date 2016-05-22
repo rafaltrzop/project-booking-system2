@@ -12,22 +12,34 @@
     <div class="row">
       <div class="large-8 columns">
         <p>{{ 'project.summary.project-topic'|trans }}</p>
-        <p class="stat">Ewidencja płatności za wynajem mieszkań</p>
+        <p class="stat">{{ summary.topic }}</p>
       </div>
       <div class="large-4 columns">
         <p>{{ 'project.summary.reviewer'|trans }}</p>
-        <p class="stat">Marcin Bielecki</p>
+        <p class="stat">
+          {% if summary.first_name and summary.last_name %}
+            {{ summary.first_name }} {{ summary.last_name }}
+          {% else %}
+            &mdash;
+          {% endif %}
+        </p>
       </div>
     </div>
 
     <div class="row">
       <div class="large-8 columns">
         <p>{{ 'project.summary.date'|trans }}</p>
-        <p class="stat">2016-01-21</p>
+        <p class="stat">{{ summary.submitted_at }}</p>
       </div>
       <div class="large-4 columns">
         <p>{{ 'project.summary.mark'|trans }}</p>
-        <p class="stat">4.5</p>
+        <p class="stat">
+          {% if summary.mark %}
+            {{ summary.mark }}
+          {% else %}
+            &mdash;
+          {% endif %}
+        </p>
       </div>
     </div>
   </main>

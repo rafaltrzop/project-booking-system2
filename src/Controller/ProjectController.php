@@ -112,6 +112,13 @@ class ProjectController implements ControllerProviderInterface
   public function summaryAction(Application $app, Request $request)
   {
     $view = array();
+
+    $userModel = new Users($app);
+    $userId = $userModel->getCurrentUserId();
+
+    $projectModel = new Projects($app);
+    $view['summary'] = $projectModel->getProjectSummary($userId);
+
     return $app['twig']->render('Project/summary.html.twig', $view);
   }
 }

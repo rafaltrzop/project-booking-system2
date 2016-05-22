@@ -61,4 +61,21 @@ class Projects
 
     return $result;
   }
+
+  public function getProjectSummary($userId)
+  {
+    $query = '
+      SELECT topic, submitted_at, first_name, last_name, mark
+      FROM submissions s
+      LEFT JOIN users u ON s.mod_user_id = u.id
+      LEFT JOIN projects p ON s.project_id = p.id
+      WHERE s.user_id = :user_id
+    ';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    return $result[0];
+  }
 }
