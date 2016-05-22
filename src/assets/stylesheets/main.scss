@@ -124,6 +124,11 @@ table {
   }
 }
 
+.stat {
+  font-size: rem-calc(24);
+  color: $header-color;
+}
+
 @include breakpoint(medium) {
   .landing-page {
     &-logo {
@@ -142,6 +147,10 @@ table {
     &-form {
       max-width: rem-calc(460);
     }
+  }
+
+  .stat {
+    font-size: rem-calc(32);
   }
 }
 
