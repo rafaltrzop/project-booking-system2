@@ -10,6 +10,10 @@
         <source>none.user-head.title</source>
         <target>User panel</target>
       </trans-unit>
+      <trans-unit id="none.admin-head.title">
+        <source>none.admin-head.title</source>
+        <target>Admin panel</target>
+      </trans-unit>
       <trans-unit id="none.top-bar.site-name">
         <source>none.top-bar.site-name</source>
         <target>Project booking system</target>
@@ -17,6 +21,18 @@
       <trans-unit id="none.top-bar.site-name-initials">
         <source>none.top-bar.site-name-initials</source>
         <target>PBS</target>
+      </trans-unit>
+      <trans-unit id="none.top-bar.add">
+        <source>none.top-bar.add</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="none.top-bar.edit">
+        <source>none.top-bar.edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="none.top-bar.delete">
+        <source>none.top-bar.delete</source>
+        <target>Delete</target>
       </trans-unit>
       <trans-unit id="none.top-bar.logout">
         <source>none.top-bar.logout</source>

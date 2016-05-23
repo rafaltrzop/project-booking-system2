@@ -10,6 +10,10 @@
         <source>none.user-head.title</source>
         <target>Panel użytkownika</target>
       </trans-unit>
+      <trans-unit id="none.admin-head.title">
+        <source>none.admin-head.title</source>
+        <target>Panel administratora</target>
+      </trans-unit>
       <trans-unit id="none.top-bar.site-name">
         <source>none.top-bar.site-name</source>
         <target>System rezerwacji tematów projektów</target>
@@ -17,6 +21,18 @@
       <trans-unit id="none.top-bar.site-name-initials">
         <source>none.top-bar.site-name-initials</source>
         <target>SRTP</target>
+      </trans-unit>
+      <trans-unit id="none.top-bar.add">
+        <source>none.top-bar.add</source>
+        <target>Dodaj</target>
+      </trans-unit>
+      <trans-unit id="none.top-bar.edit">
+        <source>none.top-bar.edit</source>
+        <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="none.top-bar.delete">
+        <source>none.top-bar.delete</source>
+        <target>Usuń</target>
       </trans-unit>
       <trans-unit id="none.top-bar.logout">
         <source>none.top-bar.logout</source>
