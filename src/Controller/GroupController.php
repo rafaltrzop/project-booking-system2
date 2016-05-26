@@ -6,6 +6,8 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Form\GroupType;
+use Model\Groups;
+use Model\Users;
 
 class GroupController implements ControllerProviderInterface
 {
@@ -21,9 +23,6 @@ class GroupController implements ControllerProviderInterface
   {
     $view = array();
 
-    // $projectModel = new Projects($app);
-    // $userModel = new Users($app);
-
     $addForm = $app['form.factory']->createBuilder(
       new GroupType()
     )->getForm();
@@ -31,23 +30,21 @@ class GroupController implements ControllerProviderInterface
     $addForm->handleRequest($request);
 
     if ($addForm->isValid()) {
-      // $bookData = $addForm->getData();
-      // $bookData['user_id'] = $userModel->getCurrentUserId();
-      //
-      // $projectModel->bookProject($bookData);
-      //
-      // $app['session']->getFlashBag()->add(
-      //   'message',
-      //   array(
-      //     'type' => 'success',
-      //     'icon' => 'check',
-      //     'content' => $app['translator']->trans('project.book-messages.success')
-      //   )
-      // );
-      //
-      // return $app->redirect(
-      //   $app['url_generator']->generate('project_submit')
-      // );
+      $addData = $addForm->getData();
+      $userModel = new Users($app);
+      $addData['mod_user_id'] = $userModel->getCurrentUserId();
+
+      $groupModel = new Groups($app);
+      $groupModel->createGroup($addData);
+
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'success',
+          'icon' => 'check',
+          'content' => $app['translator']->trans('group.add-messages.success')
+        )
+      );
     }
 
     $view['form'] = $addForm->createView();
