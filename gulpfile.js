@@ -26,6 +26,7 @@ gulp.task('copy:fonts', function () {
 gulp.task('copy:js', function () {
   return gulp.src([
     'node_modules/jquery/dist/jquery.min.js',
+    'vendor/zurb/foundation/dist/foundation.min.js',
     'src/assets/javascripts/**/*.js'
   ]).pipe(gulp.dest('web/assets/javascripts'));
 });

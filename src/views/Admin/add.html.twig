@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{# {% form_theme form 'form/logged_in.html.twig' %} #}
+
+{% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+
+{% block header %}
+  {% include '_header_admin.twig' %}
+{% endblock %}
+
+{% block body %}
+  <main class="body-content-container">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1>Dodaj</h1>
+
+
+        <div class="row" data-equalizer data-equalize-on="medium" id="test-eq">
+          <div class="medium-4 columns">
+            <div class="callout" data-equalizer-watch>
+              <img src= "http://g-ecx.images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg">
+            </div>
+          </div>
+          <div class="medium-4 columns">
+            <div class="callout" data-equalizer-watch>
+              <p>Pellentesque habitant morbi tristique senectus et netus et, ante.</p>
+            </div>
+          </div>
+          <div class="medium-4 columns">
+            <div class="callout" data-equalizer-watch>
+              <img src= "https://s-media-cache-ak0.pinimg.com/736x/f0/26/05/f0260599e1251c67eefca31c02a19a81.jpg">
+            </div>
+          </div>
+        </div>
+
+
+        {#
+        <h1>{{ 'admin.book-project-form.h1'|trans }}</h1>
+        {{ form(form) }}
+         #}
+
+
+
+      </div>
+    </div>
+  </main>
+{% endblock %}

@@ -13,6 +13,8 @@ class AdminController implements ControllerProviderInterface
     $userController = $app['controllers_factory'];
     $userController->get('/', array($this, 'indexAction'))
       ->bind('admin');
+    $userController->get('/add', array($this, 'addAction'))
+      ->bind('admin_add');
     return $userController;
   }
 
@@ -20,5 +22,11 @@ class AdminController implements ControllerProviderInterface
   {
     $view = array();
     return $app['twig']->render('Admin/index.html.twig', $view);
+  }
+
+  public function addAction(Application $app, Request $request)
+  {
+    $view = array();
+    return $app['twig']->render('Admin/add.html.twig', $view);
   }
 }
