@@ -176,4 +176,32 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Admin/add.html.twig">
+    <body>
+      <trans-unit id="admin.menu-action.add-topic">
+        <source>admin.menu-action.add-topic</source>
+        <target>Nowy temat projektu</target>
+      </trans-unit>
+      <trans-unit id="admin.menu-action.add-group">
+        <source>admin.menu-action.add-group</source>
+        <target>Nowa grupa tematów</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Group/add.html.twig">
+    <body>
+      <trans-unit id="group.add-form.h1">
+        <source>group.add-form.h1</source>
+        <target>Dodaj nową grupę tematów</target>
+      </trans-unit>
+      <trans-unit id="group.add-form.name">
+        <source>group.add-form.name</source>
+        <target>Nazwa grupy:</target>
+      </trans-unit>
+      <trans-unit id="group.add-form.submit">
+        <source>group.add-form.submit</source>
+        <target>Dodaj grupę</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
