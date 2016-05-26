@@ -25,7 +25,7 @@ class SignUpController implements ControllerProviderInterface
     $groupModel = new Groups($app);
 
     $signUpForm = $app['form.factory']->createBuilder(
-      new SignUpType($groupModel->findAll())
+      new SignUpType($groupModel->findAllGroups())
     )->getForm();
 
     $signUpForm->handleRequest($request);

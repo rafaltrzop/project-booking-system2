@@ -13,7 +13,7 @@ class Groups
     $this->db = $app['db'];
   }
 
-  public function findAll()
+  public function findAllGroups()
   {
     $query = 'SELECT id, name FROM groups';
     $result = $this->db->fetchAll($query);
