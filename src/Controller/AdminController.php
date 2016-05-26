@@ -10,16 +10,16 @@ class AdminController implements ControllerProviderInterface
 {
   public function connect(Application $app)
   {
-    $userController = $app['controllers_factory'];
-    $userController->get('/', array($this, 'indexAction'))
+    $adminController = $app['controllers_factory'];
+    $adminController->get('/', array($this, 'indexAction'))
       ->bind('admin');
-    $userController->get('/add', array($this, 'addAction'))
+    $adminController->get('/add', array($this, 'addAction'))
       ->bind('admin_add');
-    $userController->get('/edit', array($this, 'editAction'))
+    $adminController->get('/edit', array($this, 'editAction'))
       ->bind('admin_edit');
-    $userController->get('/delete', array($this, 'deleteAction'))
+    $adminController->get('/delete', array($this, 'deleteAction'))
       ->bind('admin_delete');
-    return $userController;
+    return $adminController;
   }
 
   public function indexAction(Application $app, Request $request)

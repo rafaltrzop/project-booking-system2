@@ -15,14 +15,14 @@ class ProjectController implements ControllerProviderInterface
 {
   public function connect(Application $app)
   {
-    $userController = $app['controllers_factory'];
-    $userController->match('/book', array($this, 'bookAction'))
+    $projectController = $app['controllers_factory'];
+    $projectController->match('/book', array($this, 'bookAction'))
       ->bind('project_book');
-    $userController->match('/submit', array($this, 'submitAction'))
+    $projectController->match('/submit', array($this, 'submitAction'))
       ->bind('project_submit');
-    $userController->match('/summary', array($this, 'summaryAction'))
+    $projectController->match('/summary', array($this, 'summaryAction'))
       ->bind('project_summary');
-    return $userController;
+    return $projectController;
   }
 
   public function bookAction(Application $app, Request $request)
