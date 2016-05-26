@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+
+{% block header %}
+  {% include '_header_admin.twig' %}
+{% endblock %}
+
+{% block body %}
+  <main class="body-content-container">
+    <div class="row" data-equalizer data-equalize-on="medium">
+      <div class="medium-6 columns">
+        <a href="#">
+          <div class="menu-action" data-equalizer-watch>
+            <h1>Usuń temat projektu</h1>
+          </div>
+        </a>
+      </div>
+      <div class="medium-6 columns">
+        <a href="#">
+          <div class="menu-action" data-equalizer-watch>
+            <h1>Usuń grupę tematów</h1>
+          </div>
+        </a>
+      </div>
+      <div class="medium-6 columns end">
+        <a href="#">
+          <div class="menu-action" data-equalizer-watch>
+            <h1>Usuń użytkownika</h1>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+{% endblock %}
