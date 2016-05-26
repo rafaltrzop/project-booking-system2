@@ -129,6 +129,22 @@ table {
   color: $header-color;
 }
 
+.menu-action {
+  background-color: $light-gray;
+  transition: background-color .3s;
+  padding: rem-calc(40);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: rem-calc(16);
+  &:hover {
+    background-color: $medium-gray;
+  }
+  h1 {
+    text-align: center;
+  }
+}
+
 @include breakpoint(medium) {
   .landing-page {
     &-logo {
@@ -151,6 +167,11 @@ table {
 
   .stat {
     font-size: rem-calc(32);
+  }
+
+  .menu-action {
+    padding: rem-calc(80);
+    margin-bottom: rem-calc(20);
   }
 }
 
