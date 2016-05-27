@@ -24,25 +24,21 @@ class AdminController implements ControllerProviderInterface
 
   public function indexAction(Application $app, Request $request)
   {
-    $view = array();
-    return $app['twig']->render('Admin/index.html.twig', $view);
+    return $app['twig']->render('Admin/index.html.twig');
   }
 
   public function addAction(Application $app, Request $request)
   {
-    $view = array();
-    return $app['twig']->render('Admin/add.html.twig', $view);
+    return $app['twig']->render('Admin/add.html.twig');
   }
 
   public function editAction(Application $app, Request $request)
   {
-    $view = array();
-    return $app['twig']->render('Admin/edit.html.twig', $view);
+    return $app['twig']->render('Admin/edit.html.twig');
   }
 
   public function deleteAction(Application $app, Request $request)
   {
-    $view = array();
-    return $app['twig']->render('Admin/delete.html.twig', $view);
+    return $app['twig']->render('Admin/delete.html.twig');
   }
 }
