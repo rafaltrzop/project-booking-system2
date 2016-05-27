@@ -176,6 +176,30 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/add.html.twig">
+    <body>
+      <trans-unit id="project.add-form.h1">
+        <source>project.add-form.h1</source>
+        <target>Add new topic of the project</target>
+      </trans-unit>
+      <trans-unit id="project.add-form.topic">
+        <source>project.add-form.topic</source>
+        <target>Project topic:</target>
+      </trans-unit>
+      <trans-unit id="project.add-form.group">
+        <source>project.add-form.group</source>
+        <target>Group:</target>
+      </trans-unit>
+      <trans-unit id="project.add-form.submit">
+        <source>project.add-form.submit</source>
+        <target>Add topic</target>
+      </trans-unit>
+      <trans-unit id="project.add-messages.success">
+        <source>project.add-messages.success</source>
+        <target>The project has been successfully added to the selected group.</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/Admin/add.html.twig">
     <body>
       <trans-unit id="admin.menu-action.add-topic">
