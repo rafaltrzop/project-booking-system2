@@ -1,6 +1,6 @@
-# Add mod (password: qAWfMuqyVEe5)
+# Add mod (password: password)
 INSERT INTO users(role_id, first_name, last_name, email, password) VALUES
-(2, 'Jane', 'Plain', 'jane.plain@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg==');
+(2, 'Foo', 'Bar', 'mod@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w==');
 
 # Add groups
 INSERT INTO groups(name, mod_user_id) VALUES
@@ -27,14 +27,21 @@ INSERT INTO projects(topic, group_id) VALUES
 ('Galeria obrazów', 3),
 ('Hurtownia', 3);
 
-# Add users (password: qAWfMuqyVEe5)
+# Add example user (password: password)
 INSERT INTO users(group_id, first_name, last_name, email, password) VALUES
-(1, 'Cynthia', 'Dixon', 'cynthia.dixon@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(1, 'George', 'Henderson', 'george.henderson@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(1, 'Julia', 'Fields', 'julia.fields@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(2, 'Jeremy', 'Stone', 'jeremy.stone@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(2, 'Julia', 'Perry', 'julia.perry@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(2, 'Earl', 'Bell', 'earl.bell@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(3, 'Wanda', 'Marshall', 'wanda.marshall@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(3, 'Aaron', 'Berry', 'aaron.berry@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg=='),
-(3, 'Donna', 'Ray', 'donna.ray@gmail.com', '31sJZ7dGw9iFvJUqKIuS34JHj3D0MPLplLN+dxTq3vL3zz8pxkUSUCamau8UW1nGBOyNlQ0NE1NLWXYZNSV/Hg==');
+(1, 'Foo', 'Bar', 'user@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w==');
+
+# Add random users (password: password)
+INSERT INTO users(group_id, first_name, last_name, email, password) VALUES
+(1, 'Stanisław', 'Olszewski', 'solszewski@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(1, 'Agata', 'Kania', 'akania@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(1, 'Paulina', 'Szewczyk', 'pszewczyk@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(1, 'Jagoda', 'Kamińska', 'jkaminska@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(2, 'Mateusz', 'Lewandowski', 'mlewandowski@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(2, 'Amanda', 'Rogowska', 'arogowska@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(2, 'Igor', 'Zieliński', 'izielinski@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(2, 'Maria', 'Matusiak', 'mmatusiak@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(3, 'Adam', 'Malinowski', 'amalinowski@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(3, 'Krzysztof', 'Walczak', 'kwalczak@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(3, 'Julia', 'Sawicka', 'jsawicka@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w=='),
+(3, 'Marcin', 'Bielecki', 'mbielecki@example.com', 'BFEQkknI/c+Nd7BaG7AaiyTfUFby/pkMHy3UsYqKqDcmvHoPRX/ame9TnVuOV2GrBH0JK9g4koW+CgTYI9mK+w==');
