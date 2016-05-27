@@ -78,4 +78,18 @@ class Projects
 
     return $result[0];
   }
+
+  public function createProject($projectData)
+  {
+    $query = '
+      INSERT INTO projects(topic, group_id)
+      VALUES (:topic, :group_id)
+    ';
+    $statement = $this->db->prepare($query);
+
+    $statement->bindValue('topic', $projectData['topic'], \PDO::PARAM_STR);
+    $statement->bindValue('group_id', $projectData['group_id'], \PDO::PARAM_INT);
+
+    $statement->execute();
+  }
 }

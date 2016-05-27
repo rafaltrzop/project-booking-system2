@@ -45,6 +45,10 @@ class GroupController implements ControllerProviderInterface
           'content' => $app['translator']->trans('group.add-messages.success')
         )
       );
+
+      return $app->redirect(
+        $app['url_generator']->generate('group_add')
+      );
     }
 
     $view['form'] = $addForm->createView();

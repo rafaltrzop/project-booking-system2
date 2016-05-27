@@ -7,9 +7,11 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Form\BookProjectType;
 use Form\SubmitProjectType;
+use Form\ProjectType;
 use Model\Projects;
 use Model\Users;
 use Model\Submissions;
+use Model\Groups;
 
 class ProjectController implements ControllerProviderInterface
 {
@@ -22,6 +24,8 @@ class ProjectController implements ControllerProviderInterface
       ->bind('project_submit');
     $projectController->match('/summary', array($this, 'summaryAction'))
       ->bind('project_summary');
+    $projectController->match('/add', array($this, 'addAction'))
+      ->bind('project_add');
     return $projectController;
   }
 
@@ -120,5 +124,41 @@ class ProjectController implements ControllerProviderInterface
     $view['summary'] = $projectModel->getProjectSummary($userId);
 
     return $app['twig']->render('Project/summary.html.twig', $view);
+  }
+
+  public function addAction(Application $app, Request $request)
+  {
+    $view = array();
+    $groupModel = new Groups($app);
+
+    $addForm = $app['form.factory']->createBuilder(
+      new ProjectType($groupModel->findAllGroups())
+    )->getForm();
+
+    $addForm->handleRequest($request);
+
+    if ($addForm->isValid()) {
+      $addData = $addForm->getData();
+
+      $projectModel = new Projects($app);
+      $projectModel->createProject($addData);
+
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'success',
+          'icon' => 'check',
+          'content' => $app['translator']->trans('project.add-messages.success')
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('project_add')
+      );
+    }
+
+    $view['form'] = $addForm->createView();
+
+    return $app['twig']->render('Project/add.html.twig', $view);
   }
 }
