@@ -95,9 +95,9 @@ class Users
     ';
     $statement = $this->db->prepare($query);
 
-    $statement->bindValue('group_id', $signUpData['group'], \PDO::PARAM_INT);
-    $statement->bindValue('first_name', $signUpData['firstname'], \PDO::PARAM_STR);
-    $statement->bindValue('last_name', $signUpData['lastname'], \PDO::PARAM_STR);
+    $statement->bindValue('group_id', $signUpData['group_id'], \PDO::PARAM_INT);
+    $statement->bindValue('first_name', $signUpData['first_name'], \PDO::PARAM_STR);
+    $statement->bindValue('last_name', $signUpData['last_name'], \PDO::PARAM_STR);
     $statement->bindValue('email', $signUpData['email'], \PDO::PARAM_STR);
     $statement->bindValue('password', $passwordHash, \PDO::PARAM_STR);
 

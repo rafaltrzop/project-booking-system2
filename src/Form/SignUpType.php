@@ -18,7 +18,7 @@ class SignUpType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
-      'firstname',
+      'first_name',
       'text',
       array(
         'label' => 'signup.form.firstname',
@@ -40,7 +40,7 @@ class SignUpType extends AbstractType
     );
 
     $builder->add(
-      'lastname',
+      'last_name',
       'text',
       array(
         'label' => 'signup.form.lastname',
@@ -59,7 +59,7 @@ class SignUpType extends AbstractType
     );
 
     $builder->add(
-      'group',
+      'group_id',
       'choice',
       array(
         'choices' => $this->groupChoices(),
