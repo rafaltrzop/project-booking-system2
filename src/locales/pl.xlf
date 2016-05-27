@@ -202,6 +202,10 @@
         <source>group.add-form.submit</source>
         <target>Dodaj grupę</target>
       </trans-unit>
+      <trans-unit id="group.add-messages.success">
+        <source>group.add-messages.success</source>
+        <target>Pomyślnie dodano nową grupę tematów projektów.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -202,6 +202,10 @@
         <source>group.add-form.submit</source>
         <target>Create group</target>
       </trans-unit>
+      <trans-unit id="group.add-messages.success">
+        <source>group.add-messages.success</source>
+        <target>You have successfully added a new group of topics.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
