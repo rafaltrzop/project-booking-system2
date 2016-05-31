@@ -40,8 +40,6 @@ class Submissions
 
   public function findAllSubmissions()
   {
-    // dodać WHERE groups.mod_user_id = $modId??? (wyswietlac rzeczy do oceny
-    // dla danego moda/admina)
     $query = '
       SELECT submitted_at, first_name, last_name, topic, mark, s.id
       FROM submissions s
@@ -51,5 +49,20 @@ class Submissions
     ';
     $result = $this->db->fetchAll($query);
     return $result;
+  }
+
+  public function rateSubmission($rateData)
+  {
+    $query = '
+      UPDATE submissions
+      SET mark = :mark
+      WHERE id = :id
+    ';
+    $statement = $this->db->prepare($query);
+
+    $statement->bindValue('mark', $rateData['mark'], \PDO::PARAM_STR);
+    $statement->bindValue('id', $rateData['id'], \PDO::PARAM_INT);
+
+    $statement->execute();
   }
 }

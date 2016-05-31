@@ -13,7 +13,7 @@ class SubmissionController implements ControllerProviderInterface
   public function connect(Application $app)
   {
     $submissionController = $app['controllers_factory'];
-    $submissionController->get('/rate', array($this, 'rateAction'))
+    $submissionController->match('/rate', array($this, 'rateAction'))
       ->bind('submission_rate');
     return $submissionController;
   }
@@ -21,38 +21,6 @@ class SubmissionController implements ControllerProviderInterface
   public function rateAction(Application $app, Request $request)
   {
     $view = array();
-
-
-
-    // $addForm = $app['form.factory']->createBuilder(
-    //   new RateSubmissionType()
-    // )->getForm();
-
-    // $addForm->handleRequest($request);
-    //
-    // if ($addForm->isValid()) {
-    //   $addData = $addForm->getData();
-    //
-    //   $projectModel = new Projects($app);
-    //   $projectModel->createProject($addData);
-    //
-    //   $app['session']->getFlashBag()->add(
-    //     'message',
-    //     array(
-    //       'type' => 'success',
-    //       'icon' => 'check',
-    //       'content' => $app['translator']->trans('project.add-messages.success')
-    //     )
-    //   );
-    //
-    //   return $app->redirect(
-    //     $app['url_generator']->generate('project_add')
-    //   );
-    // }
-
-    // $view['form'] = $addForm->createView();
-
-
 
     $submisssionModel = new Submissions($app);
     $view['submissions'] = $submisssionModel->findAllSubmissions();
@@ -62,15 +30,36 @@ class SubmissionController implements ControllerProviderInterface
     {
       $rateForms[] = $app['form.factory']->createBuilder(
         new RateSubmissionType(), $row
-      )->getForm()->createView();
+      )->getForm();
     }
 
+    $rateFormsView = array();
+    foreach ($rateForms as $rateForm)
+    {
+      $rateForm->handleRequest($request);
 
+      if ($rateForm->isValid()) {
+        $rateData = $rateForm->getData();
+        $submisssionModel->rateSubmission($rateData);
 
+        $app['session']->getFlashBag()->add(
+          'message',
+          array(
+            'type' => 'success',
+            'icon' => 'check',
+            'content' => $app['translator']->trans('submission.rate-messages.success')
+          )
+        );
 
+        return $app->redirect(
+          $app['url_generator']->generate('submission_rate')
+        );
+      }
 
+      $rateFormsView[] = $rateForm->createView();
+    }
 
-    $view['forms'] = $rateForms;
+    $view['forms'] = $rateFormsView;
 
     return $app['twig']->render('Submission/rate.html.twig', $view);
   }
