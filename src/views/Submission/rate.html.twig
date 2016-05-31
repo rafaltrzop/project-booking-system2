@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-{# {% form_theme form 'form/logged_in.html.twig' %} #}
+{% for submission in submissions %}
+  {% form_theme forms[loop.index0] 'form/logged_in.html.twig' %}
+{% endfor %}
 
 {% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
 
@@ -11,7 +13,6 @@
   <main class="body-content-container">
     <div class="column row">
       <h1>Oceń wykonane projekty</h1>
-
       <table class="scroll">
         <thead>
           <tr>
@@ -36,16 +37,12 @@
                 {% endif %}
               </td>
               <td>
-                form
-                {#
-                {{ form(form) }}
-                #}
+                {{ form(forms[loop.index0]) }}
               </td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
-
     </div>
   </main>
 {% endblock %}

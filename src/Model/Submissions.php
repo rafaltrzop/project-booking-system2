@@ -40,8 +40,10 @@ class Submissions
 
   public function findAllSubmissions()
   {
+    // dodać WHERE groups.mod_user_id = $modId??? (wyswietlac rzeczy do oceny
+    // dla danego moda/admina)
     $query = '
-      SELECT submitted_at, first_name, last_name, topic, mark
+      SELECT submitted_at, first_name, last_name, topic, mark, s.id
       FROM submissions s
       LEFT JOIN users u ON s.user_id = u.id
       LEFT JOIN projects p ON s.project_id = p.id

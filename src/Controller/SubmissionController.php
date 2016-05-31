@@ -6,6 +6,7 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Model\Submissions;
+use Form\RateSubmissionType;
 
 class SubmissionController implements ControllerProviderInterface
 {
@@ -20,12 +21,13 @@ class SubmissionController implements ControllerProviderInterface
   public function rateAction(Application $app, Request $request)
   {
     $view = array();
-    // $groupModel = new Groups($app);
-    //
+
+
+
     // $addForm = $app['form.factory']->createBuilder(
-    //   new ProjectType($groupModel->findAllGroups())
+    //   new RateSubmissionType()
     // )->getForm();
-    //
+
     // $addForm->handleRequest($request);
     //
     // if ($addForm->isValid()) {
@@ -47,11 +49,28 @@ class SubmissionController implements ControllerProviderInterface
     //     $app['url_generator']->generate('project_add')
     //   );
     // }
-    //
+
     // $view['form'] = $addForm->createView();
+
+
 
     $submisssionModel = new Submissions($app);
     $view['submissions'] = $submisssionModel->findAllSubmissions();
+
+    $rateForms = array();
+    foreach ($view['submissions'] as $row)
+    {
+      $rateForms[] = $app['form.factory']->createBuilder(
+        new RateSubmissionType(), $row
+      )->getForm()->createView();
+    }
+
+
+
+
+
+
+    $view['forms'] = $rateForms;
 
     return $app['twig']->render('Submission/rate.html.twig', $view);
   }
