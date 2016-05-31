@@ -37,4 +37,16 @@ class Submissions
 
     return $result;
   }
+
+  public function findAllSubmissions()
+  {
+    $query = '
+      SELECT submitted_at, first_name, last_name, topic, mark
+      FROM submissions s
+      LEFT JOIN users u ON s.user_id = u.id
+      LEFT JOIN projects p ON s.project_id = p.id
+    ';
+    $result = $this->db->fetchAll($query);
+    return $result;
+  }
 }

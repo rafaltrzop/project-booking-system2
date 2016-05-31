@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{# {% form_theme form 'form/logged_in.html.twig' %} #}
+
+{% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+
+{% block header %}
+  {% include '_header_admin.twig' %}
+{% endblock %}
+
+{% block body %}
+  <main class="body-content-container">
+    <div class="column row">
+      <h1>Oceń wykonane projekty</h1>
+
+      <table class="scroll">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Autor</th>
+            <th>Temat projektu</th>
+            <th>Ocena</th>
+            <th class="text-center">Zmień ocenę</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for submission in submissions %}
+            <tr>
+              <td>{{ submission.submitted_at }}</td>
+              <td>{{ submission.first_name }} {{ submission.last_name }}</td>
+              <td>{{ submission.topic }}</td>
+              <td>
+                {% if submission.mark %}
+                  {{ submission.mark }}
+                {% else %}
+                  &mdash;
+                {% endif %}
+              </td>
+              <td>
+                form
+                {#
+                {{ form(form) }}
+                #}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </main>
+{% endblock %}
