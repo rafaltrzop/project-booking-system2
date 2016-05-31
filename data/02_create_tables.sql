@@ -48,7 +48,8 @@ project_id INT NOT NULL,
 submitted_at DATE NOT NULL,
 mod_user_id INT DEFAULT NULL,
 mark DECIMAL(2,1) DEFAULT NULL,
-FOREIGN KEY (project_id) REFERENCES projects(id),
 FOREIGN KEY (user_id) REFERENCES users(id),
+FOREIGN KEY (user_id) REFERENCES projects(user_id),
+FOREIGN KEY (project_id) REFERENCES projects(id),
 FOREIGN KEY (mod_user_id) REFERENCES users(id)
 );
