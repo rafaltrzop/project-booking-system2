@@ -45,6 +45,7 @@ class Submissions
       FROM submissions s
       LEFT JOIN users u ON s.user_id = u.id
       LEFT JOIN projects p ON s.project_id = p.id
+      ORDER BY submitted_at DESC
     ';
     $result = $this->db->fetchAll($query);
     return $result;
