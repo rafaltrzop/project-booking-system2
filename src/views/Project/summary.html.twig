@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-{# {% form_theme form 'form/logged_in.html.twig' %} #}
 
 {% block title %}{{ 'none.user-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
 
@@ -17,15 +16,10 @@
       <div class="large-4 columns">
         <p>{{ 'project.summary.reviewer'|trans }}</p>
         <p class="stat">
-          {% if summary.first_name and summary.last_name %}
-            {{ summary.first_name }} {{ summary.last_name }}
-          {% else %}
-            &mdash;
-          {% endif %}
+          {{ summary.first_name }} {{ summary.last_name }}
         </p>
       </div>
     </div>
-
     <div class="row">
       <div class="large-8 columns">
         <p>{{ 'project.summary.date'|trans }}</p>

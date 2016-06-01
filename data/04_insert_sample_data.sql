@@ -4,7 +4,7 @@ INSERT INTO users(role_id, first_name, last_name, email, password) VALUES
 
 # Add groups
 INSERT INTO groups(name, mod_user_id) VALUES
-('2014/2015', 2),
+('2014/2015', 1),
 ('2015/2016', 2),
 ('2016/2017', 2);
 

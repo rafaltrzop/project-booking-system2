@@ -16,10 +16,10 @@ INSERT INTO submissions(user_id, project_id, submitted_at, mod_user_id, mark) VA
 (12, 17, '2016-05-17', 2, 2.0);
 
 # Add new submissions
-INSERT INTO submissions(user_id, project_id, submitted_at) VALUES
-(5, 6, '2016-05-19'),
-(6, 3, '2016-05-20'),
-(7, 11, '2016-05-25'),
-(10, 8, '2016-05-27'),
-(11, 18, '2016-05-30'),
-(13, 15, '2016-05-31');
+INSERT INTO submissions(user_id, project_id, submitted_at, mod_user_id) VALUES
+(5, 6, '2016-05-19', 2),
+(6, 3, '2016-05-20', 2),
+(7, 11, '2016-05-25', 2),
+(10, 8, '2016-05-27', 2),
+(11, 18, '2016-05-30', 2),
+(13, 15, '2016-05-31', 2);
