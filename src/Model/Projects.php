@@ -92,4 +92,17 @@ class Projects
 
     $statement->execute();
   }
+
+  public function findProjectsOverview()
+  {
+    $query = '
+      SELECT first_name, last_name, email, name, topic
+      FROM projects p
+      LEFT JOIN users u ON p.user_id = u.id
+      LEFT JOIN groups g ON p.group_id = g.id
+      ORDER BY first_name, last_name, name
+    ';
+    $result = $this->db->fetchAll($query);
+    return $result;
+  }
 }

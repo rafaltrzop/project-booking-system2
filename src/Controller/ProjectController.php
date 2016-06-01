@@ -26,6 +26,8 @@ class ProjectController implements ControllerProviderInterface
       ->bind('project_summary');
     $projectController->match('/add', array($this, 'addAction'))
       ->bind('project_add');
+    $projectController->get('/overview', array($this, 'overviewAction'))
+      ->bind('project_overview');
     return $projectController;
   }
 
@@ -160,5 +162,15 @@ class ProjectController implements ControllerProviderInterface
     $view['form'] = $addForm->createView();
 
     return $app['twig']->render('Project/add.html.twig', $view);
+  }
+
+  public function overviewAction(Application $app, Request $request)
+  {
+    $view = array();
+
+    $projectModel = new Projects($app);
+    $view['overview'] = $projectModel->findProjectsOverview();
+
+    return $app['twig']->render('Project/overview.html.twig', $view);
   }
 }
