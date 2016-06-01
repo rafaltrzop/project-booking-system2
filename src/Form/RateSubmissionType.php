@@ -37,6 +37,9 @@ class RateSubmissionType extends AbstractType
         'label' => false,
         'required' => true,
         'empty_value' => '',
+        'attr' => array(
+          'class' => 'rate-form-select'
+        ),
         'constraints' => array(
           new Assert\NotBlank()
         )

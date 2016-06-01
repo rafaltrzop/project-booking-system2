@@ -15,3 +15,13 @@
     {%- endif -%}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }} class="hollow button">{{ label|trans({}, translation_domain) }}</button>
 {%- endblock button_widget -%}
+
+{%- block form_row -%}
+  {{- form_label(form) -}}
+  {{- form_errors(form) -}}
+  {{- form_widget(form) -}}
+{%- endblock form_row -%}
+
+{%- block button_row -%}
+  {{- form_widget(form) -}}
+{%- endblock button_row -%}

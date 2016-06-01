@@ -145,6 +145,10 @@ table {
   }
 }
 
+.rate-form-select {
+  width: rem-calc(55);
+}
+
 @include breakpoint(medium) {
   .landing-page {
     &-logo {
