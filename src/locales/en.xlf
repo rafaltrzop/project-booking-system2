@@ -200,6 +200,18 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Admin/index.html.twig">
+    <body>
+      <trans-unit id="admin.menu-action.rate-submissions">
+        <source>admin.menu-action.rate-submissions</source>
+        <target>Rate submissions</target>
+      </trans-unit>
+      <trans-unit id="admin.menu-action.projects-overview">
+        <source>admin.menu-action.projects-overview</source>
+        <target>Projects overview</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/Admin/add.html.twig">
     <body>
       <trans-unit id="admin.menu-action.add-topic">
