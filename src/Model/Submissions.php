@@ -45,7 +45,7 @@ class Submissions
     return $result;
   }
 
-  public function findAllSubmissions($modUserId)
+  public function findSubmissionsForMod($modUserId)
   {
     $query = '
       SELECT submitted_at, first_name, last_name, topic, mark, s.id

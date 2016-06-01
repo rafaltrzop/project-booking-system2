@@ -26,7 +26,7 @@ class SubmissionController implements ControllerProviderInterface
     $userModel = new Users($app);
     $modUserId = $userModel->getCurrentUserId();
     $submisssionModel = new Submissions($app);
-    $view['submissions'] = $submisssionModel->findAllSubmissions($modUserId);
+    $view['submissions'] = $submisssionModel->findSubmissionsForMod($modUserId);
 
     $rateForms = array();
     foreach ($view['submissions'] as $row)
