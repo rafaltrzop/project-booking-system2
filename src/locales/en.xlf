@@ -232,4 +232,40 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Submission/rate.html.twig">
+    <body>
+      <trans-unit id="submission.rate-form.h1">
+        <source>submission.rate-form.h1</source>
+        <target>Rate submissions</target>
+      </trans-unit>
+      <trans-unit id="submission.table.date">
+        <source>submission.table.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="submission.table.author">
+        <source>submission.table.author</source>
+        <target>Author</target>
+      </trans-unit>
+      <trans-unit id="submission.table.topic">
+        <source>submission.table.topic</source>
+        <target>Project topic</target>
+      </trans-unit>
+      <trans-unit id="submission.table.mark">
+        <source>submission.table.mark</source>
+        <target>Mark</target>
+      </trans-unit>
+      <trans-unit id="submission.table.edit-mark">
+        <source>submission.table.edit-mark</source>
+        <target>Edit mark</target>
+      </trans-unit>
+      <trans-unit id="submission.rate-form.submit">
+        <source>submission.rate-form.submit</source>
+        <target>OK</target>
+      </trans-unit>
+      <trans-unit id="submission.rate-messages.success">
+        <source>submission.rate-messages.success</source>
+        <target>The mark has been successfully saved.</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

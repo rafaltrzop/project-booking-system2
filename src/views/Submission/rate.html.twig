@@ -12,15 +12,15 @@
 {% block body %}
   <main class="body-content-container">
     <div class="column row">
-      <h1>Oceń wykonane projekty</h1>
+      <h1>{{ 'submission.rate-form.h1'|trans }}</h1>
       <table class="scroll">
         <thead>
           <tr>
-            <th>Data</th>
-            <th>Autor</th>
-            <th>Temat projektu</th>
-            <th>Ocena</th>
-            <th class="text-center">Zmień ocenę</th>
+            <th>{{ 'submission.table.date'|trans }}</th>
+            <th>{{ 'submission.table.author'|trans }}</th>
+            <th>{{ 'submission.table.topic'|trans }}</th>
+            <th>{{ 'submission.table.mark'|trans }}</th>
+            <th class="text-center">{{ 'submission.table.edit-mark'|trans }}</th>
           </tr>
         </thead>
         <tbody>
