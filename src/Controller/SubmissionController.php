@@ -5,6 +5,7 @@ namespace Controller;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Model\Users;
 use Model\Submissions;
 use Form\RateSubmissionType;
 
@@ -22,8 +23,10 @@ class SubmissionController implements ControllerProviderInterface
   {
     $view = array();
 
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
     $submisssionModel = new Submissions($app);
-    $view['submissions'] = $submisssionModel->findAllSubmissions();
+    $view['submissions'] = $submisssionModel->findAllSubmissions($modUserId);
 
     $rateForms = array();
     foreach ($view['submissions'] as $row)

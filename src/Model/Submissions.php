@@ -45,16 +45,21 @@ class Submissions
     return $result;
   }
 
-  public function findAllSubmissions()
+  public function findAllSubmissions($modUserId)
   {
     $query = '
       SELECT submitted_at, first_name, last_name, topic, mark, s.id
       FROM submissions s
       LEFT JOIN users u ON s.user_id = u.id
       LEFT JOIN projects p ON s.project_id = p.id
+      WHERE mod_user_id = :mod_user_id
       ORDER BY submitted_at DESC
     ';
-    $result = $this->db->fetchAll($query);
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('mod_user_id', $modUserId, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
     return $result;
   }
 
