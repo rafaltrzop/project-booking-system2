@@ -93,16 +93,21 @@ class Projects
     $statement->execute();
   }
 
-  public function findProjectsOverview()
+  public function findProjectsOverviewForMod($modUserId)
   {
     $query = '
       SELECT first_name, last_name, email, name, topic
       FROM projects p
       LEFT JOIN users u ON p.user_id = u.id
       LEFT JOIN groups g ON p.group_id = g.id
-      ORDER BY first_name, last_name, name
+      WHERE email IS NOT NULL AND mod_user_id = :mod_user_id
+      ORDER BY name, first_name, last_name
     ';
-    $result = $this->db->fetchAll($query);
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('mod_user_id', $modUserId, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
     return $result;
   }
 }

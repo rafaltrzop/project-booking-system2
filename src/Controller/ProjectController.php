@@ -168,8 +168,11 @@ class ProjectController implements ControllerProviderInterface
   {
     $view = array();
 
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
+
     $projectModel = new Projects($app);
-    $view['overview'] = $projectModel->findProjectsOverview();
+    $view['overview'] = $projectModel->findProjectsOverviewForMod($modUserId);
 
     return $app['twig']->render('Project/overview.html.twig', $view);
   }
