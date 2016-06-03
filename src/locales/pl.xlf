@@ -136,6 +136,30 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/index.html.twig">
+    <body>
+      <trans-unit id="project.groups-projects-list.h1">
+        <source>project.groups-projects-list.h1</source>
+        <target>Edytuj temat projektu</target>
+      </trans-unit>
+      <trans-unit id="project.groups-projects-list.project-topic">
+        <source>project.groups-projects-list.project-topic</source>
+        <target>Temat projektu</target>
+      </trans-unit>
+      <trans-unit id="project.groups-projects-list.options">
+        <source>project.groups-projects-list.options</source>
+        <target>Opcje</target>
+      </trans-unit>
+      <trans-unit id="project.groups-projects-list.edit">
+        <source>project.groups-projects-list.edit</source>
+        <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="project.groups-projects-list.delete">
+        <source>project.groups-projects-list.delete</source>
+        <target>Usuń</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/Project/book.html.twig">
     <body>
       <trans-unit id="project.book-form.h1">
@@ -201,6 +225,18 @@
       <trans-unit id="project.add-messages.success">
         <source>project.add-messages.success</source>
         <target>Podany temat projektu został pomyślnie dodany do wybranej grupy.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/edit.html.twig">
+    <body>
+      <trans-unit id="project.edit-form.h1">
+        <source>project.edit-form.h1</source>
+        <target>Edycja tematu projektu</target>
+      </trans-unit>
+      <trans-unit id="project.edit-messages.not-found">
+        <source>project.edit-messages.not-found</source>
+        <target>Nie znaleziono podanego tematu projektu</target>
       </trans-unit>
     </body>
   </file>

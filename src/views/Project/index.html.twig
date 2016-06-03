@@ -9,14 +9,14 @@
 {% block body %}
   <main class="body-content-container">
     <div class="column row">
-      <h1>Edytuj temat projektu</h1>
+      <h1>{{ 'project.groups-projects-list.h1'|trans }}</h1>
       {% for group in groups %}
         <h2>{{ group.name }}</h2>
         <table class="scroll">
           <thead>
             <tr>
-              <th>Temat projektu</th>
-              <th class="text-center">Opcje</th>
+              <th>{{ 'project.groups-projects-list.project-topic'|trans }}</th>
+              <th class="text-center">{{ 'project.groups-projects-list.options'|trans }}</th>
             </tr>
           </thead>
           <tbody>
@@ -24,8 +24,8 @@
               <tr>
                 <td>{{ project.topic }}</td>
                 <td>
-                   <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">Edytuj</a>
-                   <a href="#" class="hollow button">Usuń</a>
+                   <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
+                   <a href="#" class="hollow button">{{ 'project.groups-projects-list.delete'|trans }}</a>
                 </td>
               </tr>
             {% endfor %}
