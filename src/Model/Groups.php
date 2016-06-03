@@ -26,6 +26,7 @@ class Groups
       SELECT id, name
       FROM groups
       WHERE mod_user_id = :mod_user_id
+      ORDER BY name
     ';
     $statement = $this->db->prepare($query);
     $statement->bindValue('mod_user_id', $modUserId, \PDO::PARAM_INT);
