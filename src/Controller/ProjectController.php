@@ -30,6 +30,8 @@ class ProjectController implements ControllerProviderInterface
       ->bind('project_overview');
     $projectController->match('/add', array($this, 'addAction'))
       ->bind('project_add');
+    $projectController->match('/edit/{id}', array($this, 'editAction'))
+      ->bind('project_edit');
     return $projectController;
   }
 
@@ -200,5 +202,65 @@ class ProjectController implements ControllerProviderInterface
     $view['form'] = $addForm->createView();
 
     return $app['twig']->render('Project/add.html.twig', $view);
+  }
+
+  public function editAction(Application $app, Request $request)
+  {
+    $view = array();
+
+    $id = (int) $request->get('id', 0);
+    $projectModel = new Projects($app);
+    $project = $projectModel->findProject($id);
+
+    if (!$project) {
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'warning',
+          'icon' => 'warning',
+          'content' => $app['translator']->trans(
+            'project.edit-messages.not-found'
+          )
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('project')
+      );
+    }
+
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
+    $groupModel = new Groups($app);
+
+    $projectForm = $app['form.factory']->createBuilder(
+      new ProjectType($groupModel->findGroupsForMod($modUserId)), $project
+    )->getForm();
+
+    $projectForm->handleRequest($request);
+
+    if ($projectForm->isValid()) {
+      $projectData = $projectForm->getData();
+
+      $projectModel = new Projects($app);
+      $projectModel->updateProject($projectData);
+
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'success',
+          'icon' => 'check',
+          'content' => $app['translator']->trans('project.edit-messages.success')
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('project')
+      );
+    }
+
+    $view['form'] = $projectForm->createView();
+
+    return $app['twig']->render('Project/edit.html.twig', $view);
   }
 }

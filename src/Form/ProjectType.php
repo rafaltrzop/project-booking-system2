@@ -18,10 +18,15 @@ class ProjectType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
+      'id',
+      'hidden'
+    );
+
+    $builder->add(
       'topic',
       'text',
       array(
-        'label' => 'project.add-form.topic',
+        'label' => 'project.form.topic',
         'required' => true,
         'max_length' => 180,
         'attr' => array(
@@ -43,7 +48,7 @@ class ProjectType extends AbstractType
       'choice',
       array(
         'choices' => $this->groupChoices(),
-        'label' => 'project.add-form.group',
+        'label' => 'project.form.group',
         'required' => true,
         'empty_value' => '',
         'constraints' => array(
@@ -56,7 +61,7 @@ class ProjectType extends AbstractType
       'submit',
       'submit',
       array(
-        'label' => 'project.add-form.submit'
+        'label' => 'project.form.submit'
       )
     );
   }

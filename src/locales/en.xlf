@@ -120,6 +120,22 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/*.html.twig">
+    <body>
+      <trans-unit id="project.form.topic">
+        <source>project.form.topic</source>
+        <target>Project topic:</target>
+      </trans-unit>
+      <trans-unit id="project.form.group">
+        <source>project.form.group</source>
+        <target>Group:</target>
+      </trans-unit>
+      <trans-unit id="project.form.submit">
+        <source>project.form.submit</source>
+        <target>Save</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/Project/book.html.twig">
     <body>
       <trans-unit id="project.book-form.h1">
@@ -181,18 +197,6 @@
       <trans-unit id="project.add-form.h1">
         <source>project.add-form.h1</source>
         <target>Add new topic of the project</target>
-      </trans-unit>
-      <trans-unit id="project.add-form.topic">
-        <source>project.add-form.topic</source>
-        <target>Project topic:</target>
-      </trans-unit>
-      <trans-unit id="project.add-form.group">
-        <source>project.add-form.group</source>
-        <target>Group:</target>
-      </trans-unit>
-      <trans-unit id="project.add-form.submit">
-        <source>project.add-form.submit</source>
-        <target>Add topic</target>
       </trans-unit>
       <trans-unit id="project.add-messages.success">
         <source>project.add-messages.success</source>

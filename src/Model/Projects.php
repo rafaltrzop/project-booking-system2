@@ -13,6 +13,21 @@ class Projects
     $this->db = $app['db'];
   }
 
+  public function findProject($id)
+  {
+    $query = '
+      SELECT id, topic, group_id
+      FROM projects
+      WHERE id = :id
+    ';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('id', $id, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    return current($result);
+  }
+
   public function findAvailableProjectsInGroup($groupId)
   {
     $query = '
@@ -76,7 +91,7 @@ class Projects
     $statement->execute();
     $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
-    return $result[0];
+    return current($result);
   }
 
   public function createProject($projectData)
@@ -89,6 +104,22 @@ class Projects
 
     $statement->bindValue('topic', $projectData['topic'], \PDO::PARAM_STR);
     $statement->bindValue('group_id', $projectData['group_id'], \PDO::PARAM_INT);
+
+    $statement->execute();
+  }
+
+  public function updateProject($projectData)
+  {
+    $query = '
+      UPDATE projects
+      SET topic = :topic, group_id = :group_id
+      WHERE id = :id
+    ';
+    $statement = $this->db->prepare($query);
+
+    $statement->bindValue('topic', $projectData['topic'], \PDO::PARAM_STR);
+    $statement->bindValue('group_id', $projectData['group_id'], \PDO::PARAM_INT);
+    $statement->bindValue('id', $projectData['id'], \PDO::PARAM_INT);
 
     $statement->execute();
   }

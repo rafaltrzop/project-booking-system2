@@ -115,9 +115,12 @@ table {
   color: $white;
 }
 
-.fa {
+.message {
   &-success {
     color: green;
+  }
+  &-warning {
+    color: orange;
   }
   &-alert {
     color: red;
