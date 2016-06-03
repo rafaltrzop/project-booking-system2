@@ -168,8 +168,11 @@ class ProjectController implements ControllerProviderInterface
     $view = array();
     $groupModel = new Groups($app);
 
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
+
     $addForm = $app['form.factory']->createBuilder(
-      new ProjectType($groupModel->findAllGroups())
+      new ProjectType($groupModel->findGroupsForMod($modUserId))
     )->getForm();
 
     $addForm->handleRequest($request);
