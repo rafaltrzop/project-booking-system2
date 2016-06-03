@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{# {% form_theme form 'form/logged_in.html.twig' %} #}
+
+{% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+
+{% block header %}
+  {% include '_header_admin.twig' %}
+{% endblock %}
+
+{% block body %}
+  <main class="body-content-container">
+    <div class="column row">
+      <h1>Edytuj temat projektu</h1>
+      {% for group in groups %}
+        <h2>{{ group.name }}</h2>
+        <table class="scroll">
+          <thead>
+            <tr>
+              <th>Temat projektu</th>
+              <th class="text-center">Opcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for project in group.projects %}
+              <tr>
+                <td>{{ project.topic }}</td>
+                <td>
+                   <a href="#" class="hollow button">Edytuj</a>
+                   <a href="#" class="hollow button">Usuń</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endfor %}
+    </div>
+  </main>
+{% endblock %}

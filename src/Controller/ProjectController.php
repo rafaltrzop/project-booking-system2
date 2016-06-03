@@ -18,17 +18,39 @@ class ProjectController implements ControllerProviderInterface
   public function connect(Application $app)
   {
     $projectController = $app['controllers_factory'];
+    $projectController->get('/', array($this, 'indexAction'))
+    ->bind('project');
     $projectController->match('/book', array($this, 'bookAction'))
       ->bind('project_book');
     $projectController->match('/submit', array($this, 'submitAction'))
       ->bind('project_submit');
     $projectController->match('/summary', array($this, 'summaryAction'))
       ->bind('project_summary');
+      $projectController->get('/overview', array($this, 'overviewAction'))
+      ->bind('project_overview');
     $projectController->match('/add', array($this, 'addAction'))
       ->bind('project_add');
-    $projectController->get('/overview', array($this, 'overviewAction'))
-      ->bind('project_overview');
     return $projectController;
+  }
+
+  public function indexAction(Application $app, Request $request)
+  {
+    $view = array();
+
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
+
+    $groupModel = new Groups($app);
+    $groups = $groupModel->findGroupsForMod($modUserId);
+
+    $projectModel = new Projects($app);
+    foreach ($groups as &$group) {
+      $group['projects'] = $projectModel->findProjectsFromGroup($group['id']);
+    }
+
+    $view['groups'] = $groups;
+
+    return $app['twig']->render('Project/index.html.twig', $view);
   }
 
   public function bookAction(Application $app, Request $request)
@@ -128,6 +150,19 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/summary.html.twig', $view);
   }
 
+  public function overviewAction(Application $app, Request $request)
+  {
+    $view = array();
+
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
+
+    $projectModel = new Projects($app);
+    $view['overview'] = $projectModel->findProjectsOverviewForMod($modUserId);
+
+    return $app['twig']->render('Project/overview.html.twig', $view);
+  }
+
   public function addAction(Application $app, Request $request)
   {
     $view = array();
@@ -162,18 +197,5 @@ class ProjectController implements ControllerProviderInterface
     $view['form'] = $addForm->createView();
 
     return $app['twig']->render('Project/add.html.twig', $view);
-  }
-
-  public function overviewAction(Application $app, Request $request)
-  {
-    $view = array();
-
-    $userModel = new Users($app);
-    $modUserId = $userModel->getCurrentUserId();
-
-    $projectModel = new Projects($app);
-    $view['overview'] = $projectModel->findProjectsOverviewForMod($modUserId);
-
-    return $app['twig']->render('Project/overview.html.twig', $view);
   }
 }

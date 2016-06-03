@@ -20,6 +20,21 @@ class Groups
     return $result;
   }
 
+  public function findGroupsForMod($modUserId)
+  {
+    $query = '
+      SELECT id, name
+      FROM groups
+      WHERE mod_user_id = :mod_user_id
+    ';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('mod_user_id', $modUserId, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    return $result;
+  }
+
   public function createGroup($groupData)
   {
     $query = '
