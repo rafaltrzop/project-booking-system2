@@ -112,13 +112,12 @@ class Projects
   {
     $query = '
       UPDATE projects
-      SET topic = :topic, group_id = :group_id
+      SET topic = :topic
       WHERE id = :id
     ';
     $statement = $this->db->prepare($query);
 
     $statement->bindValue('topic', $projectData['topic'], \PDO::PARAM_STR);
-    $statement->bindValue('group_id', $projectData['group_id'], \PDO::PARAM_INT);
     $statement->bindValue('id', $projectData['id'], \PDO::PARAM_INT);
 
     $statement->execute();

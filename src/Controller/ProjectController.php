@@ -176,7 +176,9 @@ class ProjectController implements ControllerProviderInterface
     $modUserId = $userModel->getCurrentUserId();
 
     $addForm = $app['form.factory']->createBuilder(
-      new ProjectType($groupModel->findGroupsForMod($modUserId))
+      new ProjectType($groupModel->findGroupsForMod($modUserId)),
+      array(),
+      array('validation_groups' => 'project-default')
     )->getForm();
 
     $addForm->handleRequest($request);
@@ -236,7 +238,9 @@ class ProjectController implements ControllerProviderInterface
     $groupModel = new Groups($app);
 
     $projectForm = $app['form.factory']->createBuilder(
-      new ProjectType($groupModel->findGroupsForMod($modUserId)), $project
+      new ProjectType($groupModel->findGroupsForMod($modUserId)),
+      $project,
+      array('validation_groups' => 'project-edit')
     )->getForm();
 
     $projectForm->handleRequest($request);

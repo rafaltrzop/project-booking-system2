@@ -4,6 +4,7 @@ namespace Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ProjectType extends AbstractType
@@ -33,29 +34,43 @@ class ProjectType extends AbstractType
           'autofocus' => true
         ),
         'constraints' => array(
-          new Assert\NotBlank(),
+          new Assert\NotBlank(
+            array(
+              'groups' => array('project-default', 'project-edit')
+            )
+          ),
           new Assert\Length(
             array(
-              'max' => 180
+              'max' => 180,
+              'groups' => array('project-default', 'project-edit')
             )
           )
         )
       )
     );
 
-    $builder->add(
-      'group_id',
-      'choice',
-      array(
-        'choices' => $this->groupChoices(),
-        'label' => 'project.form.group',
-        'required' => true,
-        'empty_value' => '',
-        'constraints' => array(
-          new Assert\NotBlank()
+    if (isset($options['validation_groups'])
+      && count($options['validation_groups'])
+      && !in_array('project-edit', $options['validation_groups'])
+    ) {
+      $builder->add(
+        'group_id',
+        'choice',
+        array(
+          'choices' => $this->groupChoices(),
+          'label' => 'project.form.group',
+          'required' => true,
+          'empty_value' => '',
+          'constraints' => array(
+            new Assert\NotBlank(
+              array(
+                'groups' => array('project-default')
+              )
+            )
+          )
         )
-      )
-    );
+      );
+    }
 
     $builder->add(
       'submit',
@@ -69,6 +84,15 @@ class ProjectType extends AbstractType
   public function getName()
   {
     return 'project_form';
+  }
+
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
+  {
+    $resolver->setDefaults(
+      array(
+        'validation_groups' => 'project-default',
+      )
+    );
   }
 
   private function groupChoices()
