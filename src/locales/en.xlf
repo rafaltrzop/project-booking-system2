@@ -140,7 +140,7 @@
     <body>
       <trans-unit id="project.groups-projects-list.h1">
         <source>project.groups-projects-list.h1</source>
-        <target>Edit topic of the project</target>
+        <target>List of groups and topics of the projects</target>
       </trans-unit>
       <trans-unit id="project.groups-projects-list.project-topic">
         <source>project.groups-projects-list.project-topic</source>
@@ -157,6 +157,18 @@
       <trans-unit id="project.groups-projects-list.delete">
         <source>project.groups-projects-list.delete</source>
         <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="project.groups-projects-list.confirm">
+        <source>project.groups-projects-list.confirm</source>
+        <target>Do you really want to delete this topic of the project?</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.not-found">
+        <source>project.delete-messages.not-found</source>
+        <target>The specified topic of the project has not been found.</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.success">
+        <source>project.delete-messages.success</source>
+        <target>The specified topic of the project has been successfully removed.</target>
       </trans-unit>
     </body>
   </file>
@@ -236,7 +248,11 @@
       </trans-unit>
       <trans-unit id="project.edit-messages.not-found">
         <source>project.edit-messages.not-found</source>
-        <target>The specified topic of the project has not been found</target>
+        <target>The specified topic of the project has not been found.</target>
+      </trans-unit>
+      <trans-unit id="project.edit-messages.success">
+        <source>project.edit-messages.success</source>
+        <target>The changes have been successfully saved.</target>
       </trans-unit>
     </body>
   </file>

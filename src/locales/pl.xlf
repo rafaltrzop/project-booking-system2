@@ -140,7 +140,7 @@
     <body>
       <trans-unit id="project.groups-projects-list.h1">
         <source>project.groups-projects-list.h1</source>
-        <target>Edytuj temat projektu</target>
+        <target>Lista grup i tematów projektów</target>
       </trans-unit>
       <trans-unit id="project.groups-projects-list.project-topic">
         <source>project.groups-projects-list.project-topic</source>
@@ -157,6 +157,18 @@
       <trans-unit id="project.groups-projects-list.delete">
         <source>project.groups-projects-list.delete</source>
         <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id="project.groups-projects-list.confirm">
+        <source>project.groups-projects-list.confirm</source>
+        <target>Czy aby na pewno chcesz usunąć ten temat projektu?</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.not-found">
+        <source>project.delete-messages.not-found</source>
+        <target>Nie znaleziono podanego tematu projektu.</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.success">
+        <source>project.delete-messages.success</source>
+        <target>Wybrany temat projektu został pomyślnie usunięty.</target>
       </trans-unit>
     </body>
   </file>
@@ -236,7 +248,11 @@
       </trans-unit>
       <trans-unit id="project.edit-messages.not-found">
         <source>project.edit-messages.not-found</source>
-        <target>Nie znaleziono podanego tematu projektu</target>
+        <target>Nie znaleziono podanego tematu projektu.</target>
+      </trans-unit>
+      <trans-unit id="project.edit-messages.success">
+        <source>project.edit-messages.success</source>
+        <target>Zmiany zostały pomyślnie zapisane.</target>
       </trans-unit>
     </body>
   </file>

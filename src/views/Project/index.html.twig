@@ -25,7 +25,7 @@
                 <td>{{ project.topic }}</td>
                 <td>
                    <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
-                   <a href="#" class="hollow button">{{ 'project.groups-projects-list.delete'|trans }}</a>
+                   <a href="{{ path('project_delete', {'id' : project.id}) }}" class="hollow button" onclick="return confirm('{{ 'project.groups-projects-list.confirm'|trans }}');">{{ 'project.groups-projects-list.delete'|trans }}</a>
                 </td>
               </tr>
             {% endfor %}

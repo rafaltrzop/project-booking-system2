@@ -32,6 +32,8 @@ class ProjectController implements ControllerProviderInterface
       ->bind('project_add');
     $projectController->match('/edit/{id}', array($this, 'editAction'))
       ->bind('project_edit');
+    $projectController->get('/delete/{id}', array($this, 'deleteAction'))
+      ->bind('project_delete');
     return $projectController;
   }
 
@@ -262,5 +264,46 @@ class ProjectController implements ControllerProviderInterface
     $view['form'] = $projectForm->createView();
 
     return $app['twig']->render('Project/edit.html.twig', $view);
+  }
+
+  public function deleteAction(Application $app, Request $request)
+  {
+    $id = (int) $request->get('id', 0);
+    $projectModel = new Projects($app);
+    $project = $projectModel->findProject($id);
+
+    if (!$project) {
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'warning',
+          'icon' => 'warning',
+          'content' => $app['translator']->trans(
+            'project.delete-messages.not-found'
+          )
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('project')
+      );
+    } else {
+      $projectModel->deleteProject($id);
+
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'success',
+          'icon' => 'check',
+          'content' => $app['translator']->trans(
+            'project.delete-messages.success'
+          )
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('project')
+      );
+    }
   }
 }

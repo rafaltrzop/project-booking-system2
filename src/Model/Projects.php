@@ -124,6 +124,11 @@ class Projects
     $statement->execute();
   }
 
+  public function deleteProject($id)
+  {
+    $this->db->delete('projects', array('id' => $id));
+  }
+
   public function findProjectsOverviewForMod($modUserId)
   {
     $query = '
