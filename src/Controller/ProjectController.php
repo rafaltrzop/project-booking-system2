@@ -19,7 +19,7 @@ class ProjectController implements ControllerProviderInterface
   {
     $projectController = $app['controllers_factory'];
     $projectController->get('/', array($this, 'indexAction'))
-    ->bind('project');
+      ->bind('project');
     $projectController->match('/book', array($this, 'bookAction'))
       ->bind('project_book');
     $projectController->match('/submit', array($this, 'submitAction'))
