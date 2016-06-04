@@ -14,9 +14,30 @@ class GroupController implements ControllerProviderInterface
   public function connect(Application $app)
   {
     $groupController = $app['controllers_factory'];
+    $groupController->get('/', array($this, 'indexAction'))
+      ->bind('group');
     $groupController->match('/add', array($this, 'addAction'))
       ->bind('group_add');
+    $groupController->match('/edit/{id}', array($this, 'editAction'))
+      ->bind('group_edit');
+    $groupController->get('/delete/{id}', array($this, 'deleteAction'))
+      ->bind('group_delete');
     return $groupController;
+  }
+
+  public function indexAction(Application $app, Request $request)
+  {
+    $view = array();
+
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
+
+    $groupModel = new Groups($app);
+    $groups = $groupModel->findGroupsForMod($modUserId);
+
+    $view['groups'] = $groups;
+
+    return $app['twig']->render('Group/index.html.twig', $view);
   }
 
   public function addAction(Application $app, Request $request)

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+
+{% block header %}
+  {% include '_header_admin.twig' %}
+{% endblock %}
+
+{% block body %}
+  <main class="body-content-container">
+    <div class="column row">
+      <h1>Lista grup tematów</h1>
+      <table class="scroll">
+        <thead>
+          <tr>
+            <th>Nazwa grupy</th>
+            <th class="text-center">Opcje</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for group in groups %}
+            <tr>
+              <td>{{ group.name }}</td>
+              <td>
+                 <a href="{{ path('group_edit', {'id' : group.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
+                 <a href="{{ path('group_delete', {'id' : group.id}) }}" class="hollow button" onclick="return confirm('{{ 'project.groups-projects-list.confirm'|trans }}');">{{ 'project.groups-projects-list.delete'|trans }}</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+{% endblock %}
