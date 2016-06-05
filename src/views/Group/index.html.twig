@@ -9,12 +9,12 @@
 {% block body %}
   <main class="body-content-container">
     <div class="column row">
-      <h1>Lista grup tematów</h1>
+      <h1>{{ 'group.list.h1'|trans }}</h1>
       <table class="scroll">
         <thead>
           <tr>
-            <th>Nazwa grupy</th>
-            <th class="text-center">Opcje</th>
+            <th>{{ 'group.list.group-name'|trans }}</th>
+            <th class="text-center">{{ 'group.list.options'|trans }}</th>
           </tr>
         </thead>
         <tbody>
@@ -22,8 +22,8 @@
             <tr>
               <td>{{ group.name }}</td>
               <td>
-                 <a href="{{ path('group_edit', {'id' : group.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
-                 <a href="{{ path('group_delete', {'id' : group.id}) }}" class="hollow button" onclick="return confirm('{{ 'project.groups-projects-list.confirm'|trans }}');">{{ 'project.groups-projects-list.delete'|trans }}</a>
+                 <a href="{{ path('group_edit', {'id' : group.id}) }}" class="hollow button">{{ 'group.list.edit'|trans }}</a>
+                 <a href="{{ path('group_delete', {'id' : group.id}) }}" class="hollow button" onclick="return confirm('{{ 'group.list.confirm'|trans }}');">{{ 'group.list.delete'|trans }}</a>
               </td>
             </tr>
           {% endfor %}

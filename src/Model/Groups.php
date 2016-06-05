@@ -13,6 +13,21 @@ class Groups
     $this->db = $app['db'];
   }
 
+  public function findGroup($id)
+  {
+    $query = '
+      SELECT id, name
+      FROM groups
+      WHERE id = :id
+    ';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('id', $id, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    return current($result);
+  }
+
   public function findAllGroups()
   {
     $query = 'SELECT id, name FROM groups';
@@ -46,6 +61,21 @@ class Groups
 
     $statement->bindValue('name', $groupData['name'], \PDO::PARAM_STR);
     $statement->bindValue('mod_user_id', $groupData['mod_user_id'], \PDO::PARAM_INT);
+
+    $statement->execute();
+  }
+
+  public function updateGroup($groupData)
+  {
+    $query = '
+      UPDATE groups
+      SET name = :name
+      WHERE id = :id
+    ';
+    $statement = $this->db->prepare($query);
+
+    $statement->bindValue('name', $groupData['name'], \PDO::PARAM_STR);
+    $statement->bindValue('id', $groupData['id'], \PDO::PARAM_INT);
 
     $statement->execute();
   }

@@ -280,23 +280,75 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Group/*.html.twig">
+    <body>
+      <trans-unit id="group.form.name">
+        <source>group.form.name</source>
+        <target>Group name:</target>
+      </trans-unit>
+      <trans-unit id="group.form.submit">
+        <source>group.form.submit</source>
+        <target>Save</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Group/index.html.twig">
+    <body>
+      <trans-unit id="group.list.h1">
+        <source>group.list.h1</source>
+        <target>List of groups of topics</target>
+      </trans-unit>
+      <trans-unit id="group.list.group-name">
+        <source>group.list.group-name</source>
+        <target>Group name</target>
+      </trans-unit>
+      <trans-unit id="group.list.options">
+        <source>group.list.options</source>
+        <target>Options</target>
+      </trans-unit>
+      <trans-unit id="group.list.edit">
+        <source>group.list.edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="group.list.delete">
+        <source>group.list.delete</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="group.list.confirm">
+        <source>group.list.confirm</source>
+        <target>Do you really want to delete this group of topics?</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.not-found">
+        <source>group.delete-messages.not-found</source>
+        <target>The specified group of topics has not been found.</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.success">
+        <source>group.delete-messages.success</source>
+        <target>The specified group of topics has been successfully removed.</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/Group/add.html.twig">
     <body>
       <trans-unit id="group.add-form.h1">
         <source>group.add-form.h1</source>
         <target>Create a new group of topics</target>
       </trans-unit>
-      <trans-unit id="group.add-form.name">
-        <source>group.add-form.name</source>
-        <target>Group name:</target>
-      </trans-unit>
-      <trans-unit id="group.add-form.submit">
-        <source>group.add-form.submit</source>
-        <target>Create group</target>
-      </trans-unit>
       <trans-unit id="group.add-messages.success">
         <source>group.add-messages.success</source>
         <target>You have successfully added a new group of topics.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Group/edit.html.twig">
+    <body>
+      <trans-unit id="group.edit-messages.not-found">
+        <source>group.edit-messages.not-found</source>
+        <target>The specified group of topics has not been found.</target>
+      </trans-unit>
+      <trans-unit id="group.edit-messages.success">
+        <source>group.edit-messages.success</source>
+        <target>The changes have been successfully saved.</target>
       </trans-unit>
     </body>
   </file>

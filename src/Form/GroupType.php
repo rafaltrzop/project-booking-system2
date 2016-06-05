@@ -14,7 +14,7 @@ class GroupType extends AbstractType
       'name',
       'text',
       array(
-        'label' => 'group.add-form.name',
+        'label' => 'group.form.name',
         'required' => true,
         'max_length' => 30,
         'attr' => array(
@@ -35,7 +35,7 @@ class GroupType extends AbstractType
       'submit',
       'submit',
       array(
-        'label' => 'group.add-form.submit'
+        'label' => 'group.form.submit'
       )
     );
   }
