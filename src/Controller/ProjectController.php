@@ -247,8 +247,6 @@ class ProjectController implements ControllerProviderInterface
 
     if ($projectForm->isValid()) {
       $projectData = $projectForm->getData();
-
-      $projectModel = new Projects($app);
       $projectModel->updateProject($projectData);
 
       $app['session']->getFlashBag()->add(
