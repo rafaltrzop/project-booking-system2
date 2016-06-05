@@ -131,4 +131,45 @@ class GroupController implements ControllerProviderInterface
 
     return $app['twig']->render('Group/edit.html.twig', $view);
   }
+
+  public function deleteAction(Application $app, Request $request)
+  {
+    $id = (int) $request->get('id', 0);
+    $groupModel = new Groups($app);
+    $group = $groupModel->findGroup($id);
+
+    if (!$group) {
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'warning',
+          'icon' => 'warning',
+          'content' => $app['translator']->trans(
+            'group.delete-messages.not-found'
+          )
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('group')
+      );
+    } else {
+      $groupModel->deleteGroup($id);
+
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'success',
+          'icon' => 'check',
+          'content' => $app['translator']->trans(
+            'group.delete-messages.success'
+          )
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('group')
+      );
+    }
+  }
 }

@@ -79,4 +79,9 @@ class Groups
 
     $statement->execute();
   }
+
+  public function deleteGroup($id)
+  {
+    $this->db->delete('groups', array('id' => $id));
+  }
 }
