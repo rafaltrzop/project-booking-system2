@@ -1,3 +1,5 @@
+/docs
 /vendor
 /node_modules
 /web/assets
+/phpDocumentor.phar
