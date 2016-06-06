@@ -1,4 +1,7 @@
 <?php
+/**
+ * Auth controller.
+ */
 
 namespace Controller;
 
@@ -7,8 +10,19 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Form\LogInType;
 
+/**
+ * Class AuthController.
+ *
+ * @package Controller
+ */
 class AuthController implements ControllerProviderInterface
 {
+  /**
+   * Routing settings.
+   *
+   * @param Application $app Silex application
+   * @return ControllerCollection Result
+   */
   public function connect(Application $app)
   {
     $authController = $app['controllers_factory'];
@@ -19,6 +33,13 @@ class AuthController implements ControllerProviderInterface
     return $authController;
   }
 
+  /**
+   * Login action.
+   *
+   * @param Application $app Silex application
+   * @param Request $request Request object
+   * @return string Output
+   */
   public function loginAction(Application $app, Request $request)
   {
     $user = array(
@@ -38,6 +59,12 @@ class AuthController implements ControllerProviderInterface
     return $app['twig']->render('Auth/login.html.twig', $view);
   }
 
+  /**
+   * Logout action.
+   *
+   * @param Application $app Silex application
+   * @return string Output
+   */
   // public function logoutAction(Application $app)
   // {
   //   $view = array();

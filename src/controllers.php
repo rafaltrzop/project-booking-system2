@@ -1,4 +1,7 @@
 <?php
+/**
+ * Routing and controllers.
+ */
 
 use Controller\IndexController;
 use Controller\SignUpController;

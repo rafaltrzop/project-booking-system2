@@ -1,4 +1,7 @@
 <?php
+/**
+ * Group controller.
+ */
 
 namespace Controller;
 
@@ -9,8 +12,19 @@ use Form\GroupType;
 use Model\Groups;
 use Model\Users;
 
+/**
+ * Class GroupController.
+ *
+ * @package Controller
+ */
 class GroupController implements ControllerProviderInterface
 {
+  /**
+   * Routing settings.
+   *
+   * @param Silex\Application $app Silex application
+   * @return Silex\ControllerCollection Result
+   */
   public function connect(Application $app)
   {
     $groupController = $app['controllers_factory'];
@@ -25,6 +39,13 @@ class GroupController implements ControllerProviderInterface
     return $groupController;
   }
 
+  /**
+   * Index action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
   public function indexAction(Application $app, Request $request)
   {
     $view = array();
@@ -40,6 +61,13 @@ class GroupController implements ControllerProviderInterface
     return $app['twig']->render('Group/index.html.twig', $view);
   }
 
+  /**
+   * Add action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
   public function addAction(Application $app, Request $request)
   {
     $view = array();
@@ -77,6 +105,13 @@ class GroupController implements ControllerProviderInterface
     return $app['twig']->render('Group/add.html.twig', $view);
   }
 
+  /**
+   * Edit action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
   public function editAction(Application $app, Request $request)
   {
     $view = array();
@@ -132,6 +167,13 @@ class GroupController implements ControllerProviderInterface
     return $app['twig']->render('Group/edit.html.twig', $view);
   }
 
+  /**
+   * Delete action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
   public function deleteAction(Application $app, Request $request)
   {
     $id = (int) $request->get('id', 0);

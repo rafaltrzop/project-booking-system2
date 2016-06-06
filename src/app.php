@@ -1,4 +1,7 @@
 <?php
+/**
+ * Runs application and loads configs.
+ */
 
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
