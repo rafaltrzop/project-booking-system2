@@ -72,19 +72,19 @@ class GroupController implements ControllerProviderInterface
   {
     $view = array();
 
-    $addForm = $app['form.factory']->createBuilder(
+    $groupForm = $app['form.factory']->createBuilder(
       new GroupType()
     )->getForm();
 
-    $addForm->handleRequest($request);
+    $groupForm->handleRequest($request);
 
-    if ($addForm->isValid()) {
-      $addData = $addForm->getData();
+    if ($groupForm->isValid()) {
+      $groupData = $groupForm->getData();
       $userModel = new Users($app);
-      $addData['mod_user_id'] = $userModel->getCurrentUserId();
+      $groupData['mod_user_id'] = $userModel->getCurrentUserId();
 
       $groupModel = new Groups($app);
-      $groupModel->createGroup($addData);
+      $groupModel->createGroup($groupData);
 
       $app['session']->getFlashBag()->add(
         'message',
@@ -100,7 +100,7 @@ class GroupController implements ControllerProviderInterface
       );
     }
 
-    $view['form'] = $addForm->createView();
+    $view['form'] = $groupForm->createView();
 
     return $app['twig']->render('Group/add.html.twig', $view);
   }
