@@ -149,7 +149,7 @@ class Projects
   public function findProjectsFromGroup($groupId)
   {
     $query = '
-      SELECT id, topic
+      SELECT id, topic, user_id
       FROM projects
       WHERE group_id = :group_id
       ORDER BY topic
