@@ -38,9 +38,11 @@ class Groups
   public function findGroupsForMod($modUserId)
   {
     $query = '
-      SELECT id, name
-      FROM groups
+      SELECT g.id, name, topic
+      FROM groups g
+      LEFT JOIN projects p ON g.id = p.group_id
       WHERE mod_user_id = :mod_user_id
+      GROUP BY g.id
       ORDER BY name
     ';
     $statement = $this->db->prepare($query);
