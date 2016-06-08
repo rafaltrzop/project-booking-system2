@@ -1,4 +1,7 @@
 <?php
+/**
+ * Sign up controller.
+ */
 
 namespace Controller;
 
@@ -9,8 +12,19 @@ use Form\SignUpType;
 use Model\Groups;
 use Model\Users;
 
+/**
+ * Class SignUpController.
+ *
+ * @package Controller
+ */
 class SignUpController implements ControllerProviderInterface
 {
+  /**
+   * Routing settings.
+   *
+   * @param Silex\Application $app Silex application
+   * @return Silex\ControllerCollection Result
+   */
   public function connect(Application $app)
   {
     $signUpController = $app['controllers_factory'];
@@ -19,6 +33,14 @@ class SignUpController implements ControllerProviderInterface
     return $signUpController;
   }
 
+  /**
+   * New action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Return value mixed because of possible redirect?
+   */
   public function newAction(Application $app, Request $request)
   {
     $view = array();

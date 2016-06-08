@@ -1,4 +1,7 @@
 <?php
+/**
+ * Submission controller.
+ */
 
 namespace Controller;
 
@@ -9,8 +12,19 @@ use Model\Users;
 use Model\Submissions;
 use Form\RateSubmissionType;
 
+/**
+ * Class SubmissionController.
+ *
+ * @package Controller
+ */
 class SubmissionController implements ControllerProviderInterface
 {
+  /**
+   * Routing settings.
+   *
+   * @param Silex\Application $app Silex application
+   * @return Silex\ControllerCollection Result
+   */
   public function connect(Application $app)
   {
     $submissionController = $app['controllers_factory'];
@@ -19,12 +33,21 @@ class SubmissionController implements ControllerProviderInterface
     return $submissionController;
   }
 
+  /**
+   * Rate action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Return value mixed because of possible redirect?
+   */
   public function rateAction(Application $app, Request $request)
   {
     $view = array();
 
     $userModel = new Users($app);
     $modUserId = $userModel->getCurrentUserId();
+
     $submisssionModel = new Submissions($app);
     $view['submissions'] = $submisssionModel->findSubmissionsForMod($modUserId);
 

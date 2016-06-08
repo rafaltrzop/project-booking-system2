@@ -1,4 +1,7 @@
 <?php
+/**
+ * Project controller.
+ */
 
 namespace Controller;
 
@@ -13,8 +16,19 @@ use Model\Users;
 use Model\Submissions;
 use Model\Groups;
 
+/**
+ * Class ProjectController.
+ *
+ * @package Controller
+ */
 class ProjectController implements ControllerProviderInterface
 {
+  /**
+   * Routing settings.
+   *
+   * @param Silex\Application $app Silex application
+   * @return Silex\ControllerCollection Result
+   */
   public function connect(Application $app)
   {
     $projectController = $app['controllers_factory'];
@@ -37,6 +51,13 @@ class ProjectController implements ControllerProviderInterface
     return $projectController;
   }
 
+  /**
+   * Index action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
   public function indexAction(Application $app, Request $request)
   {
     $view = array();
@@ -57,6 +78,14 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/index.html.twig', $view);
   }
 
+  /**
+   * Book action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Return value mixed because of possible redirect?
+   */
   public function bookAction(Application $app, Request $request)
   {
     $view = array();
@@ -99,6 +128,14 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/book.html.twig', $view);
   }
 
+  /**
+   * Submit action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Return value mixed because of possible redirect?
+   */
   public function submitAction(Application $app, Request $request)
   {
     $view = array();
@@ -141,6 +178,13 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/submit.html.twig', $view);
   }
 
+  /**
+   * Summary action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
   public function summaryAction(Application $app, Request $request)
   {
     $view = array();
@@ -154,6 +198,13 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/summary.html.twig', $view);
   }
 
+  /**
+   * Overview action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
   public function overviewAction(Application $app, Request $request)
   {
     $view = array();
@@ -167,6 +218,14 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/overview.html.twig', $view);
   }
 
+  /**
+   * Add action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Return value mixed because of possible redirect?
+   */
   public function addAction(Application $app, Request $request)
   {
     $view = array();
@@ -208,6 +267,14 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/add.html.twig', $view);
   }
 
+  /**
+   * Edit action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Return value mixed because of possible redirect?
+   */
   public function editAction(Application $app, Request $request)
   {
     $view = array();
@@ -268,6 +335,14 @@ class ProjectController implements ControllerProviderInterface
     return $app['twig']->render('Project/edit.html.twig', $view);
   }
 
+  /**
+   * Delete action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Redirect - what return type?
+   */
   public function deleteAction(Application $app, Request $request)
   {
     $id = (int) $request->get('id', 0);

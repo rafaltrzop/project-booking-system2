@@ -1,4 +1,7 @@
 <?php
+/**
+ * User controller.
+ */
 
 namespace Controller;
 
@@ -9,8 +12,19 @@ use Model\Projects;
 use Model\Users;
 use Model\Submissions;
 
+/**
+ * Class UserController.
+ *
+ * @package Controller
+ */
 class UserController implements ControllerProviderInterface
 {
+  /**
+   * Routing settings.
+   *
+   * @param Silex\Application $app Silex application
+   * @return Silex\ControllerCollection Result
+   */
   public function connect(Application $app)
   {
     $userController = $app['controllers_factory'];
@@ -19,6 +33,14 @@ class UserController implements ControllerProviderInterface
     return $userController;
   }
 
+  /**
+   * Index action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Redirect - what return type?
+   */
   public function indexAction(Application $app, Request $request)
   {
     $userModel = new Users($app);
