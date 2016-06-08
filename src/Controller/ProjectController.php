@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Form\BookProjectType;
 use Form\SubmitProjectType;
 use Form\ProjectType;
+use Form\DeleteProjectType;
 use Model\Projects;
 use Model\Users;
 use Model\Submissions;
@@ -46,7 +47,7 @@ class ProjectController implements ControllerProviderInterface
       ->bind('project_add');
     $projectController->match('/edit/{id}', array($this, 'editAction'))
       ->bind('project_edit');
-    $projectController->get('/delete/{id}', array($this, 'deleteAction'))
+    $projectController->post('/delete/{id}', array($this, 'deleteAction'))
       ->bind('project_delete');
     return $projectController;
   }
@@ -68,12 +69,19 @@ class ProjectController implements ControllerProviderInterface
     $groupModel = new Groups($app);
     $groups = $groupModel->findGroupsForMod($modUserId);
 
+    $deleteForms = array();
     $projectModel = new Projects($app);
     foreach ($groups as &$group) {
       $group['projects'] = $projectModel->findProjectsFromGroup($group['id']);
+      foreach ($group['projects'] as $project) {
+        $deleteForms[$project['id']] = $app['form.factory']->createBuilder(
+          new DeleteProjectType()
+        )->getForm()->createView();
+      }
     }
 
     $view['groups'] = $groups;
+    $view['forms'] = $deleteForms;
 
     return $app['twig']->render('Project/index.html.twig', $view);
   }
@@ -365,18 +373,37 @@ class ProjectController implements ControllerProviderInterface
         $app['url_generator']->generate('project')
       );
     } else {
-      $projectModel->deleteProject($id);
+      $deleteForm = $app['form.factory']->createBuilder(
+        new DeleteProjectType()
+      )->getForm();
 
-      $app['session']->getFlashBag()->add(
-        'message',
-        array(
-          'type' => 'success',
-          'icon' => 'check',
-          'content' => $app['translator']->trans(
-            'project.delete-messages.success'
+      $deleteForm->handleRequest($request);
+
+      if ($deleteForm->isValid()) {
+        $projectModel->deleteProject($id);
+
+        $app['session']->getFlashBag()->add(
+          'message',
+          array(
+            'type' => 'success',
+            'icon' => 'check',
+            'content' => $app['translator']->trans(
+              'project.delete-messages.success'
+            )
           )
-        )
-      );
+        );
+      } else {
+        $app['session']->getFlashBag()->add(
+          'message',
+          array(
+            'type' => 'alert',
+            'icon' => 'times',
+            'content' => $app['translator']->trans(
+              'project.delete-messages.error'
+            )
+          )
+        );
+      }
 
       return $app->redirect(
         $app['url_generator']->generate('project')

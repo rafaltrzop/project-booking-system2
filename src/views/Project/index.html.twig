@@ -1,4 +1,9 @@
 {% extends 'base.html.twig' %}
+{% for group in groups %}
+  {% for project in group.projects %}
+    {% form_theme forms[project.id] 'form/logged_in.html.twig' %}
+  {% endfor %}
+{% endfor %}
 
 {% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
 
@@ -16,7 +21,7 @@
           <thead>
             <tr>
               <th>{{ 'project.groups-projects-list.project-topic'|trans }}</th>
-              <th class="text-center">{{ 'project.groups-projects-list.options'|trans }}</th>
+              <th colspan="2" class="text-center">{{ 'project.groups-projects-list.options'|trans }}</th>
             </tr>
           </thead>
           <tbody>
@@ -24,10 +29,16 @@
               <tr>
                 <td>{{ project.topic }}</td>
                 <td>
-                    <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
-                    {% if not project.user_id %}
-                      <a href="{{ path('project_delete', {'id' : project.id}) }}" class="hollow button" onclick="return confirm('{{ 'project.groups-projects-list.confirm'|trans }}');">{{ 'project.groups-projects-list.delete'|trans }}</a>
-                    {% endif %}
+                  <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
+                </td>
+                <td>
+                  {{ form_start(forms[project.id], {'action': path('project_delete', {'id' : project.id})}) }}
+                  {% if project.reserved %}
+                    {{ form_widget(forms[project.id].submit, {'disabled': 'disabled'}) }}
+                  {% else %}
+                    {{ form_widget(forms[project.id]) }}
+                  {% endif %}
+                  {{ form_end(forms[project.id]) }}
                 </td>
               </tr>
             {% endfor %}

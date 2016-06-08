@@ -154,8 +154,8 @@
         <source>project.groups-projects-list.edit</source>
         <target>Edytuj</target>
       </trans-unit>
-      <trans-unit id="project.groups-projects-list.delete">
-        <source>project.groups-projects-list.delete</source>
+      <trans-unit id="project.delete-form.submit">
+        <source>project.delete-form.submit</source>
         <target>Usuń</target>
       </trans-unit>
       <trans-unit id="project.groups-projects-list.confirm">
