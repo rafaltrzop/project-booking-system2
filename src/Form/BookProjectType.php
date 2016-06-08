@@ -1,4 +1,7 @@
 <?php
+/**
+ * Book project type.
+ */
 
 namespace Form;
 
@@ -6,6 +9,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class BookProjectType.
+ *
+ * @package Form
+ */
 class BookProjectType extends AbstractType
 {
   private $projects;
@@ -15,6 +23,12 @@ class BookProjectType extends AbstractType
     $this->projects = $projects;
   }
 
+  /**
+   * Form builder.
+   *
+   * @param FormBuilderInterface $builder Form builder
+   * @param array $options Form options
+   */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
@@ -40,6 +54,11 @@ class BookProjectType extends AbstractType
     );
   }
 
+  /**
+   * Getter for form name.
+   *
+   * @return string Form name
+   */
   public function getName()
   {
     return 'book_project_form';

@@ -1,4 +1,7 @@
 <?php
+/**
+ * Rate submission type.
+ */
 
 namespace Form;
 
@@ -6,8 +9,19 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class RateSubmissionType.
+ *
+ * @package Form
+ */
 class RateSubmissionType extends AbstractType
 {
+  /**
+   * Form builder.
+   *
+   * @param FormBuilderInterface $builder Form builder
+   * @param array $options Form options
+   */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
@@ -55,6 +69,11 @@ class RateSubmissionType extends AbstractType
     );
   }
 
+  /**
+   * Getter for form name.
+   *
+   * @return string Form name
+   */
   public function getName()
   {
     return 'rate_submission_form';

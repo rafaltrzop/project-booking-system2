@@ -1,4 +1,7 @@
 <?php
+/**
+ * Sign up type.
+ */
 
 namespace Form;
 
@@ -6,6 +9,11 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class SignUpType.
+ *
+ * @package Form
+ */
 class SignUpType extends AbstractType
 {
   private $groups;
@@ -15,6 +23,12 @@ class SignUpType extends AbstractType
     $this->groups = $groups;
   }
 
+  /**
+   * Form builder.
+   *
+   * @param FormBuilderInterface $builder Form builder
+   * @param array $options Form options
+   */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
@@ -120,6 +134,11 @@ class SignUpType extends AbstractType
     );
   }
 
+  /**
+   * Getter for form name.
+   *
+   * @return string Form name
+   */
   public function getName()
   {
     return 'signup_form';

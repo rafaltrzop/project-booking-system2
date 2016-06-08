@@ -1,4 +1,7 @@
 <?php
+/**
+ * Project type.
+ */
 
 namespace Form;
 
@@ -7,6 +10,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class ProjectType.
+ *
+ * @package Form
+ */
 class ProjectType extends AbstractType
 {
   private $groups;
@@ -16,6 +24,12 @@ class ProjectType extends AbstractType
     $this->groups = $groups;
   }
 
+  /**
+   * Form builder.
+   *
+   * @param FormBuilderInterface $builder Form builder
+   * @param array $options Form options
+   */
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
@@ -81,6 +95,11 @@ class ProjectType extends AbstractType
     );
   }
 
+  /**
+   * Getter for form name.
+   *
+   * @return string Form name
+   */
   public function getName()
   {
     return 'project_form';
