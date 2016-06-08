@@ -38,7 +38,7 @@ class Groups
   public function findGroupsForMod($modUserId)
   {
     $query = '
-      SELECT g.id, name, topic
+      SELECT g.id, name, min(user_id) AS used
       FROM groups g
       LEFT JOIN projects p ON g.id = p.group_id
       WHERE mod_user_id = :mod_user_id

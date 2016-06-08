@@ -316,7 +316,7 @@
       </trans-unit>
       <trans-unit id="group.list.confirm">
         <source>group.list.confirm</source>
-        <target>Czy aby na pewno chcesz usunąć tę grupę tematów?</target>
+        <target>Czy aby na pewno chcesz usunąć tę grupę i powiązane z nią tematy projektów?</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.not-found">
         <source>group.delete-messages.not-found</source>
@@ -324,7 +324,7 @@
       </trans-unit>
       <trans-unit id="group.delete-messages.success">
         <source>group.delete-messages.success</source>
-        <target>Wybrana grupa tematów została pomyślnie usunięta.</target>
+        <target>Wybrana grupa tematów i wszystkie powiązane z nią tematy projektów zostały pomyślnie usunięte.</target>
       </trans-unit>
     </body>
   </file>

@@ -23,7 +23,7 @@
               <td>{{ group.name }}</td>
               <td>
                   <a href="{{ path('group_edit', {'id' : group.id}) }}" class="hollow button">{{ 'group.list.edit'|trans }}</a>
-                  {% if not group.topic %}
+                  {% if not group.used %}
                     <a href="{{ path('group_delete', {'id' : group.id}) }}" class="hollow button" onclick="return confirm('{{ 'group.list.confirm'|trans }}');">{{ 'group.list.delete'|trans }}</a>
                   {% endif %}
               </td>
