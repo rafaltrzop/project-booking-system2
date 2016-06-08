@@ -229,11 +229,11 @@ class ProjectController implements ControllerProviderInterface
   public function addAction(Application $app, Request $request)
   {
     $view = array();
-    $groupModel = new Groups($app);
 
     $userModel = new Users($app);
     $modUserId = $userModel->getCurrentUserId();
 
+    $groupModel = new Groups($app);
     $addForm = $app['form.factory']->createBuilder(
       new ProjectType($groupModel->findGroupsForMod($modUserId)),
       array(),
@@ -302,8 +302,8 @@ class ProjectController implements ControllerProviderInterface
 
     $userModel = new Users($app);
     $modUserId = $userModel->getCurrentUserId();
-    $groupModel = new Groups($app);
 
+    $groupModel = new Groups($app);
     $projectForm = $app['form.factory']->createBuilder(
       new ProjectType($groupModel->findGroupsForMod($modUserId)),
       $project,

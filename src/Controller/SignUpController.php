@@ -44,8 +44,8 @@ class SignUpController implements ControllerProviderInterface
   public function newAction(Application $app, Request $request)
   {
     $view = array();
-    $groupModel = new Groups($app);
 
+    $groupModel = new Groups($app);
     $signUpForm = $app['form.factory']->createBuilder(
       new SignUpType($groupModel->findAllGroups())
     )->getForm();
