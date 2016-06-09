@@ -368,30 +368,40 @@ class ProjectController implements ControllerProviderInterface
           )
         )
       );
-
-      return $app->redirect(
-        $app['url_generator']->generate('project')
-      );
     } else {
-      $deleteForm = $app['form.factory']->createBuilder(
-        new DeleteProjectType()
-      )->getForm();
+      $projectNotReserved = $project['user_id'] == null;
+      if ($projectNotReserved) {
+        $deleteForm = $app['form.factory']->createBuilder(
+          new DeleteProjectType()
+        )->getForm();
 
-      $deleteForm->handleRequest($request);
+        $deleteForm->handleRequest($request);
 
-      if ($deleteForm->isValid()) {
-        $projectModel->deleteProject($id);
+        if ($deleteForm->isValid()) {
+          $projectModel->deleteProject($id);
 
-        $app['session']->getFlashBag()->add(
-          'message',
-          array(
-            'type' => 'success',
-            'icon' => 'check',
-            'content' => $app['translator']->trans(
-              'project.delete-messages.success'
+          $app['session']->getFlashBag()->add(
+            'message',
+            array(
+              'type' => 'success',
+              'icon' => 'check',
+              'content' => $app['translator']->trans(
+                'project.delete-messages.success'
+              )
             )
-          )
-        );
+          );
+        } else {
+          $app['session']->getFlashBag()->add(
+            'message',
+            array(
+              'type' => 'alert',
+              'icon' => 'times',
+              'content' => $app['translator']->trans(
+                'project.delete-messages.form-not-valid-error'
+              )
+            )
+          );
+        }
       } else {
         $app['session']->getFlashBag()->add(
           'message',
@@ -399,15 +409,15 @@ class ProjectController implements ControllerProviderInterface
             'type' => 'alert',
             'icon' => 'times',
             'content' => $app['translator']->trans(
-              'project.delete-messages.error'
+              'project.delete-messages.reserved'
             )
           )
         );
       }
-
-      return $app->redirect(
-        $app['url_generator']->generate('project')
-      );
     }
+
+    return $app->redirect(
+      $app['url_generator']->generate('project')
+    );
   }
 }

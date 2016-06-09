@@ -32,7 +32,7 @@
                   <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
                 </td>
                 <td>
-                  {{ form_start(forms[project.id], {'action': path('project_delete', {'id' : project.id})}) }}
+                  {{ form_start(forms[project.id], {'attr': {'onsubmit': 'return confirm();'}, 'action': path('project_delete', {'id' : project.id})}) }}
                   {% if project.reserved %}
                     {{ form_widget(forms[project.id].submit, {'disabled': 'disabled'}) }}
                   {% else %}

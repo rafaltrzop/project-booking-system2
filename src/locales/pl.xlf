@@ -158,10 +158,6 @@
         <source>project.delete-form.submit</source>
         <target>Usuń</target>
       </trans-unit>
-      <trans-unit id="project.groups-projects-list.confirm">
-        <source>project.groups-projects-list.confirm</source>
-        <target>Czy aby na pewno chcesz usunąć ten temat projektu?</target>
-      </trans-unit>
       <trans-unit id="project.delete-messages.not-found">
         <source>project.delete-messages.not-found</source>
         <target>Nie znaleziono podanego tematu projektu.</target>
@@ -169,6 +165,14 @@
       <trans-unit id="project.delete-messages.success">
         <source>project.delete-messages.success</source>
         <target>Wybrany temat projektu został pomyślnie usunięty.</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.form-not-valid-error">
+        <source>project.delete-messages.form-not-valid-error</source>
+        <target>Nie udało się usunąć wybranego tematu projektu z powodu błędu walidacji formularza.</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.reserved">
+        <source>project.delete-messages.reserved</source>
+        <target>Wybrany temat projektu został już przez kogoś zarezerwowany i nie możesz go usunąć.</target>
       </trans-unit>
     </body>
   </file>

@@ -158,10 +158,6 @@
         <source>project.delete-form.submit</source>
         <target>Delete</target>
       </trans-unit>
-      <trans-unit id="project.groups-projects-list.confirm">
-        <source>project.groups-projects-list.confirm</source>
-        <target>Do you really want to delete this topic of the project?</target>
-      </trans-unit>
       <trans-unit id="project.delete-messages.not-found">
         <source>project.delete-messages.not-found</source>
         <target>The specified topic of the project has not been found.</target>
@@ -169,6 +165,14 @@
       <trans-unit id="project.delete-messages.success">
         <source>project.delete-messages.success</source>
         <target>The specified topic of the project has been successfully removed.</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.form-not-valid-error">
+        <source>project.delete-messages.form-not-valid-error</source>
+        <target>The specified topic of the project couldn't have been deleted because of an form validation error.</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.reserved">
+        <source>project.delete-messages.reserved</source>
+        <target>The specified topic of the project already has been reserved by someone so you cannot delete it.</target>
       </trans-unit>
     </body>
   </file>
