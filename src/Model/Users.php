@@ -129,4 +129,17 @@ class Users
 
     return $result;
   }
+
+  public function findAllUsers()
+  {
+    $query = '
+      SELECT u.id, role_id, group_id, first_name, last_name, email, g.name AS group_name, r.name AS role_name
+      FROM users u
+      LEFT JOIN groups g ON u.group_id = g.id
+      LEFT JOIN roles r ON u.role_id = r.id
+      ORDER BY role_id, first_name, last_name
+    ';
+    $result = $this->db->fetchAll($query);
+    return $result;
+  }
 }

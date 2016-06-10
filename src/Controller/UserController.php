@@ -30,6 +30,8 @@ class UserController implements ControllerProviderInterface
     $userController = $app['controllers_factory'];
     $userController->get('/redirect', array($this, 'redirectAction'))
       ->bind('user_redirect');
+    $userController->get('/list', array($this, 'listAction'))
+      ->bind('user_list');
     return $userController;
   }
 
@@ -67,5 +69,35 @@ class UserController implements ControllerProviderInterface
     return $app->redirect(
       $app['url_generator']->generate('project_book')
     );
+  }
+
+  /**
+   * List action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   */
+  public function listAction(Application $app, Request $request)
+  {
+    $view = array();
+
+    $userModel = new Users($app);
+    $users = $userModel->findAllUsers();
+
+    // $groupModel = new Groups($app);
+    // $groups = $groupModel->findGroupsForMod($modUserId);
+    //
+    // $deleteForms = array();
+    // foreach ($groups as $group) {
+    //   $deleteForms[$group['id']] = $app['form.factory']->createBuilder(
+    //     new DeleteGroupType()
+    //   )->getForm()->createView();
+    // }
+
+    $view['users'] = $users;
+    // $view['forms'] = $deleteForms;
+
+    return $app['twig']->render('User/list.html.twig', $view);
   }
 }
