@@ -409,7 +409,7 @@ class ProjectController implements ControllerProviderInterface
             'type' => 'alert',
             'icon' => 'times',
             'content' => $app['translator']->trans(
-              'project.delete-messages.reserved'
+              'project.delete-messages.reserved-alert'
             )
           )
         );

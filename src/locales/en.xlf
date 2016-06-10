@@ -170,8 +170,8 @@
         <source>project.delete-messages.form-not-valid-error</source>
         <target>The specified topic of the project couldn't have been deleted because of an form validation error.</target>
       </trans-unit>
-      <trans-unit id="project.delete-messages.reserved">
-        <source>project.delete-messages.reserved</source>
+      <trans-unit id="project.delete-messages.reserved-alert">
+        <source>project.delete-messages.reserved-alert</source>
         <target>The specified topic of the project already has been reserved by someone so you cannot delete it.</target>
       </trans-unit>
     </body>
@@ -314,13 +314,9 @@
         <source>group.list.edit</source>
         <target>Edit</target>
       </trans-unit>
-      <trans-unit id="group.list.delete">
-        <source>group.list.delete</source>
+      <trans-unit id="group.delete-form.submit">
+        <source>group.delete-form.submit</source>
         <target>Delete</target>
-      </trans-unit>
-      <trans-unit id="group.list.confirm">
-        <source>group.list.confirm</source>
-        <target>Do you really want to delete this group and all related topics of projects?</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.not-found">
         <source>group.delete-messages.not-found</source>
@@ -329,6 +325,14 @@
       <trans-unit id="group.delete-messages.success">
         <source>group.delete-messages.success</source>
         <target>The specified group and all related topics of projects have been successfully removed.</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.form-not-valid-error">
+        <source>group.delete-messages.form-not-valid-error</source>
+        <target>The specified group of topics couldn't have been deleted because of an form validation error.</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.used-alert">
+        <source>group.delete-messages.used-alert</source>
+        <target>The specified group of topics cannot be removed because somebody has already reserved a project out of it.</target>
       </trans-unit>
     </body>
   </file>

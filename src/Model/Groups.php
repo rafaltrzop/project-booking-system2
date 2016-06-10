@@ -16,9 +16,10 @@ class Groups
   public function findGroup($id)
   {
     $query = '
-      SELECT id, name
-      FROM groups
-      WHERE id = :id
+      SELECT g.id, name, min(user_id) AS used
+      FROM groups g
+      LEFT JOIN projects p ON g.id = p.group_id
+      WHERE g.id = :id
     ';
     $statement = $this->db->prepare($query);
     $statement->bindValue('id', $id, \PDO::PARAM_INT);

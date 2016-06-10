@@ -170,8 +170,8 @@
         <source>project.delete-messages.form-not-valid-error</source>
         <target>Nie udało się usunąć wybranego tematu projektu z powodu błędu walidacji formularza.</target>
       </trans-unit>
-      <trans-unit id="project.delete-messages.reserved">
-        <source>project.delete-messages.reserved</source>
+      <trans-unit id="project.delete-messages.reserved-alert">
+        <source>project.delete-messages.reserved-alert</source>
         <target>Wybrany temat projektu został już przez kogoś zarezerwowany i nie możesz go usunąć.</target>
       </trans-unit>
     </body>
@@ -314,13 +314,9 @@
         <source>group.list.edit</source>
         <target>Edytuj</target>
       </trans-unit>
-      <trans-unit id="group.list.delete">
-        <source>group.list.delete</source>
+      <trans-unit id="group.delete-form.submit">
+        <source>group.delete-form.submit</source>
         <target>Usuń</target>
-      </trans-unit>
-      <trans-unit id="group.list.confirm">
-        <source>group.list.confirm</source>
-        <target>Czy aby na pewno chcesz usunąć tę grupę i powiązane z nią tematy projektów?</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.not-found">
         <source>group.delete-messages.not-found</source>
@@ -329,6 +325,14 @@
       <trans-unit id="group.delete-messages.success">
         <source>group.delete-messages.success</source>
         <target>Wybrana grupa tematów i wszystkie powiązane z nią tematy projektów zostały pomyślnie usunięte.</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.form-not-valid-error">
+        <source>group.delete-messages.form-not-valid-error</source>
+        <target>Nie udało się usunąć wybranej grupy tematów z powodu błędu walidacji formularza.</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.used-alert">
+        <source>group.delete-messages.used-alert</source>
+        <target>W wybranej grupie tematów został już przez kogoś zarezerwowany projekt, dlatego nie można jej usunąć.</target>
       </trans-unit>
     </body>
   </file>

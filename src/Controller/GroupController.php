@@ -9,6 +9,7 @@ use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Form\GroupType;
+use Form\DeleteGroupType;
 use Model\Groups;
 use Model\Users;
 
@@ -34,7 +35,7 @@ class GroupController implements ControllerProviderInterface
       ->bind('group_add');
     $groupController->match('/edit/{id}', array($this, 'editAction'))
       ->bind('group_edit');
-    $groupController->get('/delete/{id}', array($this, 'deleteAction'))
+    $groupController->post('/delete/{id}', array($this, 'deleteAction'))
       ->bind('group_delete');
     return $groupController;
   }
@@ -56,7 +57,15 @@ class GroupController implements ControllerProviderInterface
     $groupModel = new Groups($app);
     $groups = $groupModel->findGroupsForMod($modUserId);
 
+    $deleteForms = array();
+    foreach ($groups as $group) {
+      $deleteForms[$group['id']] = $app['form.factory']->createBuilder(
+        new DeleteGroupType()
+      )->getForm()->createView();
+    }
+
     $view['groups'] = $groups;
+    $view['forms'] = $deleteForms;
 
     return $app['twig']->render('Group/index.html.twig', $view);
   }
@@ -173,6 +182,7 @@ class GroupController implements ControllerProviderInterface
    * @param Silex\Application $app Silex application
    * @param Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
+   * @todo Redirect - what return type?
    */
   public function deleteAction(Application $app, Request $request)
   {
@@ -180,7 +190,7 @@ class GroupController implements ControllerProviderInterface
     $groupModel = new Groups($app);
     $group = $groupModel->findGroup($id);
 
-    if (!$group) {
+    if ($group['id'] == null) {
       $app['session']->getFlashBag()->add(
         'message',
         array(
@@ -191,27 +201,56 @@ class GroupController implements ControllerProviderInterface
           )
         )
       );
-
-      return $app->redirect(
-        $app['url_generator']->generate('group')
-      );
     } else {
-      $groupModel->deleteGroup($id);
+      $groupNotUsed = $group['used'] == null;
+      if ($groupNotUsed) {
+        $deleteForm = $app['form.factory']->createBuilder(
+          new DeleteGroupType()
+        )->getForm();
 
-      $app['session']->getFlashBag()->add(
-        'message',
-        array(
-          'type' => 'success',
-          'icon' => 'check',
-          'content' => $app['translator']->trans(
-            'group.delete-messages.success'
+        $deleteForm->handleRequest($request);
+
+        if ($deleteForm->isValid()) {
+          $groupModel->deleteGroup($id);
+
+          $app['session']->getFlashBag()->add(
+            'message',
+            array(
+              'type' => 'success',
+              'icon' => 'check',
+              'content' => $app['translator']->trans(
+                'group.delete-messages.success'
+              )
+            )
+          );
+        } else {
+          $app['session']->getFlashBag()->add(
+            'message',
+            array(
+              'type' => 'alert',
+              'icon' => 'times',
+              'content' => $app['translator']->trans(
+                'group.delete-messages.form-not-valid-error'
+              )
+            )
+          );
+        }
+      } else {
+        $app['session']->getFlashBag()->add(
+          'message',
+          array(
+            'type' => 'alert',
+            'icon' => 'times',
+            'content' => $app['translator']->trans(
+              'group.delete-messages.used-alert'
+            )
           )
-        )
-      );
-
-      return $app->redirect(
-        $app['url_generator']->generate('group')
-      );
+        );
+      }
     }
+
+    return $app->redirect(
+    $app['url_generator']->generate('group')
+  );
   }
 }
