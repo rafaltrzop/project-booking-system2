@@ -110,7 +110,7 @@ $app->register(
     'security.access_rules' => array(
       array('^/auth.+$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
       array('^/signup/$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-      array('^/user/$', 'ROLE_USER'),
+      array('^/user/redirect$', 'ROLE_USER'),
       array('^/project/book$', 'ROLE_USER'),
       array('^/project/submit$', 'ROLE_USER'),
       array('^/project/summary$', 'ROLE_USER'),

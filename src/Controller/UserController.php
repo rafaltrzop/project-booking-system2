@@ -28,20 +28,20 @@ class UserController implements ControllerProviderInterface
   public function connect(Application $app)
   {
     $userController = $app['controllers_factory'];
-    $userController->get('/', array($this, 'indexAction'))
-      ->bind('user');
+    $userController->get('/redirect', array($this, 'redirectAction'))
+      ->bind('user_redirect');
     return $userController;
   }
 
   /**
-   * Index action.
+   * Redirect action.
    *
    * @param Silex\Application $app Silex application
    * @param Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Redirect - what return type?
    */
-  public function indexAction(Application $app, Request $request)
+  public function redirectAction(Application $app, Request $request)
   {
     $userModel = new Users($app);
     $userId = $userModel->getCurrentUserId();

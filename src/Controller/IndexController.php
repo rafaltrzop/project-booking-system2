@@ -47,7 +47,7 @@ class IndexController implements ControllerProviderInterface
 
     if ($app['security.authorization_checker']->isGranted('ROLE_USER')) {
       return $app->redirect(
-        $app['url_generator']->generate('user')
+        $app['url_generator']->generate('user_redirect')
       );
     }
 

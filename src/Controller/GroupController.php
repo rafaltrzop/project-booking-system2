@@ -29,8 +29,8 @@ class GroupController implements ControllerProviderInterface
   public function connect(Application $app)
   {
     $groupController = $app['controllers_factory'];
-    $groupController->get('/', array($this, 'indexAction'))
-      ->bind('group');
+    $groupController->get('/list', array($this, 'listAction'))
+      ->bind('group_list');
     $groupController->match('/add', array($this, 'addAction'))
       ->bind('group_add');
     $groupController->match('/edit/{id}', array($this, 'editAction'))
@@ -41,13 +41,13 @@ class GroupController implements ControllerProviderInterface
   }
 
   /**
-   * Index action.
+   * List action.
    *
    * @param Silex\Application $app Silex application
    * @param Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
-  public function indexAction(Application $app, Request $request)
+  public function listAction(Application $app, Request $request)
   {
     $view = array();
 
@@ -67,7 +67,7 @@ class GroupController implements ControllerProviderInterface
     $view['groups'] = $groups;
     $view['forms'] = $deleteForms;
 
-    return $app['twig']->render('Group/index.html.twig', $view);
+    return $app['twig']->render('Group/list.html.twig', $view);
   }
 
   /**

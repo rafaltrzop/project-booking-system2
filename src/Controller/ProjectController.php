@@ -33,8 +33,8 @@ class ProjectController implements ControllerProviderInterface
   public function connect(Application $app)
   {
     $projectController = $app['controllers_factory'];
-    $projectController->get('/', array($this, 'indexAction'))
-      ->bind('project');
+    $projectController->get('/list', array($this, 'listAction'))
+      ->bind('project_list');
     $projectController->match('/book', array($this, 'bookAction'))
       ->bind('project_book');
     $projectController->match('/submit', array($this, 'submitAction'))
@@ -53,13 +53,13 @@ class ProjectController implements ControllerProviderInterface
   }
 
   /**
-   * Index action.
+   * List action.
    *
    * @param Silex\Application $app Silex application
    * @param Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
-  public function indexAction(Application $app, Request $request)
+  public function listAction(Application $app, Request $request)
   {
     $view = array();
 
@@ -83,7 +83,7 @@ class ProjectController implements ControllerProviderInterface
     $view['groups'] = $groups;
     $view['forms'] = $deleteForms;
 
-    return $app['twig']->render('Project/index.html.twig', $view);
+    return $app['twig']->render('Project/list.html.twig', $view);
   }
 
   /**
