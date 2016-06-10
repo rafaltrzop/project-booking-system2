@@ -1,6 +1,6 @@
 <?php
 /**
- * Sign up type.
+ * User profile type.
  */
 
 namespace Form;
@@ -10,11 +10,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class SignUpType.
+ * Class UserProfileType.
  *
  * @package Form
  */
-class SignUpType extends AbstractType
+class UserProfileType extends AbstractType
 {
   /**
    * Groups data.
@@ -24,7 +24,7 @@ class SignUpType extends AbstractType
   private $groups;
 
   /**
-   * SignUpType constructor.
+   * UserProfileType constructor.
    *
    * @param array $groups Groups data
    */

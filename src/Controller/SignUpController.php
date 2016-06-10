@@ -8,7 +8,7 @@ namespace Controller;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Form\SignUpType;
+use Form\UserProfileType;
 use Model\Groups;
 use Model\Users;
 
@@ -47,7 +47,7 @@ class SignUpController implements ControllerProviderInterface
 
     $groupModel = new Groups($app);
     $signUpForm = $app['form.factory']->createBuilder(
-      new SignUpType($groupModel->findAllGroups())
+      new UserProfileType($groupModel->findAllGroups())
     )->getForm();
 
     $signUpForm->handleRequest($request);
