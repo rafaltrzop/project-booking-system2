@@ -16,8 +16,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class BookProjectType extends AbstractType
 {
+  /**
+   * Projects data.
+   *
+   * @var array $projects
+   */
   private $projects;
 
+  /**
+   * BookProjectType constructor.
+   *
+   * @param array $projects Projects data
+   */
   public function __construct($projects)
   {
     $this->projects = $projects;
@@ -64,6 +74,11 @@ class BookProjectType extends AbstractType
     return 'book_project_form';
   }
 
+  /**
+   * Prepares data for project choices field.
+   *
+   * @return array Project choices
+   */
   private function projectChoices()
   {
     $projectChoices = array();

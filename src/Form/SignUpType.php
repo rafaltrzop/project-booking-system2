@@ -16,8 +16,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class SignUpType extends AbstractType
 {
+  /**
+   * Groups data.
+   *
+   * @var array $groups
+   */
   private $groups;
 
+  /**
+   * SignUpType constructor.
+   *
+   * @param array $groups Groups data
+   */
   public function __construct($groups)
   {
     $this->groups = $groups;
@@ -144,6 +154,11 @@ class SignUpType extends AbstractType
     return 'signup_form';
   }
 
+  /**
+   * Prepares data for group choices field.
+   *
+   * @return array Group choices
+   */
   private function groupChoices()
   {
     $groupChoices = array();

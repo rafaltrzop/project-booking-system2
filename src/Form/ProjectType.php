@@ -17,8 +17,18 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ProjectType extends AbstractType
 {
+  /**
+   * Groups data.
+   *
+   * @var array $groups
+   */
   private $groups;
 
+  /**
+   * ProjectType constructor.
+   *
+   * @param array $groups Groups data
+   */
   public function __construct($groups)
   {
     $this->groups = $groups;
@@ -105,6 +115,11 @@ class ProjectType extends AbstractType
     return 'project_form';
   }
 
+  /**
+   * Sets default options for form.
+   *
+   * @param OptionsResolverInterface $resolver
+   */
   public function setDefaultOptions(OptionsResolverInterface $resolver)
   {
     $resolver->setDefaults(
@@ -114,6 +129,11 @@ class ProjectType extends AbstractType
     );
   }
 
+  /**
+   * Prepares data for group choices field.
+   *
+   * @return array Group choices
+   */
   private function groupChoices()
   {
     $groupChoices = array();
