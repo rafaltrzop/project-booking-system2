@@ -7,6 +7,7 @@ namespace Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -24,13 +25,22 @@ class UserProfileType extends AbstractType
   private $groups;
 
   /**
+   * Roles data.
+   *
+   * @var array $roles
+   */
+  private $roles;
+
+  /**
    * UserProfileType constructor.
    *
    * @param array $groups Groups data
+   * @param array $roles Roles data
    */
-  public function __construct($groups)
+  public function __construct($groups, $roles = null)
   {
     $this->groups = $groups;
+    $this->roles = $roles;
   }
 
   /**
@@ -52,9 +62,14 @@ class UserProfileType extends AbstractType
           'autofocus' => true
         ),
         'constraints' => array(
-          new Assert\NotBlank(),
+          new Assert\NotBlank(
+            array(
+              'groups' => array('signup-default', 'user-edit')
+            )
+          ),
           new Assert\Length(
             array(
+              'groups' => array('signup-default', 'user-edit'),
               'min' => 2,
               'max' => 30
             )
@@ -71,9 +86,14 @@ class UserProfileType extends AbstractType
         'required' => true,
         'max_length' => 30,
         'constraints' => array(
-          new Assert\NotBlank(),
+          new Assert\NotBlank(
+            array(
+              'groups' => array('signup-default', 'user-edit')
+            )
+          ),
           new Assert\Length(
             array(
+              'groups' => array('signup-default', 'user-edit'),
               'min' => 2,
               'max' => 30
             )
@@ -91,10 +111,38 @@ class UserProfileType extends AbstractType
         'required' => true,
         'empty_value' => '',
         'constraints' => array(
-          new Assert\NotBlank()
+          new Assert\NotBlank(
+            array(
+              'groups' => array('signup-default', 'user-edit')
+            )
+          )
         )
       )
     );
+
+    if (isset($options['validation_groups'])
+      && count($options['validation_groups'])
+      && in_array('user-edit', $options['validation_groups'])
+    ) {
+      $builder->add(
+        'role_id',
+        'choice',
+        array(
+          // to do: add method for gathering roles
+          'choices' => $this->groupChoices(),
+          'label' => 'user.edit-form.role',
+          'required' => true,
+          'empty_value' => '',
+          'constraints' => array(
+            new Assert\NotBlank(
+              array(
+                'groups' => array('user-edit')
+              )
+            )
+          )
+        )
+      );
+    }
 
     $builder->add(
       'email',
@@ -104,10 +152,19 @@ class UserProfileType extends AbstractType
         'required' => true,
         'max_length' => 60,
         'constraints' => array(
-          new Assert\NotBlank(),
-          new Assert\Email(),
+          new Assert\NotBlank(
+            array(
+              'groups' => array('signup-default', 'user-edit')
+            )
+          ),
+          new Assert\Email(
+            array(
+              'groups' => array('signup-default', 'user-edit')
+            )
+          ),
           new Assert\Length(
             array(
+              'groups' => array('signup-default', 'user-edit'),
               'min' => 5,
               'max' => 60
             )
@@ -116,32 +173,65 @@ class UserProfileType extends AbstractType
       )
     );
 
-    $builder->add(
-      'password',
-      'password',
-      array(
-        'label' => 'signup.form.password',
-        'required' => true,
-        'max_length' => 30,
-        'constraints' => array(
-          new Assert\NotBlank(),
-          new Assert\Length(
-            array(
-              'min' => 5,
-              'max' => 30
+    if (isset($options['validation_groups'])
+      && count($options['validation_groups'])
+      && !in_array('user-edit', $options['validation_groups'])
+    ) {
+      $builder->add(
+        'password',
+        'repeated',
+        array(
+          'type' => 'password',
+          'invalid_message' => 'The password fields must match.',
+          'first_options'  => array('label' => 'signup.form.password'),
+          'second_options' => array('label' => 'signup.form.repeat-password'),
+          'options' => array(
+            'required' => true,
+            'max_length' => 30,
+            'constraints' => array(
+              new Assert\NotBlank(
+                array(
+                  'groups' => array('signup-default')
+                )
+              ),
+              new Assert\Length(
+                array(
+                  'groups' => array('signup-default'),
+                  'min' => 5,
+                  'max' => 30
+                )
+              )
             )
           )
         )
-      )
-    );
+      );
+    }
 
-    $builder->add(
-      'submit',
-      'submit',
-      array(
-        'label' => 'signup.form.submit'
-      )
-    );
+    if (isset($options['validation_groups'])
+      && count($options['validation_groups'])
+      && in_array('user-edit', $options['validation_groups'])
+    ) {
+      $builder->add(
+        'submit',
+        'submit',
+        array(
+          'label' => 'user.edit-form.submit'
+        )
+      );
+    }
+
+    if (isset($options['validation_groups'])
+      && count($options['validation_groups'])
+      && !in_array('user-edit', $options['validation_groups'])
+    ) {
+      $builder->add(
+        'submit',
+        'submit',
+        array(
+          'label' => 'signup.form.submit'
+        )
+      );
+    }
   }
 
   /**
@@ -152,6 +242,20 @@ class UserProfileType extends AbstractType
   public function getName()
   {
     return 'signup_form';
+  }
+
+  /**
+   * Sets default options for form.
+   *
+   * @param OptionsResolverInterface $resolver
+   */
+  public function setDefaultOptions(OptionsResolverInterface $resolver)
+  {
+    $resolver->setDefaults(
+      array(
+        'validation_groups' => 'signup-default',
+      )
+    );
   }
 
   /**

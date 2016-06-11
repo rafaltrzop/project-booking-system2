@@ -86,6 +86,10 @@
         <source>signup.form.password</source>
         <target>Hasło</target>
       </trans-unit>
+      <trans-unit id="signup.form.repeat-password">
+        <source>signup.form.repeat-password</source>
+        <target>Powtórz hasło</target>
+      </trans-unit>
       <trans-unit id="signup.form.submit">
         <source>signup.form.submit</source>
         <target>Zarejestruj się</target>
