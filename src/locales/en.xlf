@@ -240,7 +240,7 @@
     <body>
       <trans-unit id="project.add-form.h1">
         <source>project.add-form.h1</source>
-        <target>Add new topic of the project</target>
+        <target>Add a new topic of the project</target>
       </trans-unit>
       <trans-unit id="project.add-messages.success">
         <source>project.add-messages.success</source>
@@ -280,11 +280,43 @@
     <body>
       <trans-unit id="admin.menu-action.add-topic">
         <source>admin.menu-action.add-topic</source>
-        <target>New topic of the project</target>
+        <target>Add new topic</target>
       </trans-unit>
       <trans-unit id="admin.menu-action.add-group">
         <source>admin.menu-action.add-group</source>
-        <target>New group of the topics</target>
+        <target>Add new group</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Admin/edit.html.twig">
+    <body>
+      <trans-unit id="admin.menu-action.edit-topic">
+        <source>admin.menu-action.edit-topic</source>
+        <target>Edit topic name</target>
+      </trans-unit>
+      <trans-unit id="admin.menu-action.edit-group">
+        <source>admin.menu-action.edit-group</source>
+        <target>Edit group name</target>
+      </trans-unit>
+      <trans-unit id="admin.menu-action.edit-user">
+        <source>admin.menu-action.edit-user</source>
+        <target>Edit user data</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Admin/delete.html.twig">
+    <body>
+      <trans-unit id="admin.menu-action.delete-topic">
+        <source>admin.menu-action.delete-topic</source>
+        <target>Delete topic</target>
+      </trans-unit>
+      <trans-unit id="admin.menu-action.delete-group">
+        <source>admin.menu-action.delete-group</source>
+        <target>Delete group</target>
+      </trans-unit>
+      <trans-unit id="admin.menu-action.delete-user">
+        <source>admin.menu-action.delete-user</source>
+        <target>Delete user</target>
       </trans-unit>
     </body>
   </file>
@@ -344,7 +376,7 @@
     <body>
       <trans-unit id="group.add-form.h1">
         <source>group.add-form.h1</source>
-        <target>Create a new group of topics</target>
+        <target>Add a new group of topics</target>
       </trans-unit>
       <trans-unit id="group.add-messages.success">
         <source>group.add-messages.success</source>
@@ -361,6 +393,18 @@
       <trans-unit id="group.edit-messages.success">
         <source>group.edit-messages.success</source>
         <target>The changes have been successfully saved.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/User/edit.html.twig">
+    <body>
+      <trans-unit id="user.edit-form.role">
+        <source>user.edit-form.role</source>
+        <target>Role</target>
+      </trans-unit>
+      <trans-unit id="user.edit-form.submit">
+        <source>user.edit-form.submit</source>
+        <target>Save</target>
       </trans-unit>
     </body>
   </file>
