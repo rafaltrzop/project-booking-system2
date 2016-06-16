@@ -114,6 +114,9 @@ $app->register(
       array('^/project/book$', 'ROLE_USER'),
       array('^/project/submit$', 'ROLE_USER'),
       array('^/project/summary$', 'ROLE_USER'),
+      array('^/user/list$', 'ROLE_ADMIN'),
+      array('^/user/edit.+$', 'ROLE_ADMIN'),
+      array('^/user/delete.+$', 'ROLE_ADMIN'),
       array('^/.+$', 'ROLE_MOD')
     ),
     'security.role_hierarchy' => array(

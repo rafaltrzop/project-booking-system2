@@ -23,13 +23,15 @@
           </div>
         </a>
       </div>
-      <div class="medium-6 columns end">
-        <a href="{{ path('user_list') }}">
-          <div class="menu-action" data-equalizer-watch>
-            <h1>{{ 'admin.menu-action.edit-user'|trans }}</h1>
-          </div>
-        </a>
-      </div>
+      {% if is_granted('ROLE_ADMIN') %}
+        <div class="medium-6 columns end">
+          <a href="{{ path('user_list') }}">
+            <div class="menu-action" data-equalizer-watch>
+              <h1>{{ 'admin.menu-action.edit-user'|trans }}</h1>
+            </div>
+          </a>
+        </div>
+      {% endif %}
     </div>
   </main>
 {% endblock %}
