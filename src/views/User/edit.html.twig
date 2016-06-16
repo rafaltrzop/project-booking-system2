@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/logged_in.html.twig' %}
+
+{% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
+
+{% block header %}
+  {% include '_header_admin.twig' %}
+{% endblock %}
+
+{% block body %}
+  <main class="body-content-container">
+    <div class="column row">
+      <h1>Edycja danych użytkownika</h1>
+      {{ form(form) }}
+    </div>
+  </main>
+{% endblock %}

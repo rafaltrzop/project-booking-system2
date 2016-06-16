@@ -111,6 +111,8 @@ class UserProfileType extends AbstractType
         'required' => true,
         'empty_value' => '',
         'constraints' => array(
+          // group needs to be set to null when editing user in order to change his role to mod or admin
+          // set empty_data to null?
           new Assert\NotBlank(
             array(
               'groups' => array('signup-default', 'user-edit')
@@ -128,8 +130,7 @@ class UserProfileType extends AbstractType
         'role_id',
         'choice',
         array(
-          // to do: add method for gathering roles
-          'choices' => $this->groupChoices(),
+          'choices' => $this->roleChoices(),
           'label' => 'user.edit-form.role',
           'required' => true,
           'empty_value' => '',
@@ -271,5 +272,20 @@ class UserProfileType extends AbstractType
       $groupChoices[$group['id']] = $group['name'];
     }
     return $groupChoices;
+  }
+
+  /**
+   * Prepares data for role choices field.
+   *
+   * @return array Role choices
+   */
+  private function roleChoices()
+  {
+    $roleChoices = array();
+    foreach ($this->roles as $role)
+    {
+      $roleChoices[$role['id']] = $role['name'];
+    }
+    return $roleChoices;
   }
 }

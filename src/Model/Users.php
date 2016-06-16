@@ -104,6 +104,25 @@ class Users
     $statement->execute();
   }
 
+  public function updateUser($userData)
+  {
+    $query = '
+      UPDATE users
+      SET role_id = :role_id, group_id = :group_id, first_name = :first_name, last_name = :last_name, email = :email
+      WHERE id = :id
+    ';
+    $statement = $this->db->prepare($query);
+
+    $statement->bindValue('role_id', $userData['role_id'], \PDO::PARAM_INT);
+    $statement->bindValue('group_id', $userData['group_id'], \PDO::PARAM_INT);
+    $statement->bindValue('first_name', $userData['first_name'], \PDO::PARAM_STR);
+    $statement->bindValue('last_name', $userData['last_name'], \PDO::PARAM_STR);
+    $statement->bindValue('email', $userData['email'], \PDO::PARAM_STR);
+    $statement->bindValue('id', $userData['id'], \PDO::PARAM_INT);
+
+    $statement->execute();
+  }
+
   public function getCurrentUserGroupId()
   {
     $email = $this->securityTokenStorage->getUser()->getUsername();
@@ -141,5 +160,20 @@ class Users
     ';
     $result = $this->db->fetchAll($query);
     return $result;
+  }
+
+  public function findUser($id)
+  {
+    $query = '
+      SELECT id, role_id, group_id, first_name, last_name, email
+      FROM users
+      WHERE id = :id
+    ';
+    $statement = $this->db->prepare($query);
+    $statement->bindValue('id', $id, \PDO::PARAM_INT);
+    $statement->execute();
+    $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    return current($result);
   }
 }

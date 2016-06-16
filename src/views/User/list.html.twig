@@ -38,13 +38,12 @@
                 {% endif %}
               </td>
               <td>{{ user.role_name|slice(5)|capitalize }}</td>
-              <td></td>
-              <td></td>
-
-              {#
               <td>
                 <a href="{{ path('user_edit', {'id' : user.id}) }}" class="hollow button">{{ 'group.list.edit'|trans }}</a>
               </td>
+              <td></td>
+
+              {#
               <td>
                 {{ form_start(forms[user.id], {'attr': {'onsubmit': 'return confirm();'}, 'action': path('user_delete', {'id' : user.id})}) }}
                 {% if group.used %}
