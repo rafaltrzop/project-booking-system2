@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp",
-    "build": "gulp sass",
+    "build": "gulp compile:sass copy:fonts copy:js",
     "postinstall": "gulp compile:sass copy:fonts copy:js"
   },
   "repository": {
