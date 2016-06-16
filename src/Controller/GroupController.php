@@ -142,7 +142,7 @@ class GroupController implements ControllerProviderInterface
       );
 
       return $app->redirect(
-        $app['url_generator']->generate('group')
+        $app['url_generator']->generate('group_list')
       );
     }
 
@@ -167,7 +167,7 @@ class GroupController implements ControllerProviderInterface
       );
 
       return $app->redirect(
-        $app['url_generator']->generate('group')
+        $app['url_generator']->generate('group_list')
       );
     }
 
@@ -250,7 +250,7 @@ class GroupController implements ControllerProviderInterface
     }
 
     return $app->redirect(
-    $app['url_generator']->generate('group')
-  );
+      $app['url_generator']->generate('group_list')
+    );
   }
 }

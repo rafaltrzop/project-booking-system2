@@ -304,7 +304,7 @@ class ProjectController implements ControllerProviderInterface
       );
 
       return $app->redirect(
-        $app['url_generator']->generate('project')
+        $app['url_generator']->generate('project_list')
       );
     }
 
@@ -334,7 +334,7 @@ class ProjectController implements ControllerProviderInterface
       );
 
       return $app->redirect(
-        $app['url_generator']->generate('project')
+        $app['url_generator']->generate('project_list')
       );
     }
 
@@ -417,7 +417,7 @@ class ProjectController implements ControllerProviderInterface
     }
 
     return $app->redirect(
-      $app['url_generator']->generate('project')
+      $app['url_generator']->generate('project_list')
     );
   }
 }
