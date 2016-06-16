@@ -129,7 +129,7 @@ class GroupController implements ControllerProviderInterface
     $groupModel = new Groups($app);
     $group = $groupModel->findGroup($id);
 
-    if (!$group) {
+    if ($group['id'] == null) {
       $app['session']->getFlashBag()->add(
         'message',
         array(
