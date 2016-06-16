@@ -22,12 +22,6 @@
   $ bash data/setup.sh
   ```
 
-4. Generate assets:
-
-  ```
-  $ gulp compile:sass copy:fonts copy:js
-  ```
-
 ## Usage
 
 Just log in as an administrator and manage your app:
