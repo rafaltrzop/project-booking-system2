@@ -1,21 +1,50 @@
 <?php
+/**
+ * Submissions model.
+ */
 
 namespace Model;
 
 use Silex\Application;
 
+/**
+ * Class Submissions.
+ *
+ * @package Model
+ */
 class Submissions
 {
+  /**
+   * Database object.
+   *
+   * @var \Doctrine\DBAL\Connection $db
+   */
   private $db;
 
+  /**
+   * Object constructor.
+   *
+   * @param \Silex\Application $app Silex application
+   */
   public function __construct(Application $app)
   {
     $this->db = $app['db'];
   }
 
+  /**
+   * Creates new submission.
+   *
+   * @param integer $userId User ID
+   * @param integer $projectId Project ID
+   */
   public function createSubmission($userId, $projectId)
   {
-    $query = 'SELECT mod_user_id FROM groups g LEFT JOIN projects p ON g.id = p.group_id WHERE p.id = :id;';
+    $query = '
+      SELECT mod_user_id
+      FROM groups g
+      LEFT JOIN projects p ON g.id = p.group_id
+      WHERE p.id = :id
+    ';
     $statement = $this->db->prepare($query);
     $statement->bindValue('id', $projectId, \PDO::PARAM_INT);
     $statement->execute();
@@ -34,6 +63,12 @@ class Submissions
     $statement->execute();
   }
 
+  /**
+   * Checks if user submitted project.
+   *
+   * @param integer $userId User ID
+   * @return boolean Result
+   */
   public function checkIfUserSubmittedProject($userId)
   {
     $query = 'SELECT EXISTS(SELECT * FROM submissions WHERE user_id = :user_id)';
@@ -45,6 +80,12 @@ class Submissions
     return $result;
   }
 
+  /**
+   * Finds submissions for current mod.
+   *
+   * @param integer $modUserId Mod user ID
+   * @return array Result
+   */
   public function findSubmissionsForMod($modUserId)
   {
     $query = '
@@ -63,7 +104,12 @@ class Submissions
     return $result;
   }
 
-  public function rateSubmission($rateData)
+  /**
+   * Sets mark for submission.
+   *
+   * @param array $submissionData Submission details
+   */
+  public function rateSubmission($submissionData)
   {
     $query = '
       UPDATE submissions
@@ -72,8 +118,8 @@ class Submissions
     ';
     $statement = $this->db->prepare($query);
 
-    $statement->bindValue('mark', $rateData['mark'], \PDO::PARAM_STR);
-    $statement->bindValue('id', $rateData['id'], \PDO::PARAM_INT);
+    $statement->bindValue('mark', $submissionData['mark'], \PDO::PARAM_STR);
+    $statement->bindValue('id', $submissionData['id'], \PDO::PARAM_INT);
 
     $statement->execute();
   }

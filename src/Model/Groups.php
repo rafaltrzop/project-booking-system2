@@ -1,18 +1,42 @@
 <?php
+/**
+ * Groups model.
+ */
 
 namespace Model;
 
 use Silex\Application;
 
+/**
+ * Class Groups.
+ *
+ * @package Model
+ */
 class Groups
 {
+  /**
+   * Database object.
+   *
+   * @var \Doctrine\DBAL\Connection $db
+   */
   private $db;
 
+  /**
+   * Object constructor.
+   *
+   * @param \Silex\Application $app Silex application
+   */
   public function __construct(Application $app)
   {
     $this->db = $app['db'];
   }
 
+  /**
+   * Finds group by ID.
+   *
+   * @param integer $id Group ID
+   * @return array Result
+   */
   public function findGroup($id)
   {
     $query = '
@@ -29,6 +53,11 @@ class Groups
     return current($result);
   }
 
+  /**
+   * Finds all groups.
+   *
+   * @return array Result
+   */
   public function findAllGroups()
   {
     $query = 'SELECT id, name FROM groups';
@@ -36,6 +65,12 @@ class Groups
     return $result;
   }
 
+  /**
+   * Finds groups for mod.
+   *
+   * @param integer $modUserId Mod ID
+   * @return array Result
+   */
   public function findGroupsForMod($modUserId)
   {
     $query = '
@@ -54,6 +89,11 @@ class Groups
     return $result;
   }
 
+  /**
+   * Creates new group.
+   *
+   * @param array $groupData Group details
+   */
   public function createGroup($groupData)
   {
     $query = '
@@ -68,6 +108,11 @@ class Groups
     $statement->execute();
   }
 
+  /**
+   * Updates details of existing group.
+   *
+   * @param array $groupData Group details
+   */
   public function updateGroup($groupData)
   {
     $query = '
@@ -83,6 +128,11 @@ class Groups
     $statement->execute();
   }
 
+  /**
+   * Deletes group by ID.
+   *
+   * @param integer $id Group ID
+   */
   public function deleteGroup($id)
   {
     $this->db->delete('groups', array('id' => $id));

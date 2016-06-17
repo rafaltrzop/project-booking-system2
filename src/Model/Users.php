@@ -1,16 +1,46 @@
 <?php
+/**
+ * Users model.
+ */
 
 namespace Model;
 
 use Silex\Application;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
+/**
+ * Class Users.
+ *
+ * @package Model
+ */
 class Users
 {
+  /**
+   * Database object.
+   *
+   * @var \Doctrine\DBAL\Connection $db
+   */
   private $db;
+
+  /**
+   * Security encoder digest object.
+   *
+   * @var \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder $securityEncoderDigest
+   */
   private $securityEncoderDigest;
+
+  /**
+   * Security token storage object.
+   *
+   * @var \Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken $securityTokenStorage
+   */
   private $securityTokenStorage;
 
+  /**
+   * Object constructor.
+   *
+   * @param \Silex\Application $app Silex application
+   */
   public function __construct(Application $app)
   {
     $this->db = $app['db'];
@@ -18,6 +48,13 @@ class Users
     $this->securityTokenStorage = $app['security.token_storage']->getToken();
   }
 
+  /**
+   * Loads user by email.
+   *
+   * @param string $email User email
+   * @throws UsernameNotFoundException
+   * @return array Result
+   */
   public function loadUserByEmail($email)
   {
     $user = $this->getUserByEmail($email);
@@ -43,6 +80,13 @@ class Users
     );
   }
 
+  /**
+   * Gets user data by email.
+   *
+   * @param string $email User email
+   * @throws \PDOException
+   * @return array Result
+   */
   public function getUserByEmail($email)
   {
     try {
@@ -55,15 +99,24 @@ class Users
       $statement->bindValue('email', $email, \PDO::PARAM_STR);
       $statement->execute();
       $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
       return !$result ? array() : current($result);
     } catch (\PDOException $e) {
       return array();
     }
   }
 
+  /**
+   * Gets user roles by user ID.
+   *
+   * @param integer $userId User ID
+   * @throws \PDOException
+   * @return array Result
+   */
   public function getUserRoles($userId)
   {
     $roles = array();
+
     try {
       $query = '
         SELECT roles.name as role
@@ -76,16 +129,23 @@ class Users
       $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
       $statement->execute();
       $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
       if ($result && count($result)) {
         $result = current($result);
         $roles[] = $result['role'];
       }
+
       return $roles;
     } catch (\PDOException $e) {
       return $roles;
     }
   }
 
+  /**
+   * Creates new user.
+   *
+   * @param array $signUpData User details
+   */
   public function createUser($signUpData)
   {
     $passwordHash = $this->securityEncoderDigest->encodePassword($signUpData['password'], '');
@@ -104,6 +164,11 @@ class Users
     $statement->execute();
   }
 
+  /**
+   * Updates details of existing user.
+   *
+   * @param array $userData User details
+   */
   public function updateUser($userData)
   {
     $query = '
@@ -123,6 +188,11 @@ class Users
     $statement->execute();
   }
 
+  /**
+   * Gets current user group ID.
+   *
+   * @return integer Result
+   */
   public function getCurrentUserGroupId()
   {
     $email = $this->securityTokenStorage->getUser()->getUsername();
@@ -136,6 +206,11 @@ class Users
     return $result;
   }
 
+  /**
+   * Gets current user ID.
+   *
+   * @return integer Result
+   */
   public function getCurrentUserId()
   {
     $email = $this->securityTokenStorage->getUser()->getUsername();
@@ -149,6 +224,11 @@ class Users
     return $result;
   }
 
+  /**
+   * Finds all users.
+   *
+   * @return array Result
+   */
   public function findAllUsers()
   {
     $query = '
@@ -159,9 +239,16 @@ class Users
       ORDER BY role_id, first_name, last_name
     ';
     $result = $this->db->fetchAll($query);
+
     return $result;
   }
 
+  /**
+   * Finds user by ID.
+   *
+   * @param integer $id User ID
+   * @return array Result
+   */
   public function findUser($id)
   {
     $query = '
@@ -177,6 +264,11 @@ class Users
     return current($result);
   }
 
+  /**
+   * Deletes user by ID.
+   *
+   * @param integer $id User ID
+   */
   public function deleteUser($id)
   {
     $this->db->delete('users', array('id' => $id));
