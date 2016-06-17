@@ -1,9 +1,7 @@
 {% extends 'base.html.twig' %}
-{#
 {% for user in users %}
   {% form_theme forms[user.id] 'form/logged_in.html.twig' %}
 {% endfor %}
-#}
 
 {% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
 
@@ -14,14 +12,14 @@
 {% block body %}
   <main class="body-content-container">
     <div class="column row">
-      <h1>Lista użytkowników</h1>
+      <h1>{{ 'user.list.h1'|trans }}</h1>
       <table class="scroll">
         <thead>
           <tr>
-            <th>Użytkownik</th>
-            <th>E-mail</th>
-            <th>Grupa</th>
-            <th>Rola</th>
+            <th>{{ 'user.list.user'|trans }}</th>
+            <th>{{ 'user.list.email'|trans }}</th>
+            <th>{{ 'user.list.group'|trans }}</th>
+            <th>{{ 'user.list.role'|trans }}</th>
             <th colspan="2" class="text-center">{{ 'user.list.options'|trans }}</th>
           </tr>
         </thead>
@@ -39,22 +37,13 @@
               </td>
               <td>{{ user.role_name|slice(5)|capitalize }}</td>
               <td>
-                <a href="{{ path('user_edit', {'id' : user.id}) }}" class="hollow button">{{ 'group.list.edit'|trans }}</a>
+                <a href="{{ path('user_edit', {'id' : user.id}) }}" class="hollow button">{{ 'user.list.edit'|trans }}</a>
               </td>
-              <td></td>
-
-              {#
               <td>
                 {{ form_start(forms[user.id], {'attr': {'onsubmit': 'return confirm();'}, 'action': path('user_delete', {'id' : user.id})}) }}
-                {% if group.used %}
-                  {{ form_widget(forms[user.id].submit, {'disabled': 'disabled'}) }}
-                {% else %}
-                  {{ form_widget(forms[user.id]) }}
-                {% endif %}
+                {{ form_widget(forms[user.id]) }}
                 {{ form_end(forms[user.id]) }}
               </td>
-              #}
-
             </tr>
           {% endfor %}
         </tbody>

@@ -25,10 +25,10 @@ CREATE TABLE groups
 id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(30) NOT NULL UNIQUE,
 mod_user_id INT NOT NULL,
-FOREIGN KEY (mod_user_id) REFERENCES users(id)
+FOREIGN KEY (mod_user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-ALTER TABLE users ADD FOREIGN KEY (group_id) REFERENCES groups(id);
+ALTER TABLE users ADD FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE SET NULL;
 
 CREATE TABLE projects
 (
@@ -37,7 +37,7 @@ topic VARCHAR(180) NOT NULL UNIQUE,
 group_id INT NOT NULL,
 user_id INT DEFAULT NULL UNIQUE,
 FOREIGN KEY (group_id) REFERENCES groups(id) ON DELETE CASCADE,
-FOREIGN KEY (user_id) REFERENCES users(id)
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );
 
 CREATE TABLE submissions
@@ -48,8 +48,7 @@ project_id INT NOT NULL,
 submitted_at DATE NOT NULL,
 mod_user_id INT NOT NULL,
 mark DECIMAL(2,1) DEFAULT NULL,
-FOREIGN KEY (user_id) REFERENCES users(id),
-FOREIGN KEY (user_id) REFERENCES projects(user_id),
-FOREIGN KEY (project_id) REFERENCES projects(id),
-FOREIGN KEY (mod_user_id) REFERENCES users(id)
+FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+FOREIGN KEY (mod_user_id) REFERENCES users(id) ON DELETE CASCADE
 );

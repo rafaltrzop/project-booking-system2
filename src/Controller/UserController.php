@@ -14,6 +14,7 @@ use Model\Submissions;
 use Model\Groups;
 use Model\Roles;
 use Form\UserProfileType;
+use Form\DeleteUserType;
 
 /**
  * Class UserController.
@@ -37,6 +38,8 @@ class UserController implements ControllerProviderInterface
       ->bind('user_list');
     $userController->match('/edit/{id}', array($this, 'editAction'))
       ->bind('user_edit');
+    $userController->post('/delete/{id}', array($this, 'deleteAction'))
+      ->bind('user_delete');
     return $userController;
   }
 
@@ -90,18 +93,15 @@ class UserController implements ControllerProviderInterface
     $userModel = new Users($app);
     $users = $userModel->findAllUsers();
 
-    // $groupModel = new Groups($app);
-    // $groups = $groupModel->findGroupsForMod($modUserId);
-    //
-    // $deleteForms = array();
-    // foreach ($groups as $group) {
-    //   $deleteForms[$group['id']] = $app['form.factory']->createBuilder(
-    //     new DeleteGroupType()
-    //   )->getForm()->createView();
-    // }
+    $deleteForms = array();
+    foreach ($users as $user) {
+      $deleteForms[$user['id']] = $app['form.factory']->createBuilder(
+        new DeleteUserType()
+      )->getForm()->createView();
+    }
 
     $view['users'] = $users;
-    // $view['forms'] = $deleteForms;
+    $view['forms'] = $deleteForms;
 
     return $app['twig']->render('User/list.html.twig', $view);
   }
@@ -172,5 +172,69 @@ class UserController implements ControllerProviderInterface
     $view['form'] = $userProfileForm->createView();
 
     return $app['twig']->render('User/edit.html.twig', $view);
+  }
+
+  /**
+   * Delete action.
+   *
+   * @param Silex\Application $app Silex application
+   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @return string Response
+   * @todo Redirect - what return type?
+   */
+  public function deleteAction(Application $app, Request $request)
+  {
+    $id = (int) $request->get('id', 0);
+    $userModel = new Users($app);
+    $user = $userModel->findUser($id);
+
+    if (!$user) {
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'warning',
+          'icon' => 'warning',
+          'content' => $app['translator']->trans(
+            'user.delete-messages.not-found'
+          )
+        )
+      );
+    } else {
+      $deleteForm = $app['form.factory']->createBuilder(
+        new DeleteUserType()
+      )->getForm();
+
+      $deleteForm->handleRequest($request);
+
+      if ($deleteForm->isValid()) {
+        $userModel->deleteUser($id);
+
+        $app['session']->getFlashBag()->add(
+          'message',
+          array(
+            'type' => 'success',
+            'icon' => 'check',
+            'content' => $app['translator']->trans(
+              'user.delete-messages.success'
+            )
+          )
+        );
+      } else {
+        $app['session']->getFlashBag()->add(
+          'message',
+          array(
+            'type' => 'alert',
+            'icon' => 'times',
+            'content' => $app['translator']->trans(
+              'user.delete-messages.form-not-valid-error'
+            )
+          )
+        );
+      }
+    }
+
+    return $app->redirect(
+      $app['url_generator']->generate('user_list')
+    );
   }
 }

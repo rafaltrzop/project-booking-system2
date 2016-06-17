@@ -332,7 +332,7 @@
       </trans-unit>
     </body>
   </file>
-  <file source-language="en" datatype="plaintext" original="views/Group/index.html.twig">
+  <file source-language="en" datatype="plaintext" original="views/Group/list.html.twig">
     <body>
       <trans-unit id="group.list.h1">
         <source>group.list.h1</source>
@@ -386,6 +386,10 @@
   </file>
   <file source-language="en" datatype="plaintext" original="views/Group/edit.html.twig">
     <body>
+      <trans-unit id="group.edit-form.h1">
+        <source>group.edit-form.h1</source>
+        <target>Edycja nazwy grupy</target>
+      </trans-unit>
       <trans-unit id="group.edit-messages.not-found">
         <source>group.edit-messages.not-found</source>
         <target>Nie znaleziono podanej grupy tematów.</target>
@@ -396,8 +400,60 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/User/list.html.twig">
+    <body>
+      <trans-unit id="user.list.h1">
+        <source>user.list.h1</source>
+        <target>Lista użytkowników</target>
+      </trans-unit>
+      <trans-unit id="user.list.user">
+        <source>user.list.user</source>
+        <target>Użytkownik</target>
+      </trans-unit>
+      <trans-unit id="user.list.email">
+        <source>user.list.email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="user.list.group">
+        <source>user.list.group</source>
+        <target>Grupa</target>
+      </trans-unit>
+      <trans-unit id="user.list.role">
+        <source>user.list.role</source>
+        <target>Rola</target>
+      </trans-unit>
+      <trans-unit id="user.list.options">
+        <source>user.list.options</source>
+        <target>Opcje</target>
+      </trans-unit>
+      <trans-unit id="user.list.edit">
+        <source>user.list.edit</source>
+        <target>Edytuj</target>
+      </trans-unit>
+      <trans-unit id="user.delete-form.submit">
+        <source>user.delete-form.submit</source>
+        <target>Usuń</target>
+      </trans-unit>
+      <trans-unit id="user.delete-messages.not-found">
+        <source>user.delete-messages.not-found</source>
+        <target>Nie znaleziono podanego użytkownika.</target>
+      </trans-unit>
+      <trans-unit id="user.delete-messages.success">
+        <source>user.delete-messages.success</source>
+        <target>Wybrany użytkownik został pomyślnie usunięty.</target>
+      </trans-unit>
+      <trans-unit id="user.delete-messages.form-not-valid-error">
+        <source>user.delete-messages.form-not-valid-error</source>
+        <target>Nie udało się usunąć wybranego użytkownika z powodu błędu walidacji formularza.</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/User/edit.html.twig">
     <body>
+      <trans-unit id="user.edit-form.h1">
+        <source>user.edit-form.h1</source>
+        <target>Edycja danych użytkownika</target>
+      </trans-unit>
       <trans-unit id="user.edit-form.role">
         <source>user.edit-form.role</source>
         <target>Rola</target>
@@ -405,6 +461,14 @@
       <trans-unit id="user.edit-form.submit">
         <source>user.edit-form.submit</source>
         <target>Zapisz</target>
+      </trans-unit>
+      <trans-unit id="user.edit-messages.not-found">
+        <source>user.edit-messages.not-found</source>
+        <target>Nie znaleziono podanego użytkownika.</target>
+      </trans-unit>
+      <trans-unit id="user.edit-messages.success">
+        <source>user.edit-messages.success</source>
+        <target>Zmiany zostały pomyślnie zapisane.</target>
       </trans-unit>
     </body>
   </file>

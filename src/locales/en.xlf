@@ -164,7 +164,7 @@
       </trans-unit>
       <trans-unit id="project.delete-messages.not-found">
         <source>project.delete-messages.not-found</source>
-        <target>The specified topic of the project has not been found.</target>
+        <target>The specified topic of the project could not be found.</target>
       </trans-unit>
       <trans-unit id="project.delete-messages.success">
         <source>project.delete-messages.success</source>
@@ -172,7 +172,7 @@
       </trans-unit>
       <trans-unit id="project.delete-messages.form-not-valid-error">
         <source>project.delete-messages.form-not-valid-error</source>
-        <target>The specified topic of the project couldn't have been deleted because of an form validation error.</target>
+        <target>The specified topic of the project could not have been deleted because of an form validation error.</target>
       </trans-unit>
       <trans-unit id="project.delete-messages.reserved-alert">
         <source>project.delete-messages.reserved-alert</source>
@@ -256,7 +256,7 @@
       </trans-unit>
       <trans-unit id="project.edit-messages.not-found">
         <source>project.edit-messages.not-found</source>
-        <target>The specified topic of the project has not been found.</target>
+        <target>The specified topic of the project could not be found.</target>
       </trans-unit>
       <trans-unit id="project.edit-messages.success">
         <source>project.edit-messages.success</source>
@@ -300,7 +300,7 @@
       </trans-unit>
       <trans-unit id="admin.menu-action.edit-user">
         <source>admin.menu-action.edit-user</source>
-        <target>Edit user data</target>
+        <target>Edit user details</target>
       </trans-unit>
     </body>
   </file>
@@ -332,7 +332,7 @@
       </trans-unit>
     </body>
   </file>
-  <file source-language="en" datatype="plaintext" original="views/Group/index.html.twig">
+  <file source-language="en" datatype="plaintext" original="views/Group/list.html.twig">
     <body>
       <trans-unit id="group.list.h1">
         <source>group.list.h1</source>
@@ -356,7 +356,7 @@
       </trans-unit>
       <trans-unit id="group.delete-messages.not-found">
         <source>group.delete-messages.not-found</source>
-        <target>The specified group of topics has not been found.</target>
+        <target>The specified group of topics could not be found.</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.success">
         <source>group.delete-messages.success</source>
@@ -364,7 +364,7 @@
       </trans-unit>
       <trans-unit id="group.delete-messages.form-not-valid-error">
         <source>group.delete-messages.form-not-valid-error</source>
-        <target>The specified group of topics couldn't have been deleted because of an form validation error.</target>
+        <target>The specified group of topics could not have been deleted because of an form validation error.</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.used-alert">
         <source>group.delete-messages.used-alert</source>
@@ -386,9 +386,13 @@
   </file>
   <file source-language="en" datatype="plaintext" original="views/Group/edit.html.twig">
     <body>
+      <trans-unit id="group.edit-form.h1">
+        <source>group.edit-form.h1</source>
+        <target>Edit group name</target>
+      </trans-unit>
       <trans-unit id="group.edit-messages.not-found">
         <source>group.edit-messages.not-found</source>
-        <target>The specified group of topics has not been found.</target>
+        <target>The specified group of topics could not be found.</target>
       </trans-unit>
       <trans-unit id="group.edit-messages.success">
         <source>group.edit-messages.success</source>
@@ -396,8 +400,60 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/User/list.html.twig">
+    <body>
+      <trans-unit id="user.list.h1">
+        <source>user.list.h1</source>
+        <target>List of users</target>
+      </trans-unit>
+      <trans-unit id="user.list.user">
+        <source>user.list.user</source>
+        <target>User</target>
+      </trans-unit>
+      <trans-unit id="user.list.email">
+        <source>user.list.email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="user.list.group">
+        <source>user.list.group</source>
+        <target>Group</target>
+      </trans-unit>
+      <trans-unit id="user.list.role">
+        <source>user.list.role</source>
+        <target>Role</target>
+      </trans-unit>
+      <trans-unit id="user.list.options">
+        <source>user.list.options</source>
+        <target>Options</target>
+      </trans-unit>
+      <trans-unit id="user.list.edit">
+        <source>user.list.edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="user.delete-form.submit">
+        <source>user.delete-form.submit</source>
+        <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="user.delete-messages.not-found">
+        <source>user.delete-messages.not-found</source>
+        <target>The specified user could not be found.</target>
+      </trans-unit>
+      <trans-unit id="user.delete-messages.success">
+        <source>user.delete-messages.success</source>
+        <target>The specified user has been successfully removed.</target>
+      </trans-unit>
+      <trans-unit id="user.delete-messages.form-not-valid-error">
+        <source>user.delete-messages.form-not-valid-error</source>
+        <target>The specified user could not have been deleted because of an form validation error.</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/User/edit.html.twig">
     <body>
+      <trans-unit id="user.edit-form.h1">
+        <source>user.edit-form.h1</source>
+        <target>Edit user details</target>
+      </trans-unit>
       <trans-unit id="user.edit-form.role">
         <source>user.edit-form.role</source>
         <target>Role</target>
@@ -405,6 +461,14 @@
       <trans-unit id="user.edit-form.submit">
         <source>user.edit-form.submit</source>
         <target>Save</target>
+      </trans-unit>
+      <trans-unit id="user.edit-messages.not-found">
+        <source>user.edit-messages.not-found</source>
+        <target>The specified user could not be found.</target>
+      </trans-unit>
+      <trans-unit id="user.edit-messages.success">
+        <source>user.edit-messages.success</source>
+        <target>The changes have been successfully saved.</target>
       </trans-unit>
     </body>
   </file>

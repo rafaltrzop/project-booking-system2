@@ -176,4 +176,9 @@ class Users
 
     return current($result);
   }
+
+  public function deleteUser($id)
+  {
+    $this->db->delete('users', array('id' => $id));
+  }
 }
