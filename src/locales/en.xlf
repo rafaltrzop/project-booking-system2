@@ -128,11 +128,11 @@
     <body>
       <trans-unit id="project.form.topic">
         <source>project.form.topic</source>
-        <target>Project topic:</target>
+        <target>Project topic</target>
       </trans-unit>
       <trans-unit id="project.form.group">
         <source>project.form.group</source>
-        <target>Group:</target>
+        <target>Group</target>
       </trans-unit>
       <trans-unit id="project.form.submit">
         <source>project.form.submit</source>
@@ -188,7 +188,7 @@
       </trans-unit>
       <trans-unit id="project.book-form.project">
         <source>project.book-form.project</source>
-        <target>Choose a topic:</target>
+        <target>Choose a topic</target>
       </trans-unit>
       <trans-unit id="project.book-form.submit">
         <source>project.book-form.submit</source>
@@ -324,7 +324,7 @@
     <body>
       <trans-unit id="group.form.name">
         <source>group.form.name</source>
-        <target>Group name:</target>
+        <target>Group name</target>
       </trans-unit>
       <trans-unit id="group.form.submit">
         <source>group.form.submit</source>
