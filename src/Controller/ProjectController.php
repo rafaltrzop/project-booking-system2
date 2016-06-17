@@ -27,8 +27,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Routing settings.
    *
-   * @param Silex\Application $app Silex application
-   * @return Silex\ControllerCollection Result
+   * @param \Silex\Application $app Silex application
+   * @return \Silex\ControllerCollection Result
    */
   public function connect(Application $app)
   {
@@ -55,8 +55,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * List action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function listAction(Application $app, Request $request)
@@ -89,8 +89,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Book action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Return value mixed because of possible redirect?
    */
@@ -139,8 +139,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Submit action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Return value mixed because of possible redirect?
    */
@@ -189,8 +189,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Summary action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function summaryAction(Application $app, Request $request)
@@ -209,8 +209,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Overview action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function overviewAction(Application $app, Request $request)
@@ -229,8 +229,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Add action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Return value mixed because of possible redirect?
    */
@@ -278,8 +278,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Edit action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Return value mixed because of possible redirect?
    */
@@ -346,8 +346,8 @@ class ProjectController implements ControllerProviderInterface
   /**
    * Delete action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Redirect - what return type?
    */

@@ -19,8 +19,8 @@ class IndexController implements ControllerProviderInterface
   /**
    * Routing settings.
    *
-   * @param Silex\Application $app Silex application
-   * @return Silex\ControllerCollection Result
+   * @param \Silex\Application $app Silex application
+   * @return \Silex\ControllerCollection Result
    */
   public function connect(Application $app)
   {
@@ -32,8 +32,8 @@ class IndexController implements ControllerProviderInterface
   /**
    * Index action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Return value mixed because of possible redirect?
    */

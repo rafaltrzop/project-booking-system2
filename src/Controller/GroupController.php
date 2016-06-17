@@ -23,8 +23,8 @@ class GroupController implements ControllerProviderInterface
   /**
    * Routing settings.
    *
-   * @param Silex\Application $app Silex application
-   * @return Silex\ControllerCollection Result
+   * @param \Silex\Application $app Silex application
+   * @return \Silex\ControllerCollection Result
    */
   public function connect(Application $app)
   {
@@ -43,8 +43,8 @@ class GroupController implements ControllerProviderInterface
   /**
    * List action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function listAction(Application $app, Request $request)
@@ -73,8 +73,8 @@ class GroupController implements ControllerProviderInterface
   /**
    * Add action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function addAction(Application $app, Request $request)
@@ -117,8 +117,8 @@ class GroupController implements ControllerProviderInterface
   /**
    * Edit action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function editAction(Application $app, Request $request)
@@ -179,8 +179,8 @@ class GroupController implements ControllerProviderInterface
   /**
    * Delete action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    * @todo Redirect - what return type?
    */

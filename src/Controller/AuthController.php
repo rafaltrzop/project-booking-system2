@@ -20,8 +20,8 @@ class AuthController implements ControllerProviderInterface
   /**
    * Routing settings.
    *
-   * @param Application $app Silex application
-   * @return ControllerCollection Result
+   * @param \Silex\Application $app Silex application
+   * @return \Silex\ControllerCollection Result
    */
   public function connect(Application $app)
   {
@@ -36,8 +36,8 @@ class AuthController implements ControllerProviderInterface
   /**
    * Login action.
    *
-   * @param Application $app Silex application
-   * @param Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Output
    */
   public function loginAction(Application $app, Request $request)
@@ -62,7 +62,7 @@ class AuthController implements ControllerProviderInterface
   /**
    * Logout action.
    *
-   * @param Application $app Silex application
+   * @param \Silex\Application $app Silex application
    * @return string Output
    */
   // public function logoutAction(Application $app)

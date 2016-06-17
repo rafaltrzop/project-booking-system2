@@ -19,8 +19,8 @@ class AdminController implements ControllerProviderInterface
   /**
    * Routing settings.
    *
-   * @param Silex\Application $app Silex application
-   * @return Silex\ControllerCollection Result
+   * @param \Silex\Application $app Silex application
+   * @return \Silex\ControllerCollection Result
    */
   public function connect(Application $app)
   {
@@ -39,8 +39,8 @@ class AdminController implements ControllerProviderInterface
   /**
    * Index action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function indexAction(Application $app, Request $request)
@@ -51,8 +51,8 @@ class AdminController implements ControllerProviderInterface
   /**
    * Add action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function addAction(Application $app, Request $request)
@@ -63,8 +63,8 @@ class AdminController implements ControllerProviderInterface
   /**
    * Edit action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function editAction(Application $app, Request $request)
@@ -75,8 +75,8 @@ class AdminController implements ControllerProviderInterface
   /**
    * Delete action.
    *
-   * @param Silex\Application $app Silex application
-   * @param Symfony\Component\HttpFoundation\Request $request Request object
+   * @param \Silex\Application $app Silex application
+   * @param \Symfony\Component\HttpFoundation\Request $request Request object
    * @return string Response
    */
   public function deleteAction(Application $app, Request $request)
