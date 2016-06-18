@@ -40,7 +40,7 @@ class Projects
   public function findProject($id)
   {
     $query = '
-      SELECT id, topic, user_id
+      SELECT id, topic, group_id, user_id
       FROM projects
       WHERE id = :id
     ';

@@ -286,6 +286,10 @@
         <source>project.edit-messages.not-found</source>
         <target>Nie znaleziono podanego tematu projektu.</target>
       </trans-unit>
+      <trans-unit id="project.edit-messages.not-allowed">
+        <source>project.edit-messages.not-allowed</source>
+        <target>Nie masz uprawnień do edycji tego tematu projektu.</target>
+      </trans-unit>
       <trans-unit id="project.edit-messages.success">
         <source>project.edit-messages.success</source>
         <target>Zmiany zostały pomyślnie zapisane.</target>

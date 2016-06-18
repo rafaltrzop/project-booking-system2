@@ -312,8 +312,32 @@ class ProjectController implements ControllerProviderInterface
     $modUserId = $userModel->getCurrentUserId();
 
     $groupModel = new Groups($app);
+    $modGroups = $groupModel->findGroupsForMod($modUserId);
+
+    $modGroupsIds = array();
+    foreach ($modGroups as $modGroup) {
+      $modGroupsIds[] = $modGroup['id'];
+    }
+
+    if (!in_array($project['group_id'], $modGroupsIds)) {
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'warning',
+          'icon' => 'warning',
+          'content' => $app['translator']->trans(
+            'project.edit-messages.not-allowed'
+          )
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('project_list')
+      );
+    }
+
     $projectForm = $app['form.factory']->createBuilder(
-      new ProjectType($groupModel->findGroupsForMod($modUserId)),
+      new ProjectType($modGroups),
       $project,
       array('validation_groups' => 'project-edit')
     )->getForm();

@@ -286,6 +286,10 @@
         <source>project.edit-messages.not-found</source>
         <target>The specified topic of the project could not be found.</target>
       </trans-unit>
+      <trans-unit id="project.edit-messages.not-allowed">
+        <source>project.edit-messages.not-allowed</source>
+        <target>You do not have permission to edit this project.</target>
+      </trans-unit>
       <trans-unit id="project.edit-messages.success">
         <source>project.edit-messages.success</source>
         <target>The changes have been successfully saved.</target>
