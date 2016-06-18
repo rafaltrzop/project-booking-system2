@@ -240,6 +240,30 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/overview.html.twig">
+    <body>
+      <trans-unit id="project.overview.h1">
+        <source>project.overview.h1</source>
+        <target>Projects overview</target>
+      </trans-unit>
+      <trans-unit id="project.table.user">
+        <source>project.table.user</source>
+        <target>User</target>
+      </trans-unit>
+      <trans-unit id="project.table.email">
+        <source>project.table.email</source>
+        <target>E-mail</target>
+      </trans-unit>
+      <trans-unit id="project.table.group">
+        <source>project.table.group</source>
+        <target>Group</target>
+      </trans-unit>
+      <trans-unit id="project.table.topic">
+        <source>project.table.topic</source>
+        <target>Project topic</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/Project/add.html.twig">
     <body>
       <trans-unit id="project.add-form.h1">

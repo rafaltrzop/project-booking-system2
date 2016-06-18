@@ -9,15 +9,15 @@
 {% block body %}
   <main class="body-content-container">
     <div class="column row">
-      <h1>Stan rezerwacji projektów</h1>
+      <h1>{{ 'project.overview.h1'|trans }}</h1>
       {% if overview|length > 0 %}
         <table class="scroll">
           <thead>
             <tr>
-              <th>Użytkownik</th>
-              <th>E-mail</th>
-              <th>Grupa</th>
-              <th>Temat projektu</th>
+              <th>{{ 'project.table.user'|trans }}</th>
+              <th>{{ 'project.table.email'|trans }}</th>
+              <th>{{ 'project.table.group'|trans }}</th>
+              <th>{{ 'project.table.topic'|trans }}</th>
             </tr>
           </thead>
           <tbody>
