@@ -74,9 +74,9 @@ class Users
         }
 
         return array(
-        'email' => $user['email'],
-        'password' => $user['password'],
-        'roles' => $roles
+            'email' => $user['email'],
+            'password' => $user['password'],
+            'roles' => $roles
         );
     }
 
@@ -91,10 +91,10 @@ class Users
     {
         try {
             $query = '
-        SELECT id, email, password, role_id
-        FROM users
-        WHERE email = :email
-      ';
+                SELECT id, email, password, role_id
+                FROM users
+                WHERE email = :email
+            ';
             $statement = $this->db->prepare($query);
             $statement->bindValue('email', $email, \PDO::PARAM_STR);
             $statement->execute();
@@ -119,12 +119,12 @@ class Users
 
         try {
             $query = '
-        SELECT roles.name as role
-        FROM users
-        INNER JOIN roles
-        ON users.role_id = roles.id
-        WHERE users.id = :user_id
-      ';
+                SELECT roles.name as role
+                FROM users
+                INNER JOIN roles
+                ON users.role_id = roles.id
+                WHERE users.id = :user_id
+            ';
             $statement = $this->db->prepare($query);
             $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
             $statement->execute();
@@ -150,9 +150,9 @@ class Users
     {
         $passwordHash = $this->securityEncoderDigest->encodePassword($signUpData['password'], '');
         $query = '
-      INSERT INTO users(group_id, first_name, last_name, email, password)
-      VALUES (:group_id, :first_name, :last_name, :email, :password)
-    ';
+            INSERT INTO users(group_id, first_name, last_name, email, password)
+            VALUES (:group_id, :first_name, :last_name, :email, :password)
+        ';
         $statement = $this->db->prepare($query);
 
         $statement->bindValue('group_id', $signUpData['group_id'], \PDO::PARAM_INT);
@@ -172,10 +172,10 @@ class Users
     public function updateUser($userData)
     {
         $query = '
-      UPDATE users
-      SET role_id = :role_id, group_id = :group_id, first_name = :first_name, last_name = :last_name, email = :email
-      WHERE id = :id
-    ';
+            UPDATE users
+            SET role_id = :role_id, group_id = :group_id, first_name = :first_name, last_name = :last_name, email = :email
+            WHERE id = :id
+        ';
         $statement = $this->db->prepare($query);
 
         $statement->bindValue('role_id', $userData['role_id'], \PDO::PARAM_INT);
@@ -232,12 +232,12 @@ class Users
     public function findAllUsers()
     {
         $query = '
-      SELECT u.id, role_id, group_id, first_name, last_name, email, g.name AS group_name, r.name AS role_name
-      FROM users u
-      LEFT JOIN groups g ON u.group_id = g.id
-      LEFT JOIN roles r ON u.role_id = r.id
-      ORDER BY role_id, first_name, last_name
-    ';
+            SELECT u.id, role_id, group_id, first_name, last_name, email, g.name AS group_name, r.name AS role_name
+            FROM users u
+            LEFT JOIN groups g ON u.group_id = g.id
+            LEFT JOIN roles r ON u.role_id = r.id
+            ORDER BY role_id, first_name, last_name
+        ';
         $result = $this->db->fetchAll($query);
 
         return $result;
@@ -252,10 +252,10 @@ class Users
     public function findUser($id)
     {
         $query = '
-      SELECT id, role_id, group_id, first_name, last_name, email
-      FROM users
-      WHERE id = :id
-    ';
+            SELECT id, role_id, group_id, first_name, last_name, email
+            FROM users
+            WHERE id = :id
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();

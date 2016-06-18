@@ -45,13 +45,13 @@ class BookProjectType extends AbstractType
             'id',
             'choice',
             array(
-            'choices' => $this->projectChoices(),
-            'label' => 'project.book-form.project',
-            'required' => true,
-            'expanded' => true,
-            'constraints' => array(
-            new Assert\NotBlank()
-            )
+                'choices' => $this->projectChoices(),
+                'label' => 'project.book-form.project',
+                'required' => true,
+                'expanded' => true,
+                'constraints' => array(
+                    new Assert\NotBlank()
+                )
             )
         );
 
@@ -59,7 +59,7 @@ class BookProjectType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'project.book-form.submit'
+                'label' => 'project.book-form.submit'
             )
         );
     }

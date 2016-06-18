@@ -29,7 +29,7 @@ class SignUpController implements ControllerProviderInterface
     {
         $signUpController = $app['controllers_factory'];
         $signUpController->match('/', array($this, 'newAction'))
-        ->bind('signup');
+            ->bind('signup');
         return $signUpController;
     }
 
@@ -62,9 +62,9 @@ class SignUpController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('signup.messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('signup.messages.success')
                 )
             );
 

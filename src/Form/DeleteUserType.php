@@ -27,7 +27,7 @@ class DeleteUserType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'user.delete-form.submit'
+                'label' => 'user.delete-form.submit'
             )
         );
     }

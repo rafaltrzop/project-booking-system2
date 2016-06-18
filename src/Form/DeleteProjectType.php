@@ -27,7 +27,7 @@ class DeleteProjectType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'project.delete-form.submit'
+                'label' => 'project.delete-form.submit'
             )
         );
     }

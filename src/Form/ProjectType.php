@@ -46,25 +46,25 @@ class ProjectType extends AbstractType
             'topic',
             'text',
             array(
-            'label' => 'project.form.topic',
-            'required' => true,
-            'max_length' => 180,
-            'attr' => array(
-            'autofocus' => true
-            ),
-            'constraints' => array(
-            new Assert\NotBlank(
-                array(
-                'groups' => array('project-default', 'project-edit')
+                'label' => 'project.form.topic',
+                'required' => true,
+                'max_length' => 180,
+                'attr' => array(
+                    'autofocus' => true
+                ),
+                'constraints' => array(
+                    new Assert\NotBlank(
+                        array(
+                            'groups' => array('project-default', 'project-edit')
+                        )
+                    ),
+                    new Assert\Length(
+                        array(
+                            'max' => 180,
+                            'groups' => array('project-default', 'project-edit')
+                        )
+                    )
                 )
-            ),
-            new Assert\Length(
-                array(
-                'max' => 180,
-                'groups' => array('project-default', 'project-edit')
-                )
-            )
-            )
             )
         );
 
@@ -76,17 +76,17 @@ class ProjectType extends AbstractType
                 'group_id',
                 'choice',
                 array(
-                'choices' => $this->groupChoices(),
-                'label' => 'project.form.group',
-                'required' => true,
-                'empty_value' => '',
-                'constraints' => array(
-                new Assert\NotBlank(
-                    array(
-                    'groups' => array('project-default')
+                    'choices' => $this->groupChoices(),
+                    'label' => 'project.form.group',
+                    'required' => true,
+                    'empty_value' => '',
+                    'constraints' => array(
+                        new Assert\NotBlank(
+                            array(
+                                'groups' => array('project-default')
+                            )
+                        )
                     )
-                )
-                )
                 )
             );
         }
@@ -95,7 +95,7 @@ class ProjectType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'project.form.submit'
+                'label' => 'project.form.submit'
             )
         );
     }
@@ -119,7 +119,7 @@ class ProjectType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-            'validation_groups' => 'project-default',
+                'validation_groups' => 'project-default',
             )
         );
     }

@@ -27,7 +27,7 @@ class SubmitProjectType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'project.submit-form.submit'
+                'label' => 'project.submit-form.submit'
             )
         );
     }

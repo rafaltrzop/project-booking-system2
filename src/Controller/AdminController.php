@@ -26,13 +26,13 @@ class AdminController implements ControllerProviderInterface
     {
         $adminController = $app['controllers_factory'];
         $adminController->get('/', array($this, 'indexAction'))
-        ->bind('admin');
+            ->bind('admin');
         $adminController->get('/add', array($this, 'addAction'))
-        ->bind('admin_add');
+            ->bind('admin_add');
         $adminController->get('/edit', array($this, 'editAction'))
-        ->bind('admin_edit');
+            ->bind('admin_edit');
         $adminController->get('/delete', array($this, 'deleteAction'))
-        ->bind('admin_delete');
+            ->bind('admin_delete');
         return $adminController;
     }
 

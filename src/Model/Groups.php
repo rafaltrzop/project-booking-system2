@@ -40,11 +40,11 @@ class Groups
     public function findGroup($id)
     {
         $query = '
-      SELECT g.id, name, mod_user_id, min(user_id) AS used
-      FROM groups g
-      LEFT JOIN projects p ON g.id = p.group_id
-      WHERE g.id = :id
-    ';
+            SELECT g.id, name, mod_user_id, min(user_id) AS used
+            FROM groups g
+            LEFT JOIN projects p ON g.id = p.group_id
+            WHERE g.id = :id
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -74,13 +74,13 @@ class Groups
     public function findGroupsForMod($modUserId)
     {
         $query = '
-      SELECT g.id, name, min(user_id) AS used
-      FROM groups g
-      LEFT JOIN projects p ON g.id = p.group_id
-      WHERE mod_user_id = :mod_user_id
-      GROUP BY g.id
-      ORDER BY name
-    ';
+            SELECT g.id, name, min(user_id) AS used
+            FROM groups g
+            LEFT JOIN projects p ON g.id = p.group_id
+            WHERE mod_user_id = :mod_user_id
+            GROUP BY g.id
+            ORDER BY name
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('mod_user_id', $modUserId, \PDO::PARAM_INT);
         $statement->execute();
@@ -97,9 +97,9 @@ class Groups
     public function createGroup($groupData)
     {
         $query = '
-      INSERT INTO groups(name, mod_user_id)
-      VALUES (:name, :mod_user_id)
-    ';
+            INSERT INTO groups(name, mod_user_id)
+            VALUES (:name, :mod_user_id)
+        ';
         $statement = $this->db->prepare($query);
 
         $statement->bindValue('name', $groupData['name'], \PDO::PARAM_STR);
@@ -116,10 +116,10 @@ class Groups
     public function updateGroup($groupData)
     {
         $query = '
-      UPDATE groups
-      SET name = :name
-      WHERE id = :id
-    ';
+            UPDATE groups
+            SET name = :name
+            WHERE id = :id
+        ';
         $statement = $this->db->prepare($query);
 
         $statement->bindValue('name', $groupData['name'], \PDO::PARAM_STR);

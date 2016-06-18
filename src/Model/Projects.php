@@ -40,10 +40,10 @@ class Projects
     public function findProject($id)
     {
         $query = '
-      SELECT id, topic, group_id, user_id
-      FROM projects
-      WHERE id = :id
-    ';
+            SELECT id, topic, group_id, user_id
+            FROM projects
+            WHERE id = :id
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
         $statement->execute();
@@ -61,11 +61,11 @@ class Projects
     public function findAvailableProjectsInGroup($groupId)
     {
         $query = '
-      SELECT id, topic
-      FROM projects
-      WHERE group_id = :group_id AND user_id IS NULL
-      ORDER BY topic
-    ';
+            SELECT id, topic
+            FROM projects
+            WHERE group_id = :group_id AND user_id IS NULL
+            ORDER BY topic
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('group_id', $groupId, \PDO::PARAM_INT);
         $statement->execute();
@@ -133,12 +133,12 @@ class Projects
     public function getProjectSummary($userId)
     {
         $query = '
-      SELECT topic, submitted_at, first_name, last_name, mark
-      FROM submissions s
-      LEFT JOIN users u ON s.mod_user_id = u.id
-      LEFT JOIN projects p ON s.project_id = p.id
-      WHERE s.user_id = :user_id
-    ';
+            SELECT topic, submitted_at, first_name, last_name, mark
+            FROM submissions s
+            LEFT JOIN users u ON s.mod_user_id = u.id
+            LEFT JOIN projects p ON s.project_id = p.id
+            WHERE s.user_id = :user_id
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('user_id', $userId, \PDO::PARAM_INT);
         $statement->execute();
@@ -155,9 +155,9 @@ class Projects
     public function createProject($projectData)
     {
         $query = '
-      INSERT INTO projects(topic, group_id)
-      VALUES (:topic, :group_id)
-    ';
+            INSERT INTO projects(topic, group_id)
+            VALUES (:topic, :group_id)
+        ';
         $statement = $this->db->prepare($query);
 
         $statement->bindValue('topic', $projectData['topic'], \PDO::PARAM_STR);
@@ -174,10 +174,10 @@ class Projects
     public function updateProject($projectData)
     {
         $query = '
-      UPDATE projects
-      SET topic = :topic
-      WHERE id = :id
-    ';
+            UPDATE projects
+            SET topic = :topic
+            WHERE id = :id
+        ';
         $statement = $this->db->prepare($query);
 
         $statement->bindValue('topic', $projectData['topic'], \PDO::PARAM_STR);
@@ -205,13 +205,13 @@ class Projects
     public function findProjectsOverviewForMod($modUserId)
     {
         $query = '
-      SELECT first_name, last_name, email, name, topic
-      FROM projects p
-      LEFT JOIN users u ON p.user_id = u.id
-      LEFT JOIN groups g ON p.group_id = g.id
-      WHERE email IS NOT NULL AND mod_user_id = :mod_user_id
-      ORDER BY name, first_name, last_name
-    ';
+            SELECT first_name, last_name, email, name, topic
+            FROM projects p
+            LEFT JOIN users u ON p.user_id = u.id
+            LEFT JOIN groups g ON p.group_id = g.id
+            WHERE email IS NOT NULL AND mod_user_id = :mod_user_id
+            ORDER BY name, first_name, last_name
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('mod_user_id', $modUserId, \PDO::PARAM_INT);
         $statement->execute();
@@ -229,11 +229,11 @@ class Projects
     public function findProjectsFromGroup($groupId)
     {
         $query = '
-      SELECT id, topic, user_id AS reserved
-      FROM projects
-      WHERE group_id = :group_id
-      ORDER BY topic
-    ';
+            SELECT id, topic, user_id AS reserved
+            FROM projects
+            WHERE group_id = :group_id
+            ORDER BY topic
+        ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('group_id', $groupId, \PDO::PARAM_INT);
         $statement->execute();

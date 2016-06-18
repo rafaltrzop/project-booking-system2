@@ -55,26 +55,26 @@ class UserProfileType extends AbstractType
             'first_name',
             'text',
             array(
-            'label' => 'signup.form.firstname',
-            'required' => true,
-            'max_length' => 30,
-            'attr' => array(
-            'autofocus' => true
-            ),
-            'constraints' => array(
-            new Assert\NotBlank(
-                array(
-                'groups' => array('signup-default', 'user-edit')
+                'label' => 'signup.form.firstname',
+                'required' => true,
+                'max_length' => 30,
+                'attr' => array(
+                    'autofocus' => true
+                ),
+                'constraints' => array(
+                    new Assert\NotBlank(
+                        array(
+                            'groups' => array('signup-default', 'user-edit')
+                        )
+                    ),
+                    new Assert\Length(
+                        array(
+                            'groups' => array('signup-default', 'user-edit'),
+                            'min' => 2,
+                            'max' => 30
+                        )
+                    )
                 )
-            ),
-            new Assert\Length(
-                array(
-                'groups' => array('signup-default', 'user-edit'),
-                'min' => 2,
-                'max' => 30
-                )
-            )
-            )
             )
         );
 
@@ -82,23 +82,23 @@ class UserProfileType extends AbstractType
             'last_name',
             'text',
             array(
-            'label' => 'signup.form.lastname',
-            'required' => true,
-            'max_length' => 30,
-            'constraints' => array(
-            new Assert\NotBlank(
-                array(
-                'groups' => array('signup-default', 'user-edit')
+                'label' => 'signup.form.lastname',
+                'required' => true,
+                'max_length' => 30,
+                'constraints' => array(
+                    new Assert\NotBlank(
+                        array(
+                            'groups' => array('signup-default', 'user-edit')
+                        )
+                    ),
+                    new Assert\Length(
+                        array(
+                            'groups' => array('signup-default', 'user-edit'),
+                            'min' => 2,
+                            'max' => 30
+                        )
+                    )
                 )
-            ),
-            new Assert\Length(
-                array(
-                'groups' => array('signup-default', 'user-edit'),
-                'min' => 2,
-                'max' => 30
-                )
-            )
-            )
             )
         );
 
@@ -106,19 +106,17 @@ class UserProfileType extends AbstractType
             'group_id',
             'choice',
             array(
-            'choices' => $this->groupChoices(),
-            'label' => 'signup.form.group',
-            'required' => true,
-            'empty_value' => '',
-            'constraints' => array(
-            // group needs to be set to null when editing user in order to change his role to mod or admin
-            // set empty_data to null?
-            new Assert\NotBlank(
-                array(
-                'groups' => array('signup-default', 'user-edit')
+                'choices' => $this->groupChoices(),
+                'label' => 'signup.form.group',
+                'required' => true,
+                'empty_value' => '',
+                'constraints' => array(
+                    new Assert\NotBlank(
+                        array(
+                            'groups' => array('signup-default', 'user-edit')
+                        )
+                    )
                 )
-            )
-            )
             )
         );
 
@@ -130,17 +128,17 @@ class UserProfileType extends AbstractType
                 'role_id',
                 'choice',
                 array(
-                'choices' => $this->roleChoices(),
-                'label' => 'user.edit-form.role',
-                'required' => true,
-                'empty_value' => '',
-                'constraints' => array(
-                new Assert\NotBlank(
-                    array(
-                    'groups' => array('user-edit')
+                    'choices' => $this->roleChoices(),
+                    'label' => 'user.edit-form.role',
+                    'required' => true,
+                    'empty_value' => '',
+                    'constraints' => array(
+                        new Assert\NotBlank(
+                            array(
+                                'groups' => array('user-edit')
+                            )
+                        )
                     )
-                )
-                )
                 )
             );
         }
@@ -149,28 +147,28 @@ class UserProfileType extends AbstractType
             'email',
             'email',
             array(
-            'label' => 'signup.form.email',
-            'required' => true,
-            'max_length' => 60,
-            'constraints' => array(
-            new Assert\NotBlank(
-                array(
-                'groups' => array('signup-default', 'user-edit')
+                'label' => 'signup.form.email',
+                'required' => true,
+                'max_length' => 60,
+                'constraints' => array(
+                    new Assert\NotBlank(
+                        array(
+                            'groups' => array('signup-default', 'user-edit')
+                        )
+                    ),
+                    new Assert\Email(
+                        array(
+                            'groups' => array('signup-default', 'user-edit')
+                        )
+                    ),
+                    new Assert\Length(
+                        array(
+                            'groups' => array('signup-default', 'user-edit'),
+                            'min' => 5,
+                            'max' => 60
+                        )
+                    )
                 )
-            ),
-            new Assert\Email(
-                array(
-                'groups' => array('signup-default', 'user-edit')
-                )
-            ),
-            new Assert\Length(
-                array(
-                'groups' => array('signup-default', 'user-edit'),
-                'min' => 5,
-                'max' => 60
-                )
-            )
-            )
             )
         );
 
@@ -182,28 +180,28 @@ class UserProfileType extends AbstractType
                 'password',
                 'repeated',
                 array(
-                'type' => 'password',
-                'invalid_message' => 'The password fields must match.',
-                'first_options'  => array('label' => 'signup.form.password'),
-                'second_options' => array('label' => 'signup.form.repeat-password'),
-                'options' => array(
-                'required' => true,
-                'max_length' => 30,
-                'constraints' => array(
-                new Assert\NotBlank(
-                    array(
-                    'groups' => array('signup-default')
+                    'type' => 'password',
+                    'invalid_message' => 'The password fields must match.',
+                    'first_options'  => array('label' => 'signup.form.password'),
+                    'second_options' => array('label' => 'signup.form.repeat-password'),
+                    'options' => array(
+                        'required' => true,
+                        'max_length' => 30,
+                        'constraints' => array(
+                            new Assert\NotBlank(
+                                array(
+                                    'groups' => array('signup-default')
+                                )
+                            ),
+                            new Assert\Length(
+                                array(
+                                    'groups' => array('signup-default'),
+                                    'min' => 5,
+                                    'max' => 30
+                                )
+                            )
+                        )
                     )
-                ),
-                new Assert\Length(
-                    array(
-                    'groups' => array('signup-default'),
-                    'min' => 5,
-                    'max' => 30
-                    )
-                )
-                )
-                )
                 )
             );
         }
@@ -216,7 +214,7 @@ class UserProfileType extends AbstractType
                 'submit',
                 'submit',
                 array(
-                'label' => 'user.edit-form.submit'
+                    'label' => 'user.edit-form.submit'
                 )
             );
         }
@@ -229,7 +227,7 @@ class UserProfileType extends AbstractType
                 'submit',
                 'submit',
                 array(
-                'label' => 'signup.form.submit'
+                    'label' => 'signup.form.submit'
                 )
             );
         }
@@ -254,7 +252,7 @@ class UserProfileType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-            'validation_groups' => 'signup-default',
+                'validation_groups' => 'signup-default',
             )
         );
     }

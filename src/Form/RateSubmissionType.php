@@ -28,10 +28,10 @@ class RateSubmissionType extends AbstractType
             'id',
             'hidden',
             array(
-            'required' => true,
-            'constraints' => array(
-            new Assert\NotBlank()
-            )
+                'required' => true,
+                'constraints' => array(
+                    new Assert\NotBlank()
+                )
             )
         );
 
@@ -39,24 +39,24 @@ class RateSubmissionType extends AbstractType
             'mark',
             'choice',
             array(
-            'choices' => array(
-            '2.0' => '2.0',
-            '2.5' => '2.5',
-            '3.0' => '3.0',
-            '3.5' => '3.5',
-            '4.0' => '4.0',
-            '4.5' => '4.5',
-            '5.0' => '5.0'
-            ),
-            'label' => false,
-            'required' => true,
-            'empty_value' => '',
-            'attr' => array(
-            'class' => 'rate-form-select'
-            ),
-            'constraints' => array(
-            new Assert\NotBlank()
-            )
+                'choices' => array(
+                    '2.0' => '2.0',
+                    '2.5' => '2.5',
+                    '3.0' => '3.0',
+                    '3.5' => '3.5',
+                    '4.0' => '4.0',
+                    '4.5' => '4.5',
+                    '5.0' => '5.0'
+                ),
+                'label' => false,
+                'required' => true,
+                'empty_value' => '',
+                'attr' => array(
+                    'class' => 'rate-form-select'
+                ),
+                'constraints' => array(
+                    new Assert\NotBlank()
+                )
             )
         );
 
@@ -64,7 +64,7 @@ class RateSubmissionType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'submission.rate-form.submit'
+                'label' => 'submission.rate-form.submit'
             )
         );
     }

@@ -28,20 +28,20 @@ class GroupType extends AbstractType
             'name',
             'text',
             array(
-            'label' => 'group.form.name',
-            'required' => true,
-            'max_length' => 30,
-            'attr' => array(
-            'autofocus' => true
-            ),
-            'constraints' => array(
-            new Assert\NotBlank(),
-            new Assert\Length(
-                array(
-                'max' => 30
+                'label' => 'group.form.name',
+                'required' => true,
+                'max_length' => 30,
+                'attr' => array(
+                    'autofocus' => true
+                ),
+                'constraints' => array(
+                    new Assert\NotBlank(),
+                    new Assert\Length(
+                        array(
+                            'max' => 30
+                        )
+                    )
                 )
-            )
-            )
             )
         );
 
@@ -49,7 +49,7 @@ class GroupType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'group.form.submit'
+                'label' => 'group.form.submit'
             )
         );
     }

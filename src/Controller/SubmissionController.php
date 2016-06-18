@@ -29,7 +29,7 @@ class SubmissionController implements ControllerProviderInterface
     {
         $submissionController = $app['controllers_factory'];
         $submissionController->match('/rate', array($this, 'rateAction'))
-        ->bind('submission_rate');
+            ->bind('submission_rate');
         return $submissionController;
     }
 
@@ -70,9 +70,9 @@ class SubmissionController implements ControllerProviderInterface
                 $app['session']->getFlashBag()->add(
                     'message',
                     array(
-                    'type' => 'success',
-                    'icon' => 'check',
-                    'content' => $app['translator']->trans('submission.rate-messages.success')
+                        'type' => 'success',
+                        'icon' => 'check',
+                        'content' => $app['translator']->trans('submission.rate-messages.success')
                     )
                 );
 

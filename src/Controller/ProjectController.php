@@ -34,21 +34,21 @@ class ProjectController implements ControllerProviderInterface
     {
         $projectController = $app['controllers_factory'];
         $projectController->get('/list', array($this, 'listAction'))
-        ->bind('project_list');
+            ->bind('project_list');
         $projectController->match('/book', array($this, 'bookAction'))
-        ->bind('project_book');
+            ->bind('project_book');
         $projectController->match('/submit', array($this, 'submitAction'))
-        ->bind('project_submit');
+            ->bind('project_submit');
         $projectController->match('/summary', array($this, 'summaryAction'))
-        ->bind('project_summary');
+            ->bind('project_summary');
         $projectController->get('/overview', array($this, 'overviewAction'))
-        ->bind('project_overview');
+            ->bind('project_overview');
         $projectController->match('/add', array($this, 'addAction'))
-        ->bind('project_add');
+            ->bind('project_add');
         $projectController->match('/edit/{id}', array($this, 'editAction'))
-        ->bind('project_edit');
+            ->bind('project_edit');
         $projectController->post('/delete/{id}', array($this, 'deleteAction'))
-        ->bind('project_delete');
+            ->bind('project_delete');
         return $projectController;
     }
 
@@ -120,9 +120,9 @@ class ProjectController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('project.book-messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('project.book-messages.success')
                 )
             );
 
@@ -170,9 +170,9 @@ class ProjectController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('project.submit-messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('project.submit-messages.success')
                 )
             );
 
@@ -259,9 +259,9 @@ class ProjectController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('project.add-messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('project.add-messages.success')
                 )
             );
 
@@ -295,11 +295,11 @@ class ProjectController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'project.edit-messages.not-found'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'project.edit-messages.not-found'
+                    )
                 )
             );
 
@@ -323,11 +323,11 @@ class ProjectController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'project.edit-messages.not-allowed'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'project.edit-messages.not-allowed'
+                    )
                 )
             );
 
@@ -351,9 +351,9 @@ class ProjectController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('project.edit-messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('project.edit-messages.success')
                 )
             );
 
@@ -385,11 +385,11 @@ class ProjectController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'project.delete-messages.not-found'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'project.delete-messages.not-found'
+                    )
                 )
             );
         } else {
@@ -407,22 +407,22 @@ class ProjectController implements ControllerProviderInterface
                     $app['session']->getFlashBag()->add(
                         'message',
                         array(
-                        'type' => 'success',
-                        'icon' => 'check',
-                        'content' => $app['translator']->trans(
-                            'project.delete-messages.success'
-                        )
+                            'type' => 'success',
+                            'icon' => 'check',
+                            'content' => $app['translator']->trans(
+                                'project.delete-messages.success'
+                            )
                         )
                     );
                 } else {
                     $app['session']->getFlashBag()->add(
                         'message',
                         array(
-                        'type' => 'alert',
-                        'icon' => 'times',
-                        'content' => $app['translator']->trans(
-                            'project.delete-messages.form-not-valid-error'
-                        )
+                            'type' => 'alert',
+                            'icon' => 'times',
+                            'content' => $app['translator']->trans(
+                                'project.delete-messages.form-not-valid-error'
+                            )
                         )
                     );
                 }
@@ -430,11 +430,11 @@ class ProjectController implements ControllerProviderInterface
                 $app['session']->getFlashBag()->add(
                     'message',
                     array(
-                    'type' => 'alert',
-                    'icon' => 'times',
-                    'content' => $app['translator']->trans(
-                        'project.delete-messages.reserved-alert'
-                    )
+                        'type' => 'alert',
+                        'icon' => 'times',
+                        'content' => $app['translator']->trans(
+                            'project.delete-messages.reserved-alert'
+                        )
                     )
                 );
             }

@@ -27,7 +27,7 @@ class DeleteGroupType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'group.delete-form.submit'
+                'label' => 'group.delete-form.submit'
             )
         );
     }

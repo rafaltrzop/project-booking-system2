@@ -30,13 +30,13 @@ class GroupController implements ControllerProviderInterface
     {
         $groupController = $app['controllers_factory'];
         $groupController->get('/list', array($this, 'listAction'))
-        ->bind('group_list');
+            ->bind('group_list');
         $groupController->match('/add', array($this, 'addAction'))
-        ->bind('group_add');
+            ->bind('group_add');
         $groupController->match('/edit/{id}', array($this, 'editAction'))
-        ->bind('group_edit');
+            ->bind('group_edit');
         $groupController->post('/delete/{id}', array($this, 'deleteAction'))
-        ->bind('group_delete');
+            ->bind('group_delete');
         return $groupController;
     }
 
@@ -98,9 +98,9 @@ class GroupController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('group.add-messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('group.add-messages.success')
                 )
             );
 
@@ -133,11 +133,11 @@ class GroupController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'group.edit-messages.not-found'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'group.edit-messages.not-found'
+                    )
                 )
             );
 
@@ -153,11 +153,11 @@ class GroupController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'group.edit-messages.not-allowed'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'group.edit-messages.not-allowed'
+                    )
                 )
             );
 
@@ -180,9 +180,9 @@ class GroupController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('group.edit-messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('group.edit-messages.success')
                 )
             );
 
@@ -214,11 +214,11 @@ class GroupController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'group.delete-messages.not-found'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'group.delete-messages.not-found'
+                    )
                 )
             );
         } else {
@@ -236,22 +236,22 @@ class GroupController implements ControllerProviderInterface
                     $app['session']->getFlashBag()->add(
                         'message',
                         array(
-                        'type' => 'success',
-                        'icon' => 'check',
-                        'content' => $app['translator']->trans(
-                            'group.delete-messages.success'
-                        )
+                            'type' => 'success',
+                            'icon' => 'check',
+                            'content' => $app['translator']->trans(
+                                'group.delete-messages.success'
+                            )
                         )
                     );
                 } else {
                     $app['session']->getFlashBag()->add(
                         'message',
                         array(
-                        'type' => 'alert',
-                        'icon' => 'times',
-                        'content' => $app['translator']->trans(
-                            'group.delete-messages.form-not-valid-error'
-                        )
+                            'type' => 'alert',
+                            'icon' => 'times',
+                            'content' => $app['translator']->trans(
+                                'group.delete-messages.form-not-valid-error'
+                            )
                         )
                     );
                 }
@@ -259,11 +259,11 @@ class GroupController implements ControllerProviderInterface
                 $app['session']->getFlashBag()->add(
                     'message',
                     array(
-                    'type' => 'alert',
-                    'icon' => 'times',
-                    'content' => $app['translator']->trans(
-                        'group.delete-messages.used-alert'
-                    )
+                        'type' => 'alert',
+                        'icon' => 'times',
+                        'content' => $app['translator']->trans(
+                            'group.delete-messages.used-alert'
+                        )
                     )
                 );
             }

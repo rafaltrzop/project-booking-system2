@@ -33,13 +33,13 @@ class UserController implements ControllerProviderInterface
     {
         $userController = $app['controllers_factory'];
         $userController->get('/redirect', array($this, 'redirectAction'))
-        ->bind('user_redirect');
+            ->bind('user_redirect');
         $userController->get('/list', array($this, 'listAction'))
-        ->bind('user_list');
+            ->bind('user_list');
         $userController->match('/edit/{id}', array($this, 'editAction'))
-        ->bind('user_edit');
+            ->bind('user_edit');
         $userController->post('/delete/{id}', array($this, 'deleteAction'))
-        ->bind('user_delete');
+            ->bind('user_delete');
         return $userController;
     }
 
@@ -125,11 +125,11 @@ class UserController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'user.edit-messages.not-found'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'user.edit-messages.not-found'
+                    )
                 )
             );
 
@@ -158,9 +158,9 @@ class UserController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'success',
-                'icon' => 'check',
-                'content' => $app['translator']->trans('user.edit-messages.success')
+                    'type' => 'success',
+                    'icon' => 'check',
+                    'content' => $app['translator']->trans('user.edit-messages.success')
                 )
             );
 
@@ -192,11 +192,11 @@ class UserController implements ControllerProviderInterface
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                'type' => 'warning',
-                'icon' => 'warning',
-                'content' => $app['translator']->trans(
-                    'user.delete-messages.not-found'
-                )
+                    'type' => 'warning',
+                    'icon' => 'warning',
+                    'content' => $app['translator']->trans(
+                        'user.delete-messages.not-found'
+                    )
                 )
             );
         } else {
@@ -212,22 +212,22 @@ class UserController implements ControllerProviderInterface
                 $app['session']->getFlashBag()->add(
                     'message',
                     array(
-                    'type' => 'success',
-                    'icon' => 'check',
-                    'content' => $app['translator']->trans(
-                        'user.delete-messages.success'
-                    )
+                        'type' => 'success',
+                        'icon' => 'check',
+                        'content' => $app['translator']->trans(
+                            'user.delete-messages.success'
+                        )
                     )
                 );
             } else {
                 $app['session']->getFlashBag()->add(
                     'message',
                     array(
-                    'type' => 'alert',
-                    'icon' => 'times',
-                    'content' => $app['translator']->trans(
-                        'user.delete-messages.form-not-valid-error'
-                    )
+                        'type' => 'alert',
+                        'icon' => 'times',
+                        'content' => $app['translator']->trans(
+                            'user.delete-messages.form-not-valid-error'
+                        )
                     )
                 );
             }

@@ -28,22 +28,22 @@ class LogInType extends AbstractType
             'email',
             'email',
             array(
-            'label' => 'auth.form.email',
-            'required' => true,
-            'max_length' => 60,
-            'attr' => array(
-            'autofocus' => true
-            ),
-            'constraints' => array(
-            new Assert\NotBlank(),
-            new Assert\Email(),
-            new Assert\Length(
-                array(
-                'min' => 5,
-                'max' => 60
+                'label' => 'auth.form.email',
+                'required' => true,
+                'max_length' => 60,
+                'attr' => array(
+                    'autofocus' => true
+                ),
+                'constraints' => array(
+                    new Assert\NotBlank(),
+                    new Assert\Email(),
+                    new Assert\Length(
+                        array(
+                            'min' => 5,
+                            'max' => 60
+                        )
+                    )
                 )
-            )
-            )
             )
         );
 
@@ -51,18 +51,18 @@ class LogInType extends AbstractType
             'password',
             'password',
             array(
-            'label' => 'auth.form.password',
-            'required' => true,
-            'max_length' => 30,
-            'constraints' => array(
-            new Assert\NotBlank(),
-            new Assert\Length(
-                array(
-                'min' => 5,
-                'max' => 30
+                'label' => 'auth.form.password',
+                'required' => true,
+                'max_length' => 30,
+                'constraints' => array(
+                    new Assert\NotBlank(),
+                    new Assert\Length(
+                        array(
+                            'min' => 5,
+                            'max' => 30
+                        )
+                    )
                 )
-            )
-            )
             )
         );
 
@@ -70,7 +70,7 @@ class LogInType extends AbstractType
             'submit',
             'submit',
             array(
-            'label' => 'auth.form.submit'
+                'label' => 'auth.form.submit'
             )
         );
     }

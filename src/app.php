@@ -18,7 +18,7 @@ $app = new Application();
 $app->register(
     new TwigServiceProvider(),
     array(
-    'twig.path' => __DIR__ . '/views'
+        'twig.path' => __DIR__ . '/views'
     )
 );
 
@@ -27,8 +27,8 @@ $app->register(new UrlGeneratorServiceProvider());
 $app->register(
     new TranslationServiceProvider(),
     array(
-    'locale' => 'pl',
-    'locale_fallbacks' => array('en', 'pl')
+        'locale' => 'pl',
+        'locale_fallbacks' => array('en', 'pl')
     )
 );
 
@@ -61,17 +61,17 @@ if ($url == false) {
 $app->register(
     new DoctrineServiceProvider(),
     array(
-    'db.options' => array(
-      'driver' => 'pdo_mysql',
-      'host' => $hostname,
-      'dbname' => $database,
-      'user' => $username,
-      'password' => $password,
-      'charset' => 'utf8',
-      'driverOptions' => array(
-        1002 => 'SET NAMES utf8'
-      )
-    )
+        'db.options' => array(
+            'driver' => 'pdo_mysql',
+            'host' => $hostname,
+            'dbname' => $database,
+            'user' => $username,
+            'password' => $password,
+            'charset' => 'utf8',
+            'driverOptions' => array(
+                1002 => 'SET NAMES utf8'
+            )
+        )
     )
 );
 
@@ -84,44 +84,43 @@ $app->register(new SessionServiceProvider());
 $app->register(
     new SecurityServiceProvider(),
     array(
-    'security.firewalls' => array(
-      'admin' => array(
-        'pattern' => '^.*$',
-        'form' => array(
-          'login_path' => 'auth_login',
-          'check_path' => 'auth_login_check',
-          'default_target_path'=> '/',
-          'username_parameter' => 'login_form[email]',
-          'password_parameter' => 'login_form[password]',
+        'security.firewalls' => array(
+            'admin' => array(
+                'pattern' => '^.*$',
+                'form' => array(
+                    'login_path' => 'auth_login',
+                    'check_path' => 'auth_login_check',
+                    'default_target_path'=> '/',
+                    'username_parameter' => 'login_form[email]',
+                    'password_parameter' => 'login_form[password]',
+                ),
+                'anonymous' => true,
+                'logout' => array(
+                    'logout_path' => 'auth_logout',
+                    'target_url' => '/'
+                ),
+                'users' => $app->share(
+                    function () use ($app) {
+                        return new Provider\UserProvider($app);
+                    }
+                )
+            )
         ),
-        'anonymous' => true,
-        'logout' => array(
-          'logout_path' => 'auth_logout',
-          'target_url' => '/'
+        'security.access_rules' => array(
+            array('^/auth.+$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
+            array('^/signup/$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
+            array('^/user/redirect$', 'ROLE_USER'),
+            array('^/project/book$', 'ROLE_USER'),
+            array('^/project/submit$', 'ROLE_USER'),
+            array('^/project/summary$', 'ROLE_USER'),
+            array('^/user/list$', 'ROLE_ADMIN'),
+            array('^/user/edit.+$', 'ROLE_ADMIN'),
+            array('^/user/delete.+$', 'ROLE_ADMIN'),
+            array('^/.+$', 'ROLE_MOD')
         ),
-        'users' => $app->share(
-            function () use ($app) {
-            
-                return new Provider\UserProvider($app);
-            }
+        'security.role_hierarchy' => array(
+            'ROLE_ADMIN' => array('ROLE_MOD'),
         )
-      )
-    ),
-    'security.access_rules' => array(
-      array('^/auth.+$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-      array('^/signup/$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
-      array('^/user/redirect$', 'ROLE_USER'),
-      array('^/project/book$', 'ROLE_USER'),
-      array('^/project/submit$', 'ROLE_USER'),
-      array('^/project/summary$', 'ROLE_USER'),
-      array('^/user/list$', 'ROLE_ADMIN'),
-      array('^/user/edit.+$', 'ROLE_ADMIN'),
-      array('^/user/delete.+$', 'ROLE_ADMIN'),
-      array('^/.+$', 'ROLE_MOD')
-    ),
-    'security.role_hierarchy' => array(
-      'ROLE_ADMIN' => array('ROLE_MOD'),
-    )
     )
 );
 
