@@ -51,6 +51,20 @@ Run gulp to copy and compile all the assets. It will re-run every time you make 
 $ gulp
 ```
 
+Download PHP_CodeSniffer and check violations of a defined coding standard:
+
+```
+$ curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+$ php phpcs.phar src web
+```
+
+Download PHP Code Beautifier and Fixer and automatically correct errors:
+
+```
+$ curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar
+$ php phpcbf.phar src web
+```
+
 ## Documentation
 
 Download phpDoc:
