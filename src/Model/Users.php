@@ -171,6 +171,10 @@ class Users
      */
     public function updateUser($userData)
     {
+        if ($userData['role_id'] == 1 || $userData['role_id'] == 2) {
+            $userData['group_id'] = null;
+        }
+
         $query = '
             UPDATE users
             SET role_id = :role_id, group_id = :group_id, first_name = :first_name, last_name = :last_name, email = :email

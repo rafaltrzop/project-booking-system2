@@ -102,24 +102,6 @@ class UserProfileType extends AbstractType
             )
         );
 
-        $builder->add(
-            'group_id',
-            'choice',
-            array(
-                'choices' => $this->groupChoices(),
-                'label' => 'signup.form.group',
-                'required' => true,
-                'empty_value' => '',
-                'constraints' => array(
-                    new Assert\NotBlank(
-                        array(
-                            'groups' => array('signup-default', 'user-edit')
-                        )
-                    )
-                )
-            )
-        );
-
         if (isset($options['validation_groups'])
         && count($options['validation_groups'])
         && in_array('user-edit', $options['validation_groups'])
@@ -142,6 +124,24 @@ class UserProfileType extends AbstractType
                 )
             );
         }
+
+        $builder->add(
+            'group_id',
+            'choice',
+            array(
+                'choices' => $this->groupChoices(),
+                'label' => 'signup.form.group',
+                'required' => true,
+                'empty_value' => '',
+                'constraints' => array(
+                    new Assert\NotBlank(
+                        array(
+                            'groups' => array('signup-default', 'user-edit')
+                        )
+                    )
+                )
+            )
+        );
 
         $builder->add(
             'email',
