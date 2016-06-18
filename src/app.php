@@ -16,51 +16,51 @@ use Silex\Provider\SecurityServiceProvider;
 $app = new Application();
 
 $app->register(
-  new TwigServiceProvider(),
-  array(
+    new TwigServiceProvider(),
+    array(
     'twig.path' => __DIR__ . '/views'
-  )
+    )
 );
 
 $app->register(new UrlGeneratorServiceProvider());
 
 $app->register(
-  new TranslationServiceProvider(),
-  array(
+    new TranslationServiceProvider(),
+    array(
     'locale' => 'pl',
     'locale_fallbacks' => array('en', 'pl')
-  )
+    )
 );
 
 $app['translator']->addResource('xliff', __DIR__ . '/locales/en.xlf', 'en');
 
 $detectedLocale = $app['translator']->getLocale();
 $app['translator']->addResource(
-  'xliff',
-  __DIR__ . '/locales/' . $detectedLocale . '.xlf',
-  $detectedLocale
+    'xliff',
+    __DIR__ . '/locales/' . $detectedLocale . '.xlf',
+    $detectedLocale
 );
 
 // Heroku JawsDB MySQL add-on
 // https://devcenter.heroku.com/articles/jawsdb#using-with-php
 $url = getenv('JAWSDB_URL');
-if ($url == FALSE) {
-  $hostname = 'localhost';
-  $username = 'root';
-  $password = 'root';
-  $database = 'srtp2';
+if ($url == false) {
+    $hostname = 'localhost';
+    $username = 'root';
+    $password = 'root';
+    $database = 'srtp2';
 } else {
-  $dbparts = parse_url($url);
+    $dbparts = parse_url($url);
 
-  $hostname = $dbparts['host'];
-  $username = $dbparts['user'];
-  $password = $dbparts['pass'];
-  $database = ltrim($dbparts['path'], '/');
+    $hostname = $dbparts['host'];
+    $username = $dbparts['user'];
+    $password = $dbparts['pass'];
+    $database = ltrim($dbparts['path'], '/');
 }
 
 $app->register(
-  new DoctrineServiceProvider(),
-  array(
+    new DoctrineServiceProvider(),
+    array(
     'db.options' => array(
       'driver' => 'pdo_mysql',
       'host' => $hostname,
@@ -72,7 +72,7 @@ $app->register(
         1002 => 'SET NAMES utf8'
       )
     )
-  )
+    )
 );
 
 $app->register(new FormServiceProvider());
@@ -82,8 +82,8 @@ $app->register(new ValidatorServiceProvider());
 $app->register(new SessionServiceProvider());
 
 $app->register(
-  new SecurityServiceProvider(),
-  array(
+    new SecurityServiceProvider(),
+    array(
     'security.firewalls' => array(
       'admin' => array(
         'pattern' => '^.*$',
@@ -100,10 +100,10 @@ $app->register(
           'target_url' => '/'
         ),
         'users' => $app->share(
-          function() use ($app)
-          {
-            return new Provider\UserProvider($app);
-          }
+            function () use ($app) {
+            
+                return new Provider\UserProvider($app);
+            }
         )
       )
     ),
@@ -122,7 +122,7 @@ $app->register(
     'security.role_hierarchy' => array(
       'ROLE_ADMIN' => array('ROLE_MOD'),
     )
-  )
+    )
 );
 
 return $app;

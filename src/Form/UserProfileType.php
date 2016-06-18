@@ -17,275 +17,273 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UserProfileType extends AbstractType
 {
-  /**
-   * Groups data.
-   *
-   * @var array $groups
-   */
-  private $groups;
+    /**
+     * Groups data.
+     *
+     * @var array $groups
+     */
+    private $groups;
 
-  /**
-   * Roles data.
-   *
-   * @var array $roles
-   */
-  private $roles;
+    /**
+     * Roles data.
+     *
+     * @var array $roles
+     */
+    private $roles;
 
-  /**
-   * UserProfileType constructor.
-   *
-   * @param array $groups Groups data
-   * @param array $roles Roles data
-   */
-  public function __construct($groups, $roles = null)
-  {
-    $this->groups = $groups;
-    $this->roles = $roles;
-  }
-
-  /**
-   * Form builder.
-   *
-   * @param FormBuilderInterface $builder Form builder
-   * @param array $options Form options
-   */
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add(
-      'first_name',
-      'text',
-      array(
-        'label' => 'signup.form.firstname',
-        'required' => true,
-        'max_length' => 30,
-        'attr' => array(
-          'autofocus' => true
-        ),
-        'constraints' => array(
-          new Assert\NotBlank(
-            array(
-              'groups' => array('signup-default', 'user-edit')
-            )
-          ),
-          new Assert\Length(
-            array(
-              'groups' => array('signup-default', 'user-edit'),
-              'min' => 2,
-              'max' => 30
-            )
-          )
-        )
-      )
-    );
-
-    $builder->add(
-      'last_name',
-      'text',
-      array(
-        'label' => 'signup.form.lastname',
-        'required' => true,
-        'max_length' => 30,
-        'constraints' => array(
-          new Assert\NotBlank(
-            array(
-              'groups' => array('signup-default', 'user-edit')
-            )
-          ),
-          new Assert\Length(
-            array(
-              'groups' => array('signup-default', 'user-edit'),
-              'min' => 2,
-              'max' => 30
-            )
-          )
-        )
-      )
-    );
-
-    $builder->add(
-      'group_id',
-      'choice',
-      array(
-        'choices' => $this->groupChoices(),
-        'label' => 'signup.form.group',
-        'required' => true,
-        'empty_value' => '',
-        'constraints' => array(
-          // group needs to be set to null when editing user in order to change his role to mod or admin
-          // set empty_data to null?
-          new Assert\NotBlank(
-            array(
-              'groups' => array('signup-default', 'user-edit')
-            )
-          )
-        )
-      )
-    );
-
-    if (isset($options['validation_groups'])
-      && count($options['validation_groups'])
-      && in_array('user-edit', $options['validation_groups'])
-    ) {
-      $builder->add(
-        'role_id',
-        'choice',
-        array(
-          'choices' => $this->roleChoices(),
-          'label' => 'user.edit-form.role',
-          'required' => true,
-          'empty_value' => '',
-          'constraints' => array(
-            new Assert\NotBlank(
-              array(
-                'groups' => array('user-edit')
-              )
-            )
-          )
-        )
-      );
+    /**
+     * UserProfileType constructor.
+     *
+     * @param array $groups Groups data
+     * @param array $roles Roles data
+     */
+    public function __construct($groups, $roles = null)
+    {
+        $this->groups = $groups;
+        $this->roles = $roles;
     }
 
-    $builder->add(
-      'email',
-      'email',
-      array(
-        'label' => 'signup.form.email',
-        'required' => true,
-        'max_length' => 60,
-        'constraints' => array(
-          new Assert\NotBlank(
+    /**
+     * Form builder.
+     *
+     * @param FormBuilderInterface $builder Form builder
+     * @param array $options Form options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add(
+            'first_name',
+            'text',
             array(
-              'groups' => array('signup-default', 'user-edit')
+            'label' => 'signup.form.firstname',
+            'required' => true,
+            'max_length' => 30,
+            'attr' => array(
+            'autofocus' => true
+            ),
+            'constraints' => array(
+            new Assert\NotBlank(
+                array(
+                'groups' => array('signup-default', 'user-edit')
+                )
+            ),
+            new Assert\Length(
+                array(
+                'groups' => array('signup-default', 'user-edit'),
+                'min' => 2,
+                'max' => 30
+                )
             )
-          ),
-          new Assert\Email(
-            array(
-              'groups' => array('signup-default', 'user-edit')
             )
-          ),
-          new Assert\Length(
-            array(
-              'groups' => array('signup-default', 'user-edit'),
-              'min' => 5,
-              'max' => 60
             )
-          )
-        )
-      )
-    );
+        );
 
-    if (isset($options['validation_groups'])
-      && count($options['validation_groups'])
-      && !in_array('user-edit', $options['validation_groups'])
-    ) {
-      $builder->add(
-        'password',
-        'repeated',
-        array(
-          'type' => 'password',
-          'invalid_message' => 'The password fields must match.',
-          'first_options'  => array('label' => 'signup.form.password'),
-          'second_options' => array('label' => 'signup.form.repeat-password'),
-          'options' => array(
+        $builder->add(
+            'last_name',
+            'text',
+            array(
+            'label' => 'signup.form.lastname',
             'required' => true,
             'max_length' => 30,
             'constraints' => array(
-              new Assert\NotBlank(
+            new Assert\NotBlank(
                 array(
-                  'groups' => array('signup-default')
+                'groups' => array('signup-default', 'user-edit')
                 )
-              ),
-              new Assert\Length(
+            ),
+            new Assert\Length(
                 array(
-                  'groups' => array('signup-default'),
-                  'min' => 5,
-                  'max' => 30
+                'groups' => array('signup-default', 'user-edit'),
+                'min' => 2,
+                'max' => 30
                 )
-              )
             )
-          )
-        )
-      );
+            )
+            )
+        );
+
+        $builder->add(
+            'group_id',
+            'choice',
+            array(
+            'choices' => $this->groupChoices(),
+            'label' => 'signup.form.group',
+            'required' => true,
+            'empty_value' => '',
+            'constraints' => array(
+            // group needs to be set to null when editing user in order to change his role to mod or admin
+            // set empty_data to null?
+            new Assert\NotBlank(
+                array(
+                'groups' => array('signup-default', 'user-edit')
+                )
+            )
+            )
+            )
+        );
+
+        if (isset($options['validation_groups'])
+        && count($options['validation_groups'])
+        && in_array('user-edit', $options['validation_groups'])
+        ) {
+            $builder->add(
+                'role_id',
+                'choice',
+                array(
+                'choices' => $this->roleChoices(),
+                'label' => 'user.edit-form.role',
+                'required' => true,
+                'empty_value' => '',
+                'constraints' => array(
+                new Assert\NotBlank(
+                    array(
+                    'groups' => array('user-edit')
+                    )
+                )
+                )
+                )
+            );
+        }
+
+        $builder->add(
+            'email',
+            'email',
+            array(
+            'label' => 'signup.form.email',
+            'required' => true,
+            'max_length' => 60,
+            'constraints' => array(
+            new Assert\NotBlank(
+                array(
+                'groups' => array('signup-default', 'user-edit')
+                )
+            ),
+            new Assert\Email(
+                array(
+                'groups' => array('signup-default', 'user-edit')
+                )
+            ),
+            new Assert\Length(
+                array(
+                'groups' => array('signup-default', 'user-edit'),
+                'min' => 5,
+                'max' => 60
+                )
+            )
+            )
+            )
+        );
+
+        if (isset($options['validation_groups'])
+        && count($options['validation_groups'])
+        && !in_array('user-edit', $options['validation_groups'])
+        ) {
+            $builder->add(
+                'password',
+                'repeated',
+                array(
+                'type' => 'password',
+                'invalid_message' => 'The password fields must match.',
+                'first_options'  => array('label' => 'signup.form.password'),
+                'second_options' => array('label' => 'signup.form.repeat-password'),
+                'options' => array(
+                'required' => true,
+                'max_length' => 30,
+                'constraints' => array(
+                new Assert\NotBlank(
+                    array(
+                    'groups' => array('signup-default')
+                    )
+                ),
+                new Assert\Length(
+                    array(
+                    'groups' => array('signup-default'),
+                    'min' => 5,
+                    'max' => 30
+                    )
+                )
+                )
+                )
+                )
+            );
+        }
+
+        if (isset($options['validation_groups'])
+        && count($options['validation_groups'])
+        && in_array('user-edit', $options['validation_groups'])
+        ) {
+            $builder->add(
+                'submit',
+                'submit',
+                array(
+                'label' => 'user.edit-form.submit'
+                )
+            );
+        }
+
+        if (isset($options['validation_groups'])
+        && count($options['validation_groups'])
+        && !in_array('user-edit', $options['validation_groups'])
+        ) {
+            $builder->add(
+                'submit',
+                'submit',
+                array(
+                'label' => 'signup.form.submit'
+                )
+            );
+        }
     }
 
-    if (isset($options['validation_groups'])
-      && count($options['validation_groups'])
-      && in_array('user-edit', $options['validation_groups'])
-    ) {
-      $builder->add(
-        'submit',
-        'submit',
-        array(
-          'label' => 'user.edit-form.submit'
-        )
-      );
-    }
-
-    if (isset($options['validation_groups'])
-      && count($options['validation_groups'])
-      && !in_array('user-edit', $options['validation_groups'])
-    ) {
-      $builder->add(
-        'submit',
-        'submit',
-        array(
-          'label' => 'signup.form.submit'
-        )
-      );
-    }
-  }
-
-  /**
-   * Getter for form name.
-   *
-   * @return string Form name
-   */
-  public function getName()
-  {
-    return 'signup_form';
-  }
-
-  /**
-   * Sets default options for form.
-   *
-   * @param OptionsResolverInterface $resolver
-   */
-  public function setDefaultOptions(OptionsResolverInterface $resolver)
-  {
-    $resolver->setDefaults(
-      array(
-        'validation_groups' => 'signup-default',
-      )
-    );
-  }
-
-  /**
-   * Prepares data for group choices field.
-   *
-   * @return array Group choices
-   */
-  private function groupChoices()
-  {
-    $groupChoices = array();
-    foreach ($this->groups as $group)
+    /**
+     * Getter for form name.
+     *
+     * @return string Form name
+     */
+    public function getName()
     {
-      $groupChoices[$group['id']] = $group['name'];
+        return 'signup_form';
     }
-    return $groupChoices;
-  }
 
-  /**
-   * Prepares data for role choices field.
-   *
-   * @return array Role choices
-   */
-  private function roleChoices()
-  {
-    $roleChoices = array();
-    foreach ($this->roles as $role)
+    /**
+     * Sets default options for form.
+     *
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-      $roleChoices[$role['id']] = $role['name'];
+        $resolver->setDefaults(
+            array(
+            'validation_groups' => 'signup-default',
+            )
+        );
     }
-    return $roleChoices;
-  }
+
+    /**
+     * Prepares data for group choices field.
+     *
+     * @return array Group choices
+     */
+    private function groupChoices()
+    {
+        $groupChoices = array();
+        foreach ($this->groups as $group) {
+            $groupChoices[$group['id']] = $group['name'];
+        }
+        return $groupChoices;
+    }
+
+    /**
+     * Prepares data for role choices field.
+     *
+     * @return array Role choices
+     */
+    private function roleChoices()
+    {
+        $roleChoices = array();
+        foreach ($this->roles as $role) {
+            $roleChoices[$role['id']] = $role['name'];
+        }
+        return $roleChoices;
+    }
 }

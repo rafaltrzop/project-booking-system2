@@ -17,58 +17,58 @@ use Form\LogInType;
  */
 class AuthController implements ControllerProviderInterface
 {
-  /**
-   * Routing settings.
-   *
-   * @param \Silex\Application $app Silex application
-   * @return \Silex\ControllerCollection Result
-   */
-  public function connect(Application $app)
-  {
-    $authController = $app['controllers_factory'];
-    $authController->match('/login', array($this, 'loginAction'))
-      ->bind('auth_login');
-    // $authController->get('/logout', array($this, 'logoutAction'))
-    //   ->bind('auth_logout');
-    return $authController;
-  }
+    /**
+     * Routing settings.
+     *
+     * @param \Silex\Application $app Silex application
+     * @return \Silex\ControllerCollection Result
+     */
+    public function connect(Application $app)
+    {
+        $authController = $app['controllers_factory'];
+        $authController->match('/login', array($this, 'loginAction'))
+        ->bind('auth_login');
+        // $authController->get('/logout', array($this, 'logoutAction'))
+        //   ->bind('auth_logout');
+        return $authController;
+    }
 
-  /**
-   * Login action.
-   *
-   * @param \Silex\Application $app Silex application
-   * @param \Symfony\Component\HttpFoundation\Request $request Request object
-   * @return string Output
-   */
-  public function loginAction(Application $app, Request $request)
-  {
-    $user = array(
-      'login' => $app['session']->get('_security.last_username')
-    );
+    /**
+     * Login action.
+     *
+     * @param \Silex\Application $app Silex application
+     * @param \Symfony\Component\HttpFoundation\Request $request Request object
+     * @return string Output
+     */
+    public function loginAction(Application $app, Request $request)
+    {
+        $user = array(
+        'login' => $app['session']->get('_security.last_username')
+        );
 
-    $form = $app['form.factory']->createBuilder(
-      new LogInType(),
-      $user
-    )->getForm();
+        $form = $app['form.factory']->createBuilder(
+            new LogInType(),
+            $user
+        )->getForm();
 
-    $view = array(
-      'form' => $form->createView(),
-      'error' => $app['security.last_error']($request)
-    );
+        $view = array(
+        'form' => $form->createView(),
+        'error' => $app['security.last_error']($request)
+        );
 
-    return $app['twig']->render('Auth/login.html.twig', $view);
-  }
+        return $app['twig']->render('Auth/login.html.twig', $view);
+    }
 
-  /**
-   * Logout action.
-   *
-   * @param \Silex\Application $app Silex application
-   * @return string Output
-   */
-  // public function logoutAction(Application $app)
-  // {
-  //   $view = array();
-  //   $app['session']->clear();
-  //   return $app['twig']->render('Auth/logout.html.twig', $view);
-  // }
+    /**
+     * Logout action.
+     *
+     * @param \Silex\Application $app Silex application
+     * @return string Output
+     */
+    // public function logoutAction(Application $app)
+    // {
+    //   $view = array();
+    //   $app['session']->clear();
+    //   return $app['twig']->render('Auth/logout.html.twig', $view);
+    // }
 }
