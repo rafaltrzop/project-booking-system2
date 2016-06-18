@@ -426,6 +426,10 @@
         <source>group.edit-messages.not-found</source>
         <target>Nie znaleziono podanej grupy tematów.</target>
       </trans-unit>
+      <trans-unit id="group.edit-messages.not-allowed">
+        <source>group.edit-messages.not-allowed</source>
+        <target>Nie masz uprawnień do edycji tej grupy tematów.</target>
+      </trans-unit>
       <trans-unit id="group.edit-messages.success">
         <source>group.edit-messages.success</source>
         <target>Zmiany zostały pomyślnie zapisane.</target>

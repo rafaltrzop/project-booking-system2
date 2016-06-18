@@ -40,7 +40,7 @@ class Groups
   public function findGroup($id)
   {
     $query = '
-      SELECT g.id, name, min(user_id) AS used
+      SELECT g.id, name, mod_user_id, min(user_id) AS used
       FROM groups g
       LEFT JOIN projects p ON g.id = p.group_id
       WHERE g.id = :id

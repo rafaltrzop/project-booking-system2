@@ -146,6 +146,26 @@ class GroupController implements ControllerProviderInterface
       );
     }
 
+    $userModel = new Users($app);
+    $modUserId = $userModel->getCurrentUserId();
+
+    if ($group['mod_user_id'] != $modUserId) {
+      $app['session']->getFlashBag()->add(
+        'message',
+        array(
+          'type' => 'warning',
+          'icon' => 'warning',
+          'content' => $app['translator']->trans(
+            'group.edit-messages.not-allowed'
+          )
+        )
+      );
+
+      return $app->redirect(
+        $app['url_generator']->generate('project_list')
+      );
+    }
+
     $groupForm = $app['form.factory']->createBuilder(
       new GroupType(),
       $group
