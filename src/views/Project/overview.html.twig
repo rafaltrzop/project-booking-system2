@@ -10,26 +10,30 @@
   <main class="body-content-container">
     <div class="column row">
       <h1>Stan rezerwacji projektów</h1>
-      <table class="scroll">
-        <thead>
-          <tr>
-            <th>Użytkownik</th>
-            <th>E-mail</th>
-            <th>Grupa</th>
-            <th>Temat projektu</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for row in overview %}
+      {% if overview|length > 0 %}
+        <table class="scroll">
+          <thead>
             <tr>
-              <td>{{ row.first_name }} {{ row.last_name }}</td>
-              <td>{{ row.email }}</td>
-              <td>{{ row.name }}</td>
-              <td>{{ row.topic }}</td>
+              <th>Użytkownik</th>
+              <th>E-mail</th>
+              <th>Grupa</th>
+              <th>Temat projektu</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for row in overview %}
+              <tr>
+                <td>{{ row.first_name }} {{ row.last_name }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.topic }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>{{ 'none.body.no-data-found'|trans }}</p>
+      {% endif %}
     </div>
   </main>
 {% endblock %}

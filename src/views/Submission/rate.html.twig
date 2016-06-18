@@ -13,36 +13,40 @@
   <main class="body-content-container">
     <div class="column row">
       <h1>{{ 'submission.rate-form.h1'|trans }}</h1>
-      <table class="scroll">
-        <thead>
-          <tr>
-            <th>{{ 'submission.table.date'|trans }}</th>
-            <th>{{ 'submission.table.author'|trans }}</th>
-            <th>{{ 'submission.table.topic'|trans }}</th>
-            <th>{{ 'submission.table.mark'|trans }}</th>
-            <th class="text-center">{{ 'submission.table.edit-mark'|trans }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for submission in submissions %}
+      {% if submissions|length > 0 %}
+        <table class="scroll">
+          <thead>
             <tr>
-              <td>{{ submission.submitted_at }}</td>
-              <td>{{ submission.first_name }} {{ submission.last_name }}</td>
-              <td>{{ submission.topic }}</td>
-              <td>
-                {% if submission.mark %}
-                  {{ submission.mark }}
-                {% else %}
-                  &mdash;
-                {% endif %}
-              </td>
-              <td>
-                {{ form(forms[loop.index0]) }}
-              </td>
+              <th>{{ 'submission.table.date'|trans }}</th>
+              <th>{{ 'submission.table.author'|trans }}</th>
+              <th>{{ 'submission.table.topic'|trans }}</th>
+              <th>{{ 'submission.table.mark'|trans }}</th>
+              <th class="text-center">{{ 'submission.table.edit-mark'|trans }}</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for submission in submissions %}
+              <tr>
+                <td>{{ submission.submitted_at }}</td>
+                <td>{{ submission.first_name }} {{ submission.last_name }}</td>
+                <td>{{ submission.topic }}</td>
+                <td>
+                  {% if submission.mark %}
+                    {{ submission.mark }}
+                  {% else %}
+                    &mdash;
+                  {% endif %}
+                </td>
+                <td>
+                  {{ form(forms[loop.index0]) }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>{{ 'none.body.no-data-found'|trans }}</p>
+      {% endif %}
     </div>
   </main>
 {% endblock %}

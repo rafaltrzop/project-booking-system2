@@ -38,6 +38,10 @@
         <source>none.top-bar.logout</source>
         <target>Log out</target>
       </trans-unit>
+      <trans-unit id="none.body.no-data-found">
+        <source>none.body.no-data-found</source>
+        <target>No data found.</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Index/index.html.twig">

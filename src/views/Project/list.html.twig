@@ -15,36 +15,40 @@
   <main class="body-content-container">
     <div class="column row">
       <h1>{{ 'project.groups-projects-list.h1'|trans }}</h1>
-      {% for group in groups %}
-        <h2>{{ group.name }}</h2>
-        <table class="scroll">
-          <thead>
-            <tr>
-              <th>{{ 'project.groups-projects-list.project-topic'|trans }}</th>
-              <th colspan="2" class="text-center">{{ 'project.groups-projects-list.options'|trans }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for project in group.projects %}
+      {% if groups|length > 0 %}
+        {% for group in groups %}
+          <h2>{{ group.name }}</h2>
+          <table class="scroll">
+            <thead>
               <tr>
-                <td>{{ project.topic }}</td>
-                <td>
-                  <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
-                </td>
-                <td>
-                  {{ form_start(forms[project.id], {'attr': {'onsubmit': 'return confirm();'}, 'action': path('project_delete', {'id' : project.id})}) }}
-                  {% if project.reserved %}
-                    {{ form_widget(forms[project.id].submit, {'disabled': 'disabled'}) }}
-                  {% else %}
-                    {{ form_widget(forms[project.id]) }}
-                  {% endif %}
-                  {{ form_end(forms[project.id]) }}
-                </td>
+                <th>{{ 'project.groups-projects-list.project-topic'|trans }}</th>
+                <th colspan="2" class="text-center">{{ 'project.groups-projects-list.options'|trans }}</th>
               </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      {% endfor %}
+            </thead>
+            <tbody>
+              {% for project in group.projects %}
+                <tr>
+                  <td>{{ project.topic }}</td>
+                  <td>
+                    <a href="{{ path('project_edit', {'id' : project.id}) }}" class="hollow button">{{ 'project.groups-projects-list.edit'|trans }}</a>
+                  </td>
+                  <td>
+                    {{ form_start(forms[project.id], {'attr': {'onsubmit': 'return confirm();'}, 'action': path('project_delete', {'id' : project.id})}) }}
+                    {% if project.reserved %}
+                      {{ form_widget(forms[project.id].submit, {'disabled': 'disabled'}) }}
+                    {% else %}
+                      {{ form_widget(forms[project.id]) }}
+                    {% endif %}
+                    {{ form_end(forms[project.id]) }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endfor %}
+      {% else %}
+        <p>{{ 'none.body.no-data-found'|trans }}</p>
+      {% endif %}
     </div>
   </main>
 {% endblock %}
