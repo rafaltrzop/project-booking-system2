@@ -14,9 +14,7 @@
           <li>{{ error }}</li>
         </ul>
       {% endif %}
-      {{ form_start(form, {'action': path('auth_login_check')}) }}
-      {{ form_widget(form) }}
-      {{ form_end(form) }}
+      {{ form(form, {'action': path('auth_login_check')}) }}
     </div>
   </section>
 {% endblock %}
