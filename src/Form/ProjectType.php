@@ -43,11 +43,6 @@ class ProjectType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add(
-      'id',
-      'hidden'
-    );
-
-    $builder->add(
       'topic',
       'text',
       array(
