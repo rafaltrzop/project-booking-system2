@@ -91,8 +91,7 @@ class ProjectController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Return value mixed because of possible redirect?
+     * @return RedirectResponse|string Response
      */
     public function bookAction(Application $app, Request $request)
     {
@@ -141,8 +140,7 @@ class ProjectController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Return value mixed because of possible redirect?
+     * @return RedirectResponse|string Response
      */
     public function submitAction(Application $app, Request $request)
     {
@@ -231,8 +229,7 @@ class ProjectController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Return value mixed because of possible redirect?
+     * @return RedirectResponse|string Response
      */
     public function addAction(Application $app, Request $request)
     {
@@ -280,8 +277,7 @@ class ProjectController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Return value mixed because of possible redirect?
+     * @return RedirectResponse|string Response
      */
     public function editAction(Application $app, Request $request)
     {
@@ -372,8 +368,7 @@ class ProjectController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Redirect - what return type?
+     * @return RedirectResponse Response
      */
     public function deleteAction(Application $app, Request $request)
     {

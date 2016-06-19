@@ -48,8 +48,7 @@ class UserController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Redirect - what return type?
+     * @return RedirectResponse Response
      */
     public function redirectAction(Application $app, Request $request)
     {
@@ -179,8 +178,7 @@ class UserController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Redirect - what return type?
+     * @return RedirectResponse Response
      */
     public function deleteAction(Application $app, Request $request)
     {

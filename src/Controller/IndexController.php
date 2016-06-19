@@ -34,8 +34,7 @@ class IndexController implements ControllerProviderInterface
      *
      * @param \Silex\Application $app Silex application
      * @param \Symfony\Component\HttpFoundation\Request $request Request object
-     * @return string Response
-     * @todo Return value mixed because of possible redirect?
+     * @return RedirectResponse|string Response
      */
     public function indexAction(Application $app, Request $request)
     {
