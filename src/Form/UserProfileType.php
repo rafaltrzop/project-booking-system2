@@ -136,7 +136,7 @@ class UserProfileType extends AbstractType
                 'constraints' => array(
                     new Assert\NotBlank(
                         array(
-                            'groups' => array('signup-default', 'user-edit')
+                            'groups' => array('signup-default')
                         )
                     )
                 )
