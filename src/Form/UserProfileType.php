@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Silex\Application;
 
 /**
  * Class UserProfileType.
@@ -17,6 +18,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class UserProfileType extends AbstractType
 {
+  /**
+   * Silex application.
+   *
+   * @var \Silex\Application $app
+   */
+    private $app;
+
     /**
      * Groups data.
      *
@@ -34,11 +42,13 @@ class UserProfileType extends AbstractType
     /**
      * UserProfileType constructor.
      *
+     * @param \Silex\Application $app Silex application
      * @param array $groups Groups data
      * @param array $roles Roles data
      */
-    public function __construct($groups, $roles = null)
+    public function __construct(Application $app, $groups, $roles = null)
     {
+        $this->app = $app;
         $this->groups = $groups;
         $this->roles = $roles;
     }
@@ -181,7 +191,7 @@ class UserProfileType extends AbstractType
                 'repeated',
                 array(
                     'type' => 'password',
-                    'invalid_message' => 'The password fields must match.',
+                    'invalid_message' => $this->app['translator']->trans('signup.form.repeat-password-error'),
                     'first_options'  => array('label' => 'signup.form.password'),
                     'second_options' => array('label' => 'signup.form.repeat-password'),
                     'options' => array(

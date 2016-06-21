@@ -46,6 +46,10 @@
         <source>none.messages.db-error</source>
         <target>A fatal database error has occurred, please try again later.</target>
       </trans-unit>
+      <trans-unit id="signup.form.repeat-password-error">
+        <source>signup.form.repeat-password-error</source>
+        <target>The password fields must match.</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Index/index.html.twig">

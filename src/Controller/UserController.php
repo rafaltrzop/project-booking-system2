@@ -172,6 +172,7 @@ class UserController implements ControllerProviderInterface
             $roleModel = new Roles($app);
             $userProfileForm = $app['form.factory']->createBuilder(
                 new UserProfileType(
+                    $app,
                     $groupModel->findAllGroups(),
                     $roleModel->findAllRoles()
                 ),

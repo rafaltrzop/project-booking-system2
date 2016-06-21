@@ -106,6 +106,10 @@
         <source>signup.messages.success</source>
         <target>Rejestracja przebiegła pomyślnie, możesz się już zalogować.</target>
       </trans-unit>
+      <trans-unit id="signup.form.repeat-password-error">
+        <source>signup.form.repeat-password-error</source>
+        <target>Pola z hasłem muszą być takie same.</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Auth/login.html.twig">
