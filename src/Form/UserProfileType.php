@@ -194,8 +194,8 @@ class UserProfileType extends AbstractType
                     'invalid_message' => $this->app['translator']->trans('signup.form.repeat-password-error'),
                     'first_options'  => array('label' => 'signup.form.password'),
                     'second_options' => array('label' => 'signup.form.repeat-password'),
+                    'required' => true,
                     'options' => array(
-                        'required' => true,
                         'max_length' => 30,
                         'constraints' => array(
                             new Assert\NotBlank(
@@ -206,6 +206,35 @@ class UserProfileType extends AbstractType
                             new Assert\Length(
                                 array(
                                     'groups' => array('signup-default'),
+                                    'min' => 5,
+                                    'max' => 30
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+
+        if (isset($options['validation_groups'])
+        && count($options['validation_groups'])
+        && in_array('user-edit', $options['validation_groups'])
+        ) {
+            $builder->add(
+                'password',
+                'repeated',
+                array(
+                    'type' => 'password',
+                    'invalid_message' => $this->app['translator']->trans('signup.form.repeat-password-error'),
+                    'first_options'  => array('label' => 'user.edit-form.new-password'),
+                    'second_options' => array('label' => 'user.edit-form.repeat-new-password'),
+                    'required' => false,
+                    'options' => array(
+                        'max_length' => 30,
+                        'constraints' => array(
+                            new Assert\Length(
+                                array(
+                                    'groups' => array('user-edit'),
                                     'min' => 5,
                                     'max' => 30
                                 )

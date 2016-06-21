@@ -514,6 +514,14 @@
         <source>user.edit-messages.success</source>
         <target>The changes have been successfully saved.</target>
       </trans-unit>
+      <trans-unit id="user.edit-form.new-password">
+        <source>user.edit-form.new-password</source>
+        <target>New password (leave empty to not change)</target>
+      </trans-unit>
+      <trans-unit id="user.edit-form.repeat-new-password">
+        <source>user.edit-form.repeat-new-password</source>
+        <target>Repeat new password (leave empty to not change)</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Submission/rate.html.twig">

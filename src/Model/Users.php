@@ -190,6 +190,15 @@ class Users
         $statement->bindValue('id', $userData['id'], \PDO::PARAM_INT);
 
         $statement->execute();
+
+        if ($userData['password'] != null) {
+            $passwordHash = $this->securityEncoderDigest->encodePassword($userData['password'], '');
+            $this->db->update(
+                'users',
+                array('password' => $passwordHash),
+                array('id' => $userData['id'])
+            );
+        }
     }
 
     /**
