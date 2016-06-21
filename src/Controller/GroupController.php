@@ -49,25 +49,40 @@ class GroupController implements ControllerProviderInterface
      */
     public function listAction(Application $app, Request $request)
     {
-        $view = array();
+        try {
+            $view = array();
 
-        $userModel = new Users($app);
-        $modUserId = $userModel->getCurrentUserId();
+            $userModel = new Users($app);
+            $modUserId = $userModel->getCurrentUserId();
 
-        $groupModel = new Groups($app);
-        $groups = $groupModel->findGroupsForMod($modUserId);
+            $groupModel = new Groups($app);
+            $groups = $groupModel->findGroupsForMod($modUserId);
 
-        $deleteForms = array();
-        foreach ($groups as $group) {
-            $deleteForms[$group['id']] = $app['form.factory']->createBuilder(
-                new DeleteGroupType()
-            )->getForm()->createView();
+            $deleteForms = array();
+            foreach ($groups as $group) {
+                $deleteForms[$group['id']] = $app['form.factory']->createBuilder(
+                    new DeleteGroupType()
+                )->getForm()->createView();
+            }
+
+            $view['groups'] = $groups;
+            $view['forms'] = $deleteForms;
+
+            return $app['twig']->render('Group/list.html.twig', $view);
+        } catch (\PDOException $e) {
+            $app['session']->getFlashBag()->add(
+                'message',
+                array(
+                    'type' => 'alert',
+                    'icon' => 'times',
+                    'content' => $app['translator']->trans('none.messages.db-error')
+                )
+            );
+
+            return $app->redirect(
+                $request->headers->get('referer')
+            );
         }
-
-        $view['groups'] = $groups;
-        $view['forms'] = $deleteForms;
-
-        return $app['twig']->render('Group/list.html.twig', $view);
     }
 
     /**
@@ -79,39 +94,55 @@ class GroupController implements ControllerProviderInterface
      */
     public function addAction(Application $app, Request $request)
     {
-        $view = array();
+        try {
+            $view = array();
 
-        $groupForm = $app['form.factory']->createBuilder(
-            new GroupType()
-        )->getForm();
+            $groupForm = $app['form.factory']->createBuilder(
+                new GroupType()
+            )->getForm();
 
-        $groupForm->handleRequest($request);
+            $groupForm->handleRequest($request);
 
-        if ($groupForm->isValid()) {
-            $groupData = $groupForm->getData();
-            $userModel = new Users($app);
-            $groupData['mod_user_id'] = $userModel->getCurrentUserId();
+            if ($groupForm->isValid()) {
+                $groupData = $groupForm->getData();
 
-            $groupModel = new Groups($app);
-            $groupModel->createGroup($groupData);
+                $userModel = new Users($app);
+                $groupData['mod_user_id'] = $userModel->getCurrentUserId();
 
+                $groupModel = new Groups($app);
+                $groupModel->createGroup($groupData);
+
+                $app['session']->getFlashBag()->add(
+                    'message',
+                    array(
+                        'type' => 'success',
+                        'icon' => 'check',
+                        'content' => $app['translator']->trans('group.add-messages.success')
+                    )
+                );
+
+                return $app->redirect(
+                    $app['url_generator']->generate('group_add')
+                );
+            }
+
+            $view['form'] = $groupForm->createView();
+
+            return $app['twig']->render('Group/add.html.twig', $view);
+        } catch (\PDOException $e) {
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                    'type' => 'success',
-                    'icon' => 'check',
-                    'content' => $app['translator']->trans('group.add-messages.success')
+                    'type' => 'alert',
+                    'icon' => 'times',
+                    'content' => $app['translator']->trans('none.messages.db-error')
                 )
             );
 
             return $app->redirect(
-                $app['url_generator']->generate('group_add')
+                $request->headers->get('referer')
             );
         }
-
-        $view['form'] = $groupForm->createView();
-
-        return $app['twig']->render('Group/add.html.twig', $view);
     }
 
     /**
@@ -123,77 +154,92 @@ class GroupController implements ControllerProviderInterface
      */
     public function editAction(Application $app, Request $request)
     {
-        $view = array();
+        try {
+            $view = array();
 
-        $id = (int) $request->get('id', 0);
-        $groupModel = new Groups($app);
-        $group = $groupModel->findGroup($id);
+            $id = (int) $request->get('id', 0);
+            $groupModel = new Groups($app);
+            $group = $groupModel->findGroup($id);
 
-        if ($group['id'] == null) {
-            $app['session']->getFlashBag()->add(
-                'message',
-                array(
-                    'type' => 'warning',
-                    'icon' => 'warning',
-                    'content' => $app['translator']->trans(
-                        'group.edit-messages.not-found'
+            if ($group['id'] == null) {
+                $app['session']->getFlashBag()->add(
+                    'message',
+                    array(
+                        'type' => 'warning',
+                        'icon' => 'warning',
+                        'content' => $app['translator']->trans(
+                            'group.edit-messages.not-found'
+                        )
                     )
-                )
-            );
+                );
 
-            return $app->redirect(
-                $app['url_generator']->generate('group_list')
-            );
-        }
+                return $app->redirect(
+                    $app['url_generator']->generate('group_list')
+                );
+            }
 
-        $userModel = new Users($app);
-        $modUserId = $userModel->getCurrentUserId();
+            $userModel = new Users($app);
+            $modUserId = $userModel->getCurrentUserId();
 
-        if ($group['mod_user_id'] != $modUserId) {
-            $app['session']->getFlashBag()->add(
-                'message',
-                array(
-                    'type' => 'warning',
-                    'icon' => 'warning',
-                    'content' => $app['translator']->trans(
-                        'group.edit-messages.not-allowed'
+            if ($group['mod_user_id'] != $modUserId) {
+                $app['session']->getFlashBag()->add(
+                    'message',
+                    array(
+                        'type' => 'warning',
+                        'icon' => 'warning',
+                        'content' => $app['translator']->trans(
+                            'group.edit-messages.not-allowed'
+                        )
                     )
-                )
-            );
+                );
 
-            return $app->redirect(
-                $app['url_generator']->generate('project_list')
-            );
-        }
+                return $app->redirect(
+                    $app['url_generator']->generate('project_list')
+                );
+            }
 
-        $groupForm = $app['form.factory']->createBuilder(
-            new GroupType(),
-            $group
-        )->getForm();
+            $groupForm = $app['form.factory']->createBuilder(
+                new GroupType(),
+                $group
+            )->getForm();
 
-        $groupForm->handleRequest($request);
+            $groupForm->handleRequest($request);
 
-        if ($groupForm->isValid()) {
-            $groupData = $groupForm->getData();
-            $groupModel->updateGroup($groupData);
+            if ($groupForm->isValid()) {
+                $groupData = $groupForm->getData();
+                $groupModel->updateGroup($groupData);
 
+                $app['session']->getFlashBag()->add(
+                    'message',
+                    array(
+                        'type' => 'success',
+                        'icon' => 'check',
+                        'content' => $app['translator']->trans('group.edit-messages.success')
+                    )
+                );
+
+                return $app->redirect(
+                    $app['url_generator']->generate('group_list')
+                );
+            }
+
+            $view['form'] = $groupForm->createView();
+
+            return $app['twig']->render('Group/edit.html.twig', $view);
+        } catch (\PDOException $e) {
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                    'type' => 'success',
-                    'icon' => 'check',
-                    'content' => $app['translator']->trans('group.edit-messages.success')
+                    'type' => 'alert',
+                    'icon' => 'times',
+                    'content' => $app['translator']->trans('none.messages.db-error')
                 )
             );
 
             return $app->redirect(
-                $app['url_generator']->generate('group_list')
+                $request->headers->get('referer')
             );
         }
-
-        $view['form'] = $groupForm->createView();
-
-        return $app['twig']->render('Group/edit.html.twig', $view);
     }
 
     /**
@@ -205,43 +251,56 @@ class GroupController implements ControllerProviderInterface
      */
     public function deleteAction(Application $app, Request $request)
     {
-        $id = (int) $request->get('id', 0);
-        $groupModel = new Groups($app);
-        $group = $groupModel->findGroup($id);
+        try {
+            $id = (int) $request->get('id', 0);
+            $groupModel = new Groups($app);
+            $group = $groupModel->findGroup($id);
 
-        if ($group['id'] == null) {
-            $app['session']->getFlashBag()->add(
-                'message',
-                array(
-                    'type' => 'warning',
-                    'icon' => 'warning',
-                    'content' => $app['translator']->trans(
-                        'group.delete-messages.not-found'
-                    )
-                )
-            );
-        } else {
-            $groupNotUsed = $group['used'] == null;
-            if ($groupNotUsed) {
-                $deleteForm = $app['form.factory']->createBuilder(
-                    new DeleteGroupType()
-                )->getForm();
-
-                $deleteForm->handleRequest($request);
-
-                if ($deleteForm->isValid()) {
-                    $groupModel->deleteGroup($id);
-
-                    $app['session']->getFlashBag()->add(
-                        'message',
-                        array(
-                            'type' => 'success',
-                            'icon' => 'check',
-                            'content' => $app['translator']->trans(
-                                'group.delete-messages.success'
-                            )
+            if ($group['id'] == null) {
+                $app['session']->getFlashBag()->add(
+                    'message',
+                    array(
+                        'type' => 'warning',
+                        'icon' => 'warning',
+                        'content' => $app['translator']->trans(
+                            'group.delete-messages.not-found'
                         )
-                    );
+                    )
+                );
+            } else {
+                $groupNotUsed = $group['used'] == null;
+                if ($groupNotUsed) {
+                    $deleteForm = $app['form.factory']->createBuilder(
+                        new DeleteGroupType()
+                    )->getForm();
+
+                    $deleteForm->handleRequest($request);
+
+                    if ($deleteForm->isValid()) {
+                        $groupModel->deleteGroup($id);
+
+                        $app['session']->getFlashBag()->add(
+                            'message',
+                            array(
+                                'type' => 'success',
+                                'icon' => 'check',
+                                'content' => $app['translator']->trans(
+                                    'group.delete-messages.success'
+                                )
+                            )
+                        );
+                    } else {
+                        $app['session']->getFlashBag()->add(
+                            'message',
+                            array(
+                                'type' => 'alert',
+                                'icon' => 'times',
+                                'content' => $app['translator']->trans(
+                                    'group.delete-messages.form-not-valid-error'
+                                )
+                            )
+                        );
+                    }
                 } else {
                     $app['session']->getFlashBag()->add(
                         'message',
@@ -249,27 +308,29 @@ class GroupController implements ControllerProviderInterface
                             'type' => 'alert',
                             'icon' => 'times',
                             'content' => $app['translator']->trans(
-                                'group.delete-messages.form-not-valid-error'
+                                'group.delete-messages.used-alert'
                             )
                         )
                     );
                 }
-            } else {
-                $app['session']->getFlashBag()->add(
-                    'message',
-                    array(
-                        'type' => 'alert',
-                        'icon' => 'times',
-                        'content' => $app['translator']->trans(
-                            'group.delete-messages.used-alert'
-                        )
-                    )
-                );
             }
-        }
 
-        return $app->redirect(
-            $app['url_generator']->generate('group_list')
-        );
+            return $app->redirect(
+                $app['url_generator']->generate('group_list')
+            );
+        } catch (\PDOException $e) {
+            $app['session']->getFlashBag()->add(
+                'message',
+                array(
+                    'type' => 'alert',
+                    'icon' => 'times',
+                    'content' => $app['translator']->trans('none.messages.db-error')
+                )
+            );
+
+            return $app->redirect(
+                $request->headers->get('referer')
+            );
+        }
     }
 }

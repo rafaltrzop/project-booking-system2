@@ -42,6 +42,10 @@
         <source>none.body.no-data-found</source>
         <target>Nie znaleziono danych do wyświetlenia.</target>
       </trans-unit>
+      <trans-unit id="none.messages.db-error">
+        <source>none.messages.db-error</source>
+        <target>Wystąpił krytyczny błąd bazy danych, spróbuj ponownie później.</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Index/index.html.twig">

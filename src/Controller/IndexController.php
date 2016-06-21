@@ -25,7 +25,8 @@ class IndexController implements ControllerProviderInterface
     public function connect(Application $app)
     {
         $indexController = $app['controllers_factory'];
-        $indexController->get('/', array($this, 'indexAction'));
+        $indexController->get('/', array($this, 'indexAction'))
+            ->bind('homepage');
         return $indexController;
     }
 

@@ -42,38 +42,53 @@ class SignUpController implements ControllerProviderInterface
      */
     public function newAction(Application $app, Request $request)
     {
-        $view = array();
+        try {
+            $view = array();
 
-        $groupModel = new Groups($app);
-        $signUpForm = $app['form.factory']->createBuilder(
-            new UserProfileType($groupModel->findAllGroups()),
-            array(),
-            array('validation_groups' => 'signup-default')
-        )->getForm();
+            $groupModel = new Groups($app);
+            $signUpForm = $app['form.factory']->createBuilder(
+                new UserProfileType($groupModel->findAllGroups()),
+                array(),
+                array('validation_groups' => 'signup-default')
+            )->getForm();
 
-        $signUpForm->handleRequest($request);
+            $signUpForm->handleRequest($request);
 
-        if ($signUpForm->isValid()) {
-            $signUpData = $signUpForm->getData();
-            $userModel = new Users($app);
-            $userModel->createUser($signUpData);
+            if ($signUpForm->isValid()) {
+                $signUpData = $signUpForm->getData();
+                $userModel = new Users($app);
+                $userModel->createUser($signUpData);
 
+                $app['session']->getFlashBag()->add(
+                    'message',
+                    array(
+                        'type' => 'success',
+                        'icon' => 'check',
+                        'content' => $app['translator']->trans('signup.messages.success')
+                    )
+                );
+
+                return $app->redirect(
+                    $app['url_generator']->generate('auth_login')
+                );
+            }
+
+            $view['form'] = $signUpForm->createView();
+
+            return $app['twig']->render('SignUp/new.html.twig', $view);
+        } catch (\PDOException $e) {
             $app['session']->getFlashBag()->add(
                 'message',
                 array(
-                    'type' => 'success',
-                    'icon' => 'check',
-                    'content' => $app['translator']->trans('signup.messages.success')
+                    'type' => 'alert',
+                    'icon' => 'times',
+                    'content' => $app['translator']->trans('none.messages.db-error')
                 )
             );
 
             return $app->redirect(
-                $app['url_generator']->generate('auth_login')
+                $request->headers->get('referer')
             );
         }
-
-        $view['form'] = $signUpForm->createView();
-
-        return $app['twig']->render('SignUp/new.html.twig', $view);
     }
 }
