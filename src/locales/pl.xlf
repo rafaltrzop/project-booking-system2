@@ -494,8 +494,8 @@
         <source>user.list.edit</source>
         <target>Edytuj</target>
       </trans-unit>
-      <trans-unit id="user.delete-form.submit">
-        <source>user.delete-form.submit</source>
+      <trans-unit id="user.list.delete">
+        <source>user.list.delete</source>
         <target>Usuń</target>
       </trans-unit>
       <trans-unit id="user.delete-messages.not-found">
@@ -505,10 +505,6 @@
       <trans-unit id="user.delete-messages.success">
         <source>user.delete-messages.success</source>
         <target>Wybrany użytkownik został pomyślnie usunięty.</target>
-      </trans-unit>
-      <trans-unit id="user.delete-messages.form-not-valid-error">
-        <source>user.delete-messages.form-not-valid-error</source>
-        <target>Nie udało się usunąć wybranego użytkownika z powodu błędu walidacji formularza.</target>
       </trans-unit>
     </body>
   </file>
@@ -541,6 +537,14 @@
       <trans-unit id="user.edit-form.repeat-new-password">
         <source>user.edit-form.repeat-new-password</source>
         <target>Powtórz nowe hasło (zostaw puste by nie zmieniać)</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/User/delete.html.twig">
+    <body>
+      <trans-unit id="user.delete-form.submit">
+        <source>user.delete-form.submit</source>
+        <target>Usuń użytkownika</target>
       </trans-unit>
     </body>
   </file>

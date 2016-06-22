@@ -38,7 +38,7 @@ class UserController implements ControllerProviderInterface
             ->bind('user_list');
         $userController->match('/edit/{id}', array($this, 'editAction'))
             ->bind('user_edit');
-        $userController->post('/delete/{id}', array($this, 'deleteAction'))
+        $userController->match('/delete/{id}', array($this, 'deleteAction'))
             ->bind('user_delete');
         return $userController;
     }
@@ -108,15 +108,7 @@ class UserController implements ControllerProviderInterface
             $userModel = new Users($app);
             $users = $userModel->findAllUsers();
 
-            $deleteForms = array();
-            foreach ($users as $user) {
-                $deleteForms[$user['id']] = $app['form.factory']->createBuilder(
-                    new DeleteUserType()
-                )->getForm()->createView();
-            }
-
             $view['users'] = $users;
-            $view['forms'] = $deleteForms;
 
             return $app['twig']->render('User/list.html.twig', $view);
         } catch (\PDOException $e) {
@@ -229,6 +221,12 @@ class UserController implements ControllerProviderInterface
     public function deleteAction(Application $app, Request $request)
     {
         try {
+            $view = array();
+
+            $deleteForm = $app['form.factory']->createBuilder(
+                new DeleteUserType()
+            )->getForm();
+
             $id = (int) $request->get('id', 0);
             $userModel = new Users($app);
             $user = $userModel->findUser($id);
@@ -244,11 +242,11 @@ class UserController implements ControllerProviderInterface
                         )
                     )
                 );
-            } else {
-                $deleteForm = $app['form.factory']->createBuilder(
-                    new DeleteUserType()
-                )->getForm();
 
+                return $app->redirect(
+                    $app['url_generator']->generate('user_list')
+                );
+            } else {
                 $deleteForm->handleRequest($request);
 
                 if ($deleteForm->isValid()) {
@@ -264,23 +262,16 @@ class UserController implements ControllerProviderInterface
                             )
                         )
                     );
-                } else {
-                    $app['session']->getFlashBag()->add(
-                        'message',
-                        array(
-                            'type' => 'alert',
-                            'icon' => 'times',
-                            'content' => $app['translator']->trans(
-                                'user.delete-messages.form-not-valid-error'
-                            )
-                        )
+
+                    return $app->redirect(
+                        $app['url_generator']->generate('user_list')
                     );
                 }
             }
 
-            return $app->redirect(
-                $app['url_generator']->generate('user_list')
-            );
+            $view['form'] = $deleteForm->createView();
+
+            return $app['twig']->render('User/delete.html.twig', $view);
         } catch (\PDOException $e) {
             $app['session']->getFlashBag()->add(
                 'message',

@@ -1,7 +1,4 @@
 {% extends 'base.html.twig' %}
-{% for user in users %}
-  {% form_theme forms[user.id] 'form/logged_in.html.twig' %}
-{% endfor %}
 
 {% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
 
@@ -40,9 +37,7 @@
                 <a href="{{ path('user_edit', {'id' : user.id}) }}" class="hollow button">{{ 'user.list.edit'|trans }}</a>
               </td>
               <td>
-                {{ form_start(forms[user.id], {'attr': {'onsubmit': 'return confirm();'}, 'action': path('user_delete', {'id' : user.id})}) }}
-                {{ form_widget(forms[user.id]) }}
-                {{ form_end(forms[user.id]) }}
+                <a href="{{ path('user_delete', {'id' : user.id}) }}" class="hollow button">{{ 'user.list.delete'|trans }}</a>
               </td>
             </tr>
           {% endfor %}
