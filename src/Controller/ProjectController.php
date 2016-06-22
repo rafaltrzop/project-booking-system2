@@ -47,7 +47,7 @@ class ProjectController implements ControllerProviderInterface
             ->bind('project_add');
         $projectController->match('/edit/{id}', array($this, 'editAction'))
             ->bind('project_edit');
-        $projectController->post('/delete/{id}', array($this, 'deleteAction'))
+        $projectController->match('/delete/{id}', array($this, 'deleteAction'))
             ->bind('project_delete');
         return $projectController;
     }
@@ -70,19 +70,12 @@ class ProjectController implements ControllerProviderInterface
             $groupModel = new Groups($app);
             $groups = $groupModel->findGroupsForMod($modUserId);
 
-            $deleteForms = array();
             $projectModel = new Projects($app);
             foreach ($groups as &$group) {
                 $group['projects'] = $projectModel->findProjectsFromGroup($group['id']);
-                foreach ($group['projects'] as $project) {
-                    $deleteForms[$project['id']] = $app['form.factory']->createBuilder(
-                        new DeleteProjectType()
-                    )->getForm()->createView();
-                }
             }
 
             $view['groups'] = $groups;
-            $view['forms'] = $deleteForms;
 
             return $app['twig']->render('Project/list.html.twig', $view);
         } catch (\PDOException $e) {
@@ -478,6 +471,12 @@ class ProjectController implements ControllerProviderInterface
     public function deleteAction(Application $app, Request $request)
     {
         try {
+            $view = array();
+
+            $deleteForm = $app['form.factory']->createBuilder(
+                new DeleteProjectType()
+            )->getForm();
+
             $id = (int) $request->get('id', 0);
             $projectModel = new Projects($app);
             $project = $projectModel->findProject($id);
@@ -493,13 +492,35 @@ class ProjectController implements ControllerProviderInterface
                         )
                     )
                 );
+
+                return $app->redirect(
+                    $app['url_generator']->generate('project_list')
+                );
             } else {
+                $projectModUserId = $projectModel->getProjectModUserId($project['id']);
+
+                $userModel = new Users($app);
+                $modUserId = $userModel->getCurrentUserId();
+
+                if ($projectModUserId != $modUserId) {
+                    $app['session']->getFlashBag()->add(
+                        'message',
+                        array(
+                            'type' => 'warning',
+                            'icon' => 'warning',
+                            'content' => $app['translator']->trans(
+                                'project.delete-messages.not-allowed'
+                            )
+                        )
+                    );
+
+                    return $app->redirect(
+                        $app['url_generator']->generate('project_list')
+                    );
+                }
+
                 $projectNotReserved = $project['user_id'] == null;
                 if ($projectNotReserved) {
-                    $deleteForm = $app['form.factory']->createBuilder(
-                        new DeleteProjectType()
-                    )->getForm();
-
                     $deleteForm->handleRequest($request);
 
                     if ($deleteForm->isValid()) {
@@ -515,16 +536,9 @@ class ProjectController implements ControllerProviderInterface
                                 )
                             )
                         );
-                    } else {
-                        $app['session']->getFlashBag()->add(
-                            'message',
-                            array(
-                                'type' => 'alert',
-                                'icon' => 'times',
-                                'content' => $app['translator']->trans(
-                                    'project.delete-messages.form-not-valid-error'
-                                )
-                            )
+
+                        return $app->redirect(
+                            $app['url_generator']->generate('project_list')
                         );
                     }
                 } else {
@@ -538,12 +552,16 @@ class ProjectController implements ControllerProviderInterface
                             )
                         )
                     );
+
+                    return $app->redirect(
+                        $app['url_generator']->generate('project_list')
+                    );
                 }
             }
 
-            return $app->redirect(
-                $app['url_generator']->generate('project_list')
-            );
+            $view['form'] = $deleteForm->createView();
+
+            return $app['twig']->render('Project/delete.html.twig', $view);
         } catch (\PDOException $e) {
             $app['session']->getFlashBag()->add(
                 'message',

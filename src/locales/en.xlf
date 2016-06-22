@@ -156,7 +156,7 @@
       </trans-unit>
     </body>
   </file>
-  <file source-language="en" datatype="plaintext" original="views/Project/index.html.twig">
+  <file source-language="en" datatype="plaintext" original="views/Project/list.html.twig">
     <body>
       <trans-unit id="project.groups-projects-list.h1">
         <source>project.groups-projects-list.h1</source>
@@ -174,8 +174,8 @@
         <source>project.groups-projects-list.edit</source>
         <target>Edit</target>
       </trans-unit>
-      <trans-unit id="project.delete-form.submit">
-        <source>project.delete-form.submit</source>
+      <trans-unit id="project.groups-projects-list.delete">
+        <source>project.groups-projects-list.delete</source>
         <target>Delete</target>
       </trans-unit>
       <trans-unit id="project.delete-messages.not-found">
@@ -185,10 +185,6 @@
       <trans-unit id="project.delete-messages.success">
         <source>project.delete-messages.success</source>
         <target>The specified topic of the project has been successfully removed.</target>
-      </trans-unit>
-      <trans-unit id="project.delete-messages.form-not-valid-error">
-        <source>project.delete-messages.form-not-valid-error</source>
-        <target>The specified topic of the project could not have been deleted because of an form validation error.</target>
       </trans-unit>
       <trans-unit id="project.delete-messages.reserved-alert">
         <source>project.delete-messages.reserved-alert</source>
@@ -305,6 +301,18 @@
       <trans-unit id="project.edit-messages.success">
         <source>project.edit-messages.success</source>
         <target>The changes have been successfully saved.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/delete.html.twig">
+    <body>
+      <trans-unit id="project.delete-form.submit">
+        <source>project.delete-form.submit</source>
+        <target>Delete project topic</target>
+      </trans-unit>
+      <trans-unit id="project.delete-messages.not-allowed">
+        <source>project.delete-messages.not-allowed</source>
+        <target>You do not have permission to delete this project.</target>
       </trans-unit>
     </body>
   </file>

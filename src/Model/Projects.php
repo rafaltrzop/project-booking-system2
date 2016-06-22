@@ -241,4 +241,26 @@ class Projects
 
         return $result;
     }
+
+    /**
+     * Gets project mod user ID.
+     *
+     * @param integer $projectId Project ID
+     * @return integer Result
+     */
+    public function getProjectModUserId($projectId)
+    {
+        $query = '
+            SELECT mod_user_id
+            FROM projects p
+            LEFT JOIN groups g ON p.group_id = g.id
+            WHERE p.id = :project_id
+        ';
+        $statement = $this->db->prepare($query);
+        $statement->bindValue('project_id', $projectId, \PDO::PARAM_INT);
+        $statement->execute();
+        $result = $statement->fetchColumn();
+
+        return $result;
+    }
 }
