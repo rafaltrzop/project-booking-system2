@@ -46,6 +46,10 @@
         <source>none.messages.db-error</source>
         <target>A fatal database error has occurred, please try again later.</target>
       </trans-unit>
+      <trans-unit id="none.confirm-delete.h1">
+        <source>none.confirm-delete.h1</source>
+        <target>Confirm action</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Index/index.html.twig">
@@ -390,8 +394,8 @@
         <source>group.list.edit</source>
         <target>Edit</target>
       </trans-unit>
-      <trans-unit id="group.delete-form.submit">
-        <source>group.delete-form.submit</source>
+      <trans-unit id="group.list.delete">
+        <source>group.list.delete</source>
         <target>Delete</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.not-found">
@@ -401,10 +405,6 @@
       <trans-unit id="group.delete-messages.success">
         <source>group.delete-messages.success</source>
         <target>The specified group and all related topics of projects have been successfully removed.</target>
-      </trans-unit>
-      <trans-unit id="group.delete-messages.form-not-valid-error">
-        <source>group.delete-messages.form-not-valid-error</source>
-        <target>The specified group of topics could not have been deleted because of an form validation error.</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.used-alert">
         <source>group.delete-messages.used-alert</source>
@@ -441,6 +441,18 @@
       <trans-unit id="group.edit-messages.success">
         <source>group.edit-messages.success</source>
         <target>The changes have been successfully saved.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Group/delete.html.twig">
+    <body>
+      <trans-unit id="group.delete-form.submit">
+        <source>group.delete-form.submit</source>
+        <target>Delete group</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.not-allowed">
+        <source>group.delete-messages.not-allowed</source>
+        <target>You do not have permission to delete this group of topics.</target>
       </trans-unit>
     </body>
   </file>

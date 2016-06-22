@@ -46,6 +46,10 @@
         <source>none.messages.db-error</source>
         <target>Wystąpił krytyczny błąd bazy danych, spróbuj ponownie później.</target>
       </trans-unit>
+      <trans-unit id="none.confirm-delete.h1">
+        <source>none.confirm-delete.h1</source>
+        <target>Potwierdź operację</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Index/index.html.twig">
@@ -390,8 +394,8 @@
         <source>group.list.edit</source>
         <target>Edytuj</target>
       </trans-unit>
-      <trans-unit id="group.delete-form.submit">
-        <source>group.delete-form.submit</source>
+      <trans-unit id="group.list.delete">
+        <source>group.list.delete</source>
         <target>Usuń</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.not-found">
@@ -401,10 +405,6 @@
       <trans-unit id="group.delete-messages.success">
         <source>group.delete-messages.success</source>
         <target>Wybrana grupa tematów i wszystkie powiązane z nią tematy projektów zostały pomyślnie usunięte.</target>
-      </trans-unit>
-      <trans-unit id="group.delete-messages.form-not-valid-error">
-        <source>group.delete-messages.form-not-valid-error</source>
-        <target>Nie udało się usunąć wybranej grupy tematów z powodu błędu walidacji formularza.</target>
       </trans-unit>
       <trans-unit id="group.delete-messages.used-alert">
         <source>group.delete-messages.used-alert</source>
@@ -441,6 +441,18 @@
       <trans-unit id="group.edit-messages.success">
         <source>group.edit-messages.success</source>
         <target>Zmiany zostały pomyślnie zapisane.</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file source-language="en" datatype="plaintext" original="views/Group/delete.html.twig">
+    <body>
+      <trans-unit id="group.delete-form.submit">
+        <source>group.delete-form.submit</source>
+        <target>Usuń grupę</target>
+      </trans-unit>
+      <trans-unit id="group.delete-messages.not-allowed">
+        <source>group.delete-messages.not-allowed</source>
+        <target>Nie masz uprawnień do usunięcia tej grupy tematów.</target>
       </trans-unit>
     </body>
   </file>

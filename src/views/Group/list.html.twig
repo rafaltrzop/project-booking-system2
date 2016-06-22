@@ -1,7 +1,4 @@
 {% extends 'base.html.twig' %}
-{% for group in groups %}
-  {% form_theme forms[group.id] 'form/logged_in.html.twig' %}
-{% endfor %}
 
 {% block title %}{{ 'none.admin-head.title'|trans }} &mdash; {{ parent() }}{% endblock %}
 
@@ -29,13 +26,7 @@
                   <a href="{{ path('group_edit', {'id' : group.id}) }}" class="hollow button">{{ 'group.list.edit'|trans }}</a>
                 </td>
                 <td>
-                  {{ form_start(forms[group.id], {'attr': {'onsubmit': 'return confirm();'}, 'action': path('group_delete', {'id' : group.id})}) }}
-                  {% if group.used %}
-                    {{ form_widget(forms[group.id].submit, {'disabled': 'disabled'}) }}
-                  {% else %}
-                    {{ form_widget(forms[group.id]) }}
-                  {% endif %}
-                  {{ form_end(forms[group.id]) }}
+                  <a href="{{ path('group_delete', {'id' : group.id}) }}" class="hollow button {% if group.used %}disabled{% endif %}">{{ 'group.list.delete'|trans }}</a>
                 </td>
               </tr>
             {% endfor %}

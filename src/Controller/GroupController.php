@@ -35,7 +35,7 @@ class GroupController implements ControllerProviderInterface
             ->bind('group_add');
         $groupController->match('/edit/{id}', array($this, 'editAction'))
             ->bind('group_edit');
-        $groupController->post('/delete/{id}', array($this, 'deleteAction'))
+        $groupController->match('/delete/{id}', array($this, 'deleteAction'))
             ->bind('group_delete');
         return $groupController;
     }
@@ -58,15 +58,7 @@ class GroupController implements ControllerProviderInterface
             $groupModel = new Groups($app);
             $groups = $groupModel->findGroupsForMod($modUserId);
 
-            $deleteForms = array();
-            foreach ($groups as $group) {
-                $deleteForms[$group['id']] = $app['form.factory']->createBuilder(
-                    new DeleteGroupType()
-                )->getForm()->createView();
-            }
-
             $view['groups'] = $groups;
-            $view['forms'] = $deleteForms;
 
             return $app['twig']->render('Group/list.html.twig', $view);
         } catch (\PDOException $e) {
@@ -252,6 +244,12 @@ class GroupController implements ControllerProviderInterface
     public function deleteAction(Application $app, Request $request)
     {
         try {
+            $view = array();
+
+            $deleteForm = $app['form.factory']->createBuilder(
+                new DeleteGroupType()
+            )->getForm();
+
             $id = (int) $request->get('id', 0);
             $groupModel = new Groups($app);
             $group = $groupModel->findGroup($id);
@@ -267,13 +265,33 @@ class GroupController implements ControllerProviderInterface
                         )
                     )
                 );
+
+                return $app->redirect(
+                    $app['url_generator']->generate('group_list')
+                );
             } else {
+                $userModel = new Users($app);
+                $modUserId = $userModel->getCurrentUserId();
+
+                if ($group['mod_user_id'] != $modUserId) {
+                    $app['session']->getFlashBag()->add(
+                        'message',
+                        array(
+                            'type' => 'warning',
+                            'icon' => 'warning',
+                            'content' => $app['translator']->trans(
+                                'group.delete-messages.not-allowed'
+                            )
+                        )
+                    );
+
+                    return $app->redirect(
+                        $app['url_generator']->generate('group_list')
+                    );
+                }
+
                 $groupNotUsed = $group['used'] == null;
                 if ($groupNotUsed) {
-                    $deleteForm = $app['form.factory']->createBuilder(
-                        new DeleteGroupType()
-                    )->getForm();
-
                     $deleteForm->handleRequest($request);
 
                     if ($deleteForm->isValid()) {
@@ -289,16 +307,9 @@ class GroupController implements ControllerProviderInterface
                                 )
                             )
                         );
-                    } else {
-                        $app['session']->getFlashBag()->add(
-                            'message',
-                            array(
-                                'type' => 'alert',
-                                'icon' => 'times',
-                                'content' => $app['translator']->trans(
-                                    'group.delete-messages.form-not-valid-error'
-                                )
-                            )
+
+                        return $app->redirect(
+                            $app['url_generator']->generate('group_list')
                         );
                     }
                 } else {
@@ -312,12 +323,16 @@ class GroupController implements ControllerProviderInterface
                             )
                         )
                     );
+
+                    return $app->redirect(
+                        $app['url_generator']->generate('group_list')
+                    );
                 }
             }
 
-            return $app->redirect(
-                $app['url_generator']->generate('group_list')
-            );
+            $view['form'] = $deleteForm->createView();
+
+            return $app['twig']->render('Group/delete.html.twig', $view);
         } catch (\PDOException $e) {
             $app['session']->getFlashBag()->add(
                 'message',
