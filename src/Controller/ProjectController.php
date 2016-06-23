@@ -37,6 +37,8 @@ class ProjectController implements ControllerProviderInterface
             ->bind('project_list');
         $projectController->match('/book', array($this, 'bookAction'))
             ->bind('project_book');
+        $projectController->match('/presubmit', array($this, 'presubmitAction'))
+            ->bind('project_presubmit');
         $projectController->match('/submit', array($this, 'submitAction'))
             ->bind('project_submit');
         $projectController->match('/summary', array($this, 'summaryAction'))
@@ -135,7 +137,7 @@ class ProjectController implements ControllerProviderInterface
                 );
 
                 return $app->redirect(
-                    $app['url_generator']->generate('project_submit')
+                    $app['url_generator']->generate('project_presubmit')
                 );
             }
 
@@ -156,6 +158,18 @@ class ProjectController implements ControllerProviderInterface
                 $request->headers->get('referer')
             );
         }
+    }
+
+    /**
+     * Presubmit action.
+     *
+     * @param \Silex\Application $app Silex application
+     * @param \Symfony\Component\HttpFoundation\Request $request Request object
+     * @return string Response
+     */
+    public function presubmitAction(Application $app, Request $request)
+    {
+        return $app['twig']->render('Project/presubmit.html.twig');
     }
 
     /**

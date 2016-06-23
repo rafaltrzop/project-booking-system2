@@ -111,6 +111,7 @@ $app->register(
             array('^/signup/$', 'IS_AUTHENTICATED_ANONYMOUSLY'),
             array('^/user/redirect$', 'ROLE_USER'),
             array('^/project/book$', 'ROLE_USER'),
+            array('^/project/presubmit$', 'ROLE_USER'),
             array('^/project/submit$', 'ROLE_USER'),
             array('^/project/summary$', 'ROLE_USER'),
             array('^/user/list$', 'ROLE_ADMIN'),

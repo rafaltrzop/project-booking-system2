@@ -70,7 +70,7 @@ class UserController implements ControllerProviderInterface
 
             if ($userBookedProject) {
                 return $app->redirect(
-                    $app['url_generator']->generate('project_submit')
+                    $app['url_generator']->generate('project_presubmit')
                 );
             }
 

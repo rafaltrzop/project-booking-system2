@@ -212,6 +212,14 @@
       </trans-unit>
     </body>
   </file>
+  <file source-language="en" datatype="plaintext" original="views/Project/presubmit.html.twig">
+    <body>
+      <trans-unit id="project.anchor.presubmit">
+        <source>project.anchor.presubmit</source>
+        <target>Submit to evaluation</target>
+      </trans-unit>
+    </body>
+  </file>
   <file source-language="en" datatype="plaintext" original="views/Project/submit.html.twig">
     <body>
       <trans-unit id="project.submit-form.h1">
