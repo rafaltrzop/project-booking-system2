@@ -44,6 +44,7 @@ class Groups
             FROM groups g
             LEFT JOIN projects p ON g.id = p.group_id
             WHERE g.id = :id
+            GROUP BY g.id
         ';
         $statement = $this->db->prepare($query);
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
