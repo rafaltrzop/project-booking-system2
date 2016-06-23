@@ -11,7 +11,7 @@
       <h1 class="landing-page-header text-center">{{ 'auth.landing-page.h1'|trans }}</h1>
       {% if error|length > 0 %}
         <ul>
-          <li>{{ error }}</li>
+          <li>{{ error|trans }}</li>
         </ul>
       {% endif %}
       {{ form(form, {'action': path('auth_login_check')}) }}

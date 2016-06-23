@@ -138,6 +138,10 @@
         <source>auth.form.submit</source>
         <target>Log in</target>
       </trans-unit>
+      <trans-unit id="Bad credentials.">
+        <source>Bad credentials.</source>
+        <target>The e-mail address or password you entered is not valid.</target>
+      </trans-unit>
     </body>
   </file>
   <file source-language="en" datatype="plaintext" original="views/Project/*.html.twig">
