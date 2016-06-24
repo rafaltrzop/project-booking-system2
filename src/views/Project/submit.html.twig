@@ -12,7 +12,7 @@
     <div class="row">
       <div class="small-12 columns">
         <h1>{{ 'none.confirm-delete.h1'|trans }}</h1>
-        {{ form(form) }}
+        {{ form(form, {'action': path('project_submit')}) }}
       </div>
     </div>
   </main>

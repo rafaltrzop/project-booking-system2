@@ -456,6 +456,7 @@ class ProjectController implements ControllerProviderInterface
                 );
             }
 
+            $view['id'] = $id;
             $view['form'] = $projectForm->createView();
 
             return $app['twig']->render('Project/edit.html.twig', $view);
@@ -573,6 +574,7 @@ class ProjectController implements ControllerProviderInterface
                 }
             }
 
+            $view['id'] = $id;
             $view['form'] = $deleteForm->createView();
 
             return $app['twig']->render('Project/delete.html.twig', $view);

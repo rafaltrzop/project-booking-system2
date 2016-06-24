@@ -192,6 +192,7 @@ class UserController implements ControllerProviderInterface
                 );
             }
 
+            $view['id'] = $id;
             $view['form'] = $userProfileForm->createView();
 
             return $app['twig']->render('User/edit.html.twig', $view);
@@ -269,6 +270,7 @@ class UserController implements ControllerProviderInterface
                 }
             }
 
+            $view['id'] = $id;
             $view['form'] = $deleteForm->createView();
 
             return $app['twig']->render('User/delete.html.twig', $view);

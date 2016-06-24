@@ -12,7 +12,7 @@
     <div class="row">
       <div class="small-12 columns">
         <h1>{{ 'project.book-form.h1'|trans }}</h1>
-        {{ form(form) }}
+        {{ form(form, {'action': path('project_book')}) }}
       </div>
     </div>
   </main>

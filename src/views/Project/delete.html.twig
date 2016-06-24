@@ -11,7 +11,7 @@
   <main class="body-content-container">
     <div class="column row">
       <h1>{{ 'none.confirm-delete.h1'|trans }}</h1>
-      {{ form(form) }}
+      {{ form(form, {'action': path('project_delete', {'id' : id})}) }}
     </div>
   </main>
 {% endblock %}

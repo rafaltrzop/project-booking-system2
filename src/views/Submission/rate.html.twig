@@ -38,7 +38,7 @@
                   {% endif %}
                 </td>
                 <td>
-                  {{ form(forms[loop.index0]) }}
+                  {{ form(forms[loop.index0], {'action': path('submission_rate')}) }}
                 </td>
               </tr>
             {% endfor %}

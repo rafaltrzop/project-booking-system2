@@ -215,6 +215,7 @@ class GroupController implements ControllerProviderInterface
                 );
             }
 
+            $view['id'] = $id;
             $view['form'] = $groupForm->createView();
 
             return $app['twig']->render('Group/edit.html.twig', $view);
@@ -330,6 +331,7 @@ class GroupController implements ControllerProviderInterface
                 }
             }
 
+            $view['id'] = $id;
             $view['form'] = $deleteForm->createView();
 
             return $app['twig']->render('Group/delete.html.twig', $view);

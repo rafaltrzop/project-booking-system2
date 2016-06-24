@@ -28,7 +28,6 @@ class RateSubmissionType extends AbstractType
             'id',
             'hidden',
             array(
-                'required' => true,
                 'constraints' => array(
                     new Assert\NotBlank()
                 )
