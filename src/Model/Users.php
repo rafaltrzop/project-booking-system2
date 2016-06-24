@@ -177,7 +177,8 @@ class Users
 
         $query = '
             UPDATE users
-            SET role_id = :role_id, group_id = :group_id, first_name = :first_name, last_name = :last_name, email = :email
+            SET role_id = :role_id, group_id = :group_id, first_name = :first_name,
+                last_name = :last_name, email = :email
             WHERE id = :id
         ';
         $statement = $this->db->prepare($query);
